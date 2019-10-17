@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linkallcloud.um.server.dao.party.IKhCompanyDao">
+
+	<sql id="Base_Column_List">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.sort,u.url,u.type,u.ico,u.remark,u.khTypeCode,
+		u.parentId,u.parentClass,u.govCode,u.code,u.name,u.areaId,u.level,u.address,u.phone,u.fax,u.certificateType,u.certificateNo,u.business,u.credentials,u.scale,
+		u.juridical,u.jphone,u.jType,u.jNo,
+		u.area1Id,u.area2Id,u.area3Id,u.area4Id,u.area5Id,u.area6Id,u.area7Id,u.area8Id,u.businessStart
+	</sql>
+	
+	<sql id="Column_with_orgName">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.sort,u.url,u.type,u.ico,u.remark,u.khTypeCode,
+		u.parentId,u.parentClass,u.govCode,u.code,u.name,u.scale,u.areaId,u.level,u.address,u.phone,u.fax,u.certificateType,u.certificateNo,u.business,u.credentials,
+		u.juridical,u.jphone,u.jType,u.jNo,d.name as orgName,
+		u.area1Id,u.area2Id,u.area3Id,u.area4Id,u.area5Id,u.area6Id,u.area7Id,u.area8Id,u.businessStart,
+		area.name as areaName
+	</sql>
+	
+	<select id="fetchById" resultType="com.linkallcloud.um.domain.party.KhCompany" parameterType="java.lang.Long">
+		select
+			<include refid="Column_with_orgName" />
+		from 
+			um_kh_company u left join um_kh_company d on u.parentId=d.id left join um_area area on u.areaId=area.id 
+		where 
+			u.id=#{id}
+	</select>
+	
+	<select id="fetchByIdUuid" resultType="com.linkallcloud.um.domain.party.KhCompany">
+		SELECT
+			<include refid="Column_with_orgName" />
+		FROM
+			um_kh_company u left join um_kh_company d on u.parentId=d.id left join um_area area on u.areaId=area.id 
+		WHERE
+			u.id = #{id} and u.uuid=#{uuid} 
+	</select>
+	
+	<select id="fetchByGovCode" resultType="com.linkallcloud.um.domain.party.KhCompany" parameterType="java.lang.String">
+		select
+			<include refid="Base_Column_List" />
+		from 
+			um_kh_company u left join um_kh_company d on u.parentId=d.id left join um_area area on u.areaId=area.id 
+		where 
+			u.govCode=#{govCode}
+	</select>
+	
+	<select id="findByName" resultType="com.linkallcloud.um.domain.party.KhCompany">
+		select
+			<include refid="Base_Column_List" />
+		from 
+			um_kh_company u
+		where 
+			u.name=#{name}
+	</select>
+	
+	<select id="findByIds" resultType="com.linkallcloud.um.domain.party.KhCompany" parameterType="java.lang.Long">
+		select
+			<include refid="Base_Column_List" />
+		from um_kh_company u 
+		where u.status &lt;&gt; 9 and  u.id in
+			<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</select>
+	
+	<select id="findByParent" resultType="com.linkallcloud.um.domain.party.KhCompany">
+		select
+			<include refid="Base_Column_List" />
+		from um_kh_company u 
+		where 
+			u.status &lt;&gt; 9 AND u.parentId=#{parentCompanyId}
+	</select>
+	
+	<select id="findPage" resultType="com.linkallcloud.um.domain.party.KhCompany">
+		SELECT
+			u.id,u.uuid,u.status,u.createTime,u.updateTime,u.sort,u.url,u.type,u.ico,u.remark,u.khTypeCode,
+			u.parentId,u.parentClass,u.govCode,u.code,u.name,u.scale,u.areaId,u.level,u.address,u.phone,u.fax,u.certificateType,u.certificateNo,u.business,u.credentials,u.juridical,u.jphone,u.jType,u.jNo,
+			u.area1Id,u.area2Id,u.area3Id,u.area4Id,u.area5Id,u.area6Id,u.area7Id,u.area8Id,u.businessStart,area.name as areaName
+		FROM
+			um_kh_company u LEFT JOIN um_area area ON u.areaId=area.id 
+		WHERE
+			u.status &lt;&gt; 9 
+			<choose>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 1"> AND u.area1Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 2"> AND u.area2Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 3"> AND u.area3Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 4"> AND u.area4Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 5"> AND u.area5Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 6"> AND u.area6Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 7"> AND u.area7Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 8"> AND u.area8Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		    </choose>
+		    <if test="page.cnds!=null and page.cnds.address != null"> AND u.address like concat('%',#{page.cnds.address},'%')</if>
+			<if test="page.cnds!=null and page.cnds.name != null"> AND u.name like #{page.cnds.name}</if>
+			<if test="page.cnds!=null and page.cnds.phone != null"> AND u.phone like #{page.cnds.phone}</if>
+			<if test="page.cnds!=null and page.cnds.status != null"> AND u.status = #{page.cnds.status}</if>
+		<choose>
+			<when test="page.orders != null and page.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="page.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findPage4Select" resultType="com.linkallcloud.um.domain.party.KhCompany">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_kh_company u 
+		WHERE
+			u.status &lt;&gt; 9 
+			<choose>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 1"> AND u.area1Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 2"> AND u.area2Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 3"> AND u.area3Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 4"> AND u.area4Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 5"> AND u.area5Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 6"> AND u.area6Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 7"> AND u.area7Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="page.cnds!=null and page.cnds.areaIds != null and page.cnds.level == 8"> AND u.area8Id in <foreach item="areaId" index="index" collection="page.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		    </choose>
+		    <if test="page.cnds!=null and page.cnds.address != null"> AND u.address like #{page.cnds.address}</if>
+			<if test="page.cnds!=null and page.cnds.name != null"> AND u.name like #{page.cnds.name}</if>
+			<if test="page.cnds!=null and page.cnds.phone != null"> AND u.phone like #{page.cnds.phone}</if>
+			<if test="page.cnds!=null and page.cnds.status != null"> AND u.status = #{page.cnds.status}</if>
+		<choose>
+			<when test="page.orders != null and page.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="page.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="find" resultType="com.linkallcloud.um.domain.party.KhCompany">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_kh_company u
+		WHERE
+			u.status &lt;&gt; 9 
+			<choose>
+		        <when test="query!=null and query.cnds!=null and query.cnds.areaIds != null and query.cnds.level == 1"> AND u.area1Id in <foreach item="areaId" index="index" collection="query.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="query!=null and query.cnds!=null and query.cnds.areaIds != null and query.cnds.level == 2"> AND u.area2Id in <foreach item="areaId" index="index" collection="query.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="query!=null and query.cnds!=null and query.cnds.areaIds != null and query.cnds.level == 3"> AND u.area3Id in <foreach item="areaId" index="index" collection="query.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="query!=null and query.cnds!=null and query.cnds.areaIds != null and query.cnds.level == 4"> AND u.area4Id in <foreach item="areaId" index="index" collection="query.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="query!=null and query.cnds!=null and query.cnds.areaIds != null and query.cnds.level == 5"> AND u.area5Id in <foreach item="areaId" index="index" collection="query.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="query!=null and query.cnds!=null and query.cnds.areaIds != null and query.cnds.level == 6"> AND u.area6Id in <foreach item="areaId" index="index" collection="query.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="query!=null and query.cnds!=null and query.cnds.areaIds != null and query.cnds.level == 7"> AND u.area7Id in <foreach item="areaId" index="index" collection="query.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		        <when test="query!=null and query.cnds!=null and query.cnds.areaIds != null and query.cnds.level == 8"> AND u.area8Id in <foreach item="areaId" index="index" collection="query.cnds.areaIds" open="(" separator="," close=")">#{areaId}</foreach> </when>
+		    </choose>
+			<if test="query!=null and query.cnds!=null and query.cnds.areaId != null"> AND u.areaId = #{query.cnds.areaId}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.parentId != null"> AND u.parentId = #{query.cnds.parentId}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.type != null"> AND u.type = #{query.cnds.type}</if>
+		    <if test="query!=null and query.cnds!=null and query.cnds.name != null"> AND u.name like #{page.cnds.name}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.status != null"> AND u.status = #{query.cnds.status}</if>
+		<choose>
+			<when test="query != null and query.orders != null and query.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="query.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert" parameterType="com.linkallcloud.um.domain.party.KhCompany" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into um_kh_company 
+			(uuid, status,createTime,updateTime,sort,url,type,ico,remark,khTypeCode,
+				parentId,parentClass,govCode,code,name,scale,areaId,address,phone,fax,certificateType,certificateNo,business,credentials,
+				juridical,jphone,jType,jNo,businessStart)
+		values
+			(#{entity.uuid},#{entity.status},now(),now(),#{entity.sort},#{entity.url},#{entity.type},#{entity.ico},#{entity.remark},#{entity.khTypeCode},
+				#{entity.parentId},#{entity.parentClass},#{entity.govCode},#{entity.code},#{entity.name},#{entity.scale},#{entity.areaId},#{entity.address},#{entity.phone},#{entity.fax},#{entity.certificateType},#{entity.certificateNo},#{entity.business},#{entity.credentials},
+				#{entity.juridical},#{entity.jphone},#{entity.jType},#{entity.jNo},#{entity.businessStart})
+	</insert>
+	
+	<update id="update">
+		update 
+			um_kh_company 
+		set 
+			sort=#{entity.sort},url=#{entity.url},type=#{entity.type},ico=#{entity.ico},remark=#{entity.remark},businessStart=#{entity.businessStart},
+			name=#{entity.name},scale=#{entity.scale},areaId=#{entity.areaId},address=#{entity.address},phone=#{entity.phone},fax=#{entity.fax},
+			certificateType=#{entity.certificateType},certificateNo=#{entity.certificateNo},business=#{entity.business},credentials=#{entity.credentials},
+			juridical=#{entity.juridical},jphone=#{entity.jphone},jType=#{entity.jType},jNo=#{entity.jNo},updateTime=now()
+			<if test="entity.status != null"> ,status=#{entity.status}</if>
+			<if test="entity.code != null"> ,code=#{entity.code}</if>
+		where 
+			id=#{entity.id} and uuid=#{entity.uuid}
+	</update>
+	
+	<update id="updateStatus">
+		update 
+			um_kh_company 
+		set 
+			status=#{status},updateTime=now()
+		where 
+			id=#{id} and uuid=#{uuid}
+	</update>
+	
+	<update id="updateCode">
+		update um_kh_company set code=#{code},updateTime=now() where id=#{id}
+	</update>
+	
+	<update id="updateAreaFields">
+		update um_kh_company 
+		set 
+			areaId=#{entity.areaId},level=#{entity.level},
+			area1Id=#{entity.area1Id},area2Id=#{entity.area2Id},area3Id=#{entity.area3Id},area4Id=#{entity.area4Id},
+			area5Id=#{entity.area5Id},area6Id=#{entity.area6Id},area7Id=#{entity.area7Id},area8Id=#{entity.area8Id},updateTime=now() 
+		where 
+			id=#{entity.id}
+	</update>
+	
+	<delete id="delete">
+		update 
+			um_kh_company 
+		set
+			status=9,updateTime=now()
+		where
+			id=#{id} and uuid=#{uuid}
+	</delete>
+	
+	<insert id="saveRel4OrgLeader" parameterType="java.util.List" >
+        insert into 
+        	yw_rel_org_leader (uuid, status,createTime,updateTime,orgType,orgId,userId)
+        values 
+	        <foreach collection="rels" item="rel" index="index" separator=",">
+	        (#{rel.uuid},#{rel.status},now(),now(),#{rel.orgType},#{rel.orgId},#{rel.userId})
+	        </foreach>
+    </insert>
+    
+    <delete id="deleteRel4OrgLeader">
+		delete from 
+			yw_rel_org_leader 
+		where 
+			orgType=#{orgType} and orgId=#{orgId} and userId in 
+			<foreach item="userId" index="index" collection="userIds" open="(" separator="," close=")">
+				#{userId}
+			</foreach>
+	</delete>
+	
+	<insert id="addApps">
+        insert into 
+        	um_kh_rel_company_app (status,createTime,updateTime,companyId,appId)
+        values 
+	        <foreach collection="appIds" item="appId" index="index" separator=",">
+	        (0,now(),now(),#{id},#{appId})
+	        </foreach>
+    </insert>
+    
+    <delete id="removeApps">
+		delete from 
+			um_kh_rel_company_app 
+		where 
+			companyId=#{id} and appId in 
+			<foreach item="appId" index="index" collection="appIds" open="(" separator="," close=")">
+				#{appId}
+			</foreach>
+	</delete>
+	
+	<select id="findPermedCompanyAppMenus" resultType="java.lang.Long">
+		SELECT
+			u.menuId
+		FROM
+			um_kh_company_perm_menu u
+		WHERE
+			u.companyId=#{companyId}  AND u.appId=#{appId}
+	</select>
+	
+	<delete id="clearCompanyAppMenuPerms">
+		delete from 
+			um_kh_company_perm_menu 
+		where 
+			companyId=#{companyId} and appId=#{appId}
+	</delete>
+	
+	<insert id="saveCompanyAppMenuPerms">
+        insert into 
+        	um_kh_company_perm_menu (status,createTime,updateTime,companyId,appId,menuId)
+        values 
+	        <foreach collection="menuIds" item="menuId" index="index" separator=",">
+	        (0,now(),now(),#{companyId},#{appId},#{menuId})
+	        </foreach>
+    </insert>
+    
+    <select id="findPermedCompanyAppAreas" resultType="java.lang.Long">
+		SELECT
+			u.areaId
+		FROM
+			um_kh_company_perm_area u
+		WHERE
+			u.companyId=#{companyId}  AND u.appId=#{appId}
+	</select>
+	
+	<delete id="clearCompanyAppAreaPerms">
+		delete from 
+			um_kh_company_perm_area 
+		where 
+			companyId=#{companyId} and appId=#{appId}
+	</delete>
+	
+	<insert id="saveCompanyAppAreaPerms">
+        insert into 
+        	um_kh_company_perm_area (status,createTime,updateTime,companyId,appId,areaId)
+        values 
+	        <foreach collection="areaIds" item="areaId" index="index" separator=",">
+	        (0,now(),now(),#{companyId},#{appId},#{areaId})
+	        </foreach>
+    </insert>
+	
+</mapper>

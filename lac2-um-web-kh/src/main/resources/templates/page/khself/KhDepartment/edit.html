@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>部门管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" th:href="@{{path}/AdminLTE3/font-awesome/4.4.0/css/font-awesome.min.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" th:href="@{{path}/AdminLTE3/ionicons/2.0.1/css/ionicons.min.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="../../AdminLTE3/css/adminlte.min.css" th:href="@{{path}/AdminLTE3/css/adminlte.min.css(path=${static_server},v=${static_res_version})}">
+<link href="../../AdminLTE3/css/index.css" th:href="@{{path}/AdminLTE3/css/index.css(path=${static_server},v=${static_res_version})}" rel="stylesheet">
+<link href="https://fonts.proxy.ustclug.org/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" th:href="@{{path}/AdminLTE3/googleapis-fonts/fonts.css(path=${static_server},v=${static_res_version})}">
+</head>
+<body class="hold-transition">
+	<div class="card card-outline card-info" style="margin-top:5px;">
+		<div class="card-header">
+			<h3 class="card-title">基本信息</h3>
+
+			<div class="card-tools">
+				<button type="button" class="btn btn-tool" data-widget="collapse">
+					<i class="fa fa-minus"></i>
+				</button>
+			</div>
+			<!-- /.card-tools -->
+		</div>
+		<!-- /.card-header -->
+		<div class="card-body">
+			<form id="f_dep_addedit" class="form-horizontal" method="post" action="/SelfKhDepartment/save" th:action="@{/SelfKhDepartment/save}">
+				<input type="hidden" id="id" name="id" th:value="${id}"/>
+				<input type="hidden" id="uuid" name="uuid" th:value="${uuid}"/>
+				<input type="hidden" id="companyId" name="companyId" th:value="${companyId}"/>
+				<input type="hidden" id="parentId" name="parentId" th:value="${parentId}"/>
+				<input type="hidden" id="parentClass" name="parentClass" th:value="${parentClass}"/>
+				<input type="hidden" id="linkUserId" name="linkUserId"/>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">上级机构</span>
+							</div>
+							<input type="text" class="form-control" name="orgName" id="orgName" readonly>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend pull-right">
+								<span class="input-group-text">状态*</span>
+							</div>
+							<select name="status" id="status" class="form-control">
+		                      <option value="0">正常</option>
+		                      <option value="1">禁用</option>
+		                    </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">部门名称*</span>
+							</div>
+							<input type="text" class="form-control validate[required,maxSize[32]]" name="name" id="name" placeholder="请输入部门名称...">
+						</div>
+					</div>
+					<div th:if="${id == null }" class="col-md-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend pull-right">
+								<span class="input-group-text">编号*</span>
+							</div>
+							<input type="text" class="form-control validate[required,maxSize[32]]" name="govCode" id="govCode" placeholder="请输入部门编号...">
+						</div>
+					</div>
+					<div th:if="${id != null }" class="col-md-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend pull-right">
+								<span class="input-group-text">编号*</span>
+							</div>
+							<input type="text" class="form-control" name="govCode" id="govCode" readonly>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">联系人</span>
+							</div>
+							<input type="text" class="form-control validate[maxSize[32]]" name="linkUserName" id="linkUserName" placeholder="请输入联系人姓名...">
+							<span class="input-group-append">
+			                    <button id="btn_user_select" type="button" class="btn btn-info btn-flat">选择</button>
+			                </span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend pull-right">
+								<span class="input-group-text">联系电话</span>
+							</div>
+							<input type="text" class="form-control validate[maxSize[32]]" name="linkUserPhone" id="linkUserPhone" placeholder="请输入联系人电话...">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">备注</span>
+							</div>
+							<textarea class="form-control validate[maxSize[255]]" rows="3" id="remark" name="remark" placeholder="请输入部门备注说明..."></textarea>
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<!-- /.card-body -->
+		<div class="card-footer">
+			<button id="btn_dep_cancel" type="button" class="btn btn-default float-right" style="margin:0px 10px;">取消</button>
+			<button id="btn_dep_save" type="button" class="btn btn-info float-right" data-res="selfkh_org_user-org_add||selfkh_org_user-org_edit">保存</button>
+		</div>
+	</div>
+	<script th:replace="page/base/global :: jsVar"></script>
+	<script src="../../plugins/jquery/jquery.min.js" th:src="@{{path}/plugins/jquery/jquery.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/jQueryUI/jquery-ui.min.js" th:src="@{{path}/plugins/jQueryUI/jquery-ui.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/jqueryForm-4.2.2/jquery.form.min.js" th:src="@{{path}/plugins/jqueryForm-4.2.2/jquery.form.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js" th:src="@{{path}/plugins/bootstrap/js/bootstrap.bundle.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/jqueryValidationEngine-2.6.4/languages/jquery.validationEngine-zh_CN.js" th:src="@{{path}/plugins/jqueryValidationEngine-2.6.4/languages/jquery.validationEngine-zh_CN.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/jqueryValidationEngine-2.6.4/jquery.validationEngine-2.6.4.js" th:src="@{{path}/plugins/jqueryValidationEngine-2.6.4/jquery.validationEngine-2.6.4.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/jqueryValidationEngine-2.6.4/validateHelper.js" th:src="@{{path}/plugins/jqueryValidationEngine-2.6.4/validateHelper.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../AdminLTE3/js/adminlte.min.js" th:src="@{{path}/AdminLTE3/js/adminlte.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/json2.js" th:src="@{{path}/lac/json2.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/utils.js" th:src="@{{path}/lac/utils.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2Tab.js" th:src="@{{path}/lac/lac2Tab.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2.js" th:src="@{{path}/lac/lac2.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2Dialog.js" th:src="@{{path}/lac/lac2Dialog.js(path=${static_server},v=${static_res_version})}"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#f_dep_addedit").initLacForm(ctx + "/SelfKhDepartment/get?id=" + $("#id").val() + "&uuid=" + $("#uuid").val() + "&parentId=" + $("#parentId").val() + "&parentClass=" + $("#parentClass").val(),function(){
+				$("#btn_dep_save").permissionEnabled();
+			});
+	
+			$("#btn_dep_cancel").click(function() {
+				LacTab.closeThisTab();
+			});
+			
+			$("#btn_dep_save").click(function() {
+				$('#f_dep_addedit').saveClose();
+			});
+			
+			$("#f_dep_addedit").validationEngine("attach", { notShowPrompt : true }).bindValidationEngineHelper();
+			
+			$("#btn_user_select").click(function() {
+				LAC.showModel({
+					id : "dlg_self_khuser_select",
+					type : "common",// primary common
+					sizeCss : "modal-lg",
+					title : "选择人员",
+					url :  ctx + "/SelfKhUser/select?multi=false",
+					data : [{field:"companyId", type:"L", op:"eq", data:$("#companyId").val()}],
+					method : "post",
+					callback : function(user) {
+						$("#linkUserId").val(user.id ? user.id : '');
+						$("#linkUserName").val(user.name ? user.name : '');
+						$("#linkUserPhone").val(user.mobile ? user.mobile : '');
+						LAC.closeModel("dlg_self_khuser_select");
+					}
+				});
+			});
+			
+		});
+	</script>
+</body>
+</html>

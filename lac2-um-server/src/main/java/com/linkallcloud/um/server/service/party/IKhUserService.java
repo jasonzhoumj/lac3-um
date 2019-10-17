@@ -1,0 +1,27 @@
+package com.linkallcloud.um.server.service.party;
+
+import com.linkallcloud.dto.Trace;
+import com.linkallcloud.pagination.Page;
+import com.linkallcloud.um.domain.party.KhUser;
+
+public interface IKhUserService extends IUserService<KhUser> {
+
+    /**
+     * 客户单位操作员，查公司或者部门下人员分页列表
+     * 
+     * @param t
+     * @param page
+     * @return
+     */
+    Page<Long, KhUser> findSelfUserPage(Trace t, Page<Long, KhUser> page);
+
+    /**
+     * 客户单位操作员，根据用户组织权限查某用户某应用全公司人员分页列表，Page中必须包含appId，userId，companyId参数
+     * 
+     * @param t
+     * @param page
+     * @return
+     */
+    Page<Long, KhUser> findPermedSelfUserPage(Trace t, Page<Long, KhUser> page);
+
+}

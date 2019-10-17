@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>组织机构管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" th:href="@{{path}/AdminLTE3/font-awesome/4.4.0/css/font-awesome.min.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" th:href="@{{path}/AdminLTE3/ionicons/2.0.1/css/ionicons.min.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="../../AdminLTE3/css/adminlte.min.css" th:href="@{{path}/AdminLTE3/css/adminlte.min.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="../../plugins/iCheck/square/blue.css" th:href="@{{path}/plugins/iCheck/square/blue.css(path=${static_server},v=${static_res_version})}">
+<link href="https://fonts.proxy.ustclug.org/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" th:href="@{{path}/AdminLTE3/googleapis-fonts/fonts.css(path=${static_server},v=${static_res_version})}">
+<link href="../../AdminLTE3/css/index.css" th:href="@{{path}/AdminLTE3/css/index.css(path=${static_server},v=${static_res_version})}" rel="stylesheet">
+<link href="../../plugins/ztree/css/zTreeStyle/zTreeStyle.css" th:href="@{{path}/plugins/ztree/css/zTreeStyle/zTreeStyle.css(path=${static_server},v=${static_res_version})}" rel="stylesheet">
+<link href="../../plugins/ztree/css/metroStyle/metroStyle.css" th:href="@{{path}/plugins/ztree/css/metroStyle/metroStyle.css(path=${static_server},v=${static_res_version})}" rel="stylesheet">
+<link href="../../lac/lac2TreeTable.css" th:href="@{{path}/lac/lac2TreeTable.css(path=${static_server},v=${static_res_version})}" rel="stylesheet">
+</head>
+<body class="hold-transition">
+	<section class="find-tools">
+      <div class="searchBox">
+        <div class="pull-left"><i class="fa fa-th-large"></i>&nbsp;组织机构管理</div>
+      </div>
+	</section>
+
+	<section class="content">
+		<ul id="dataTree" class="ztree"></ul>
+	</section>
+
+	<script th:replace="page/base/global :: jsVar"></script>
+	<script src="../../plugins/jquery/jquery.min.js" th:src="@{{path}/plugins/jquery/jquery.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/jQueryUI/jquery-ui.min.js" th:src="@{{path}/plugins/jQueryUI/jquery-ui.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/jqueryForm-4.2.2/jquery.form.min.js" th:src="@{{path}/plugins/jqueryForm-4.2.2/jquery.form.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js" th:src="@{{path}/plugins/bootstrap/js/bootstrap.bundle.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/json2.js" th:src="@{{path}/lac/json2.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/utils.js" th:src="@{{path}/lac/utils.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2Tab.js" th:src="@{{path}/lac/lac2Tab.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2.js" th:src="@{{path}/lac/lac2.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2Dialog.js" th:src="@{{path}/lac/lac2Dialog.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/ztree/js/jquery.ztree.all.min.js" th:src="@{{path}/plugins/ztree/js/jquery.ztree.all.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2TreeTable.js" th:src="@{{path}/lac/lac2TreeTable.js(path=${static_server},v=${static_res_version})}"></script>
+<script>
+	function addCompany(parentId){
+		var parentClass = "KhCompany";
+		if(parentId.indexOf('-') != -1 ){
+			parentId = parentId.substring(1);
+			LAC.addRow4TreeTable("dataTree", ctx + '/SelfKhCompany/add?parentId=' + parentId +"&parentClass=" +parentClass, 'SelfKhOrg', '新增子单位');
+		} else {
+			add(parentId);
+		}
+	}
+	
+	function add(parentId){
+		var parentClass = "KhDepartment";
+		if(parentId.indexOf('-') != -1 ){
+			parentId = parentId.substring(1);
+			parentClass = "KhCompany";
+		}
+		LAC.addRow4TreeTable("dataTree", ctx + '/SelfKhDepartment/add?parentId=' + parentId +"&parentClass=" +parentClass, 'SelfKhOrg', '新增部门');
+	}
+	function edit(id,uuid){
+		if(id.indexOf('-') != -1 ){
+			id = id.substring(1);
+			LAC.editCurRow4TreeTable("dataTree", ctx + '/SelfKhCompany/edit?id=' + id + "&uuid=" + uuid, 'SelfKhOrg', '编辑单位');
+		} else {
+			LAC.editCurRow4TreeTable("dataTree", ctx + '/SelfKhDepartment/edit?id=' + id + "&uuid=" + uuid, 'SelfKhOrg', '编辑部门');
+		}
+	}
+	function del(id,uuid){
+		if(id.indexOf('-') != -1 ){
+			id = id.substring(1);
+			var url = ctx + '/SelfKhDepartment/delete?id=' + id + "&uuid=" + uuid;
+			LAC.delete4TreeTable("dataTree", ctx + '/SelfKhCompany/delete?id=' + id + "&uuid=" + uuid);
+		} else {
+			LAC.delete4TreeTable("dataTree", ctx + '/SelfKhDepartment/delete?id=' + id + "&uuid=" + uuid);
+		}
+	}
+	function apps(id,uuid){
+		if(id.indexOf('-') != -1 ){
+			id = id.substring(1);
+			LacTab.addTab({
+				id : "customer_qy_apps",
+				title : '应用开通管理',
+				url : ctx + '/Application/list4SubKhCompany?id=' + id + "&uuid=" + uuid
+			});
+		}
+	}
+
+	$(function() {
+		$("#dataTree").treeTable({
+			url : ctx + "/SelfKhCompany/loadTree",
+			defaultColumnWidth: '30%',
+			iconBasePath: static_server + "/lac/imgs/",
+			expandAll: true,
+			callback : function(){
+				$(".btn-permed").permissionEnabled();
+			},
+			columns : [
+				{
+					"feName" : "govCode",
+					"fcName" : "编码",
+					"width" : "15%"
+				},
+				{
+					"feName" : "attributes.linkUserName",
+					"fcName" : "联系人",
+					"width" : "15%"
+				},
+				{
+					"feName" : "attributes.linkUserPhone",
+					"fcName" : "联系方式",
+					"width" : "20%"
+				},
+				{
+					"feName" : "status",
+					"fcName" : "状态",
+					"width" : "10%",
+					"render" : function(treeNode) {
+						if (treeNode.status == 0) {
+							return '<span class="badge badge-success" style="width:35px;height:20px;">正常</span>';
+						} else if (treeNode.status == 1) {
+							return '<span class="badge badge-danger" style="width:35px;height:20px;">停用</span>';
+						} else {
+							return "";
+						}
+					}
+				},
+				{
+					"feName" : "",
+					"fcName" : "操作",
+					"width" : "10%",
+					"render" : function(treeNode) {
+						var ret = '';
+						if(treeNode.attributes.alias=="Company" && treeNode.pId){
+							ret += '<button title="应用开通" class="btn-permed btn-customer_qy-apps icon-btn" data-res="selfkh_org_user-app_perm" onclick="javascript:apps(\'' + treeNode.id + '\',\'' + treeNode.uuid + '\')"><i class="fa fa-th text-info"></i></button>&nbsp;&nbsp;'
+						} else {
+							ret += '<button title="添加子部门" class="btn-permed btn-dep-add icon-btn" data-res="selfkh_org_user-org_add" onclick="javascript:add(\'' + treeNode.id + '\')"><i class="fa fa-plus text-info"></i></button>&nbsp;&nbsp;';
+						}
+					    if(treeNode.pId){
+					    	ret += '<button title="修改" class="btn-permed btn-dep-edit icon-btn" data-res="selfkh_org_user-org_edit" onclick="javascript:edit(\'' + treeNode.id + '\',\'' + treeNode.uuid + '\')"><i class="fa fa-pencil text-info"></i></button>&nbsp;&nbsp;';
+					    	ret += '<button title="删除" class="btn-permed btn-dep-del icon-btn" data-res="selfkh_org_user-org_del" onclick="javascript:del(\'' + treeNode.id + '\',\'' + treeNode.uuid + '\')"><i class="fa fa-trash-o text-danger"></i></button>&nbsp;&nbsp;';
+					    }
+					    if(treeNode.attributes.alias=="Company" && !treeNode.pId){
+					    	ret += '<button title="添加子单位" class="btn-permed btn-company-add icon-btn" data-res="selfkh_org_user-org_addCompany" onclick="javascript:addCompany(\'' + treeNode.id + '\')"><i class="fa fa-plus-circle text-info"></i></button>&nbsp;';
+					    }
+					    return ret;
+					}
+				}
+			]
+		});
+	});
+
+</script>
+</body>
+</html>

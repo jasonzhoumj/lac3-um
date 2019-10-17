@@ -1,0 +1,28 @@
+package com.linkallcloud.um.server.dao.sys;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.linkallcloud.dao.IDao;
+import com.linkallcloud.dto.Trace;
+import com.linkallcloud.pagination.Page;
+import com.linkallcloud.um.domain.sys.Application;
+
+public interface IApplicationDao extends IDao<Long, Application> {
+
+	Application fetchByCode(@Param("t") Trace t, @Param("code") String code);
+
+	List<Application> findPage4YwRole(@Param("t") Trace t, @Param("page") Page<Long, Application> page);
+
+	List<Application> findPage4KhRole(@Param("t") Trace t, @Param("page") Page<Long, Application> page);
+
+	List<Application> findPage4KhCompany(@Param("t") Trace t, @Param("page") Page<Long, Application> page);
+
+	List<Application> find4YwUser(@Param("t") Trace t, @Param("ywUserId") Long ywUserId);
+
+	List<Application> find4KhUser(@Param("t") Trace t, @Param("khUserId") Long khUserId);
+
+	int updateInterfaceInfo(@Param("t") Trace t, @Param("entity") Application entity);
+
+}

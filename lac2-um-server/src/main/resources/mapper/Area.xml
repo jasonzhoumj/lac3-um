@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linkallcloud.um.server.dao.sys.IAreaDao">
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.code,u.parentId,u.govCode,u.name,u.fullName,u.sort,u.level,u.remark
+	</sql>
+	
+	<sql id="Column_with_parent">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.code,u.parentId,u.govCode,u.name,u.fullName,u.sort,u.level,u.remark,
+		p.name as parentName
+	</sql>
+	
+	<sql id="status_condition">
+		<choose>
+			<when test="sr!=null and sr.op.name()=='eq'"> AND u.status = #{sr.value} </when>
+			<when test="sr!=null and sr.op.name()=='ne'"> AND u.status &lt;&gt; #{sr.value} </when>
+			<when test="sr!=null and sr.op.name()=='lt'"> AND u.status &lt; #{sr.value} </when>
+			<when test="sr!=null and sr.op.name()=='le'"> AND u.status &lt;= #{sr.value} </when>
+			<when test="sr!=null and sr.op.name()=='gt'"> AND u.status &gt; #{sr.value} </when>
+			<when test="sr!=null and sr.op.name()=='ge'"> AND u.status &gt;= #{sr.value} </when>
+			<when test="sr!=null and sr.op.name()=='in'"> AND u.status IN 
+				<foreach item="sta" index="index" collection="sr.value" open="(" separator="," close=")">
+					#{sta}
+				</foreach>
+			</when>
+			<when test="sr!=null and sr.op.name()=='ni'"> AND u.status NOT IN 
+				<foreach item="sta" index="index" collection="sr.value" open="(" separator="," close=")">
+					#{sta}
+				</foreach>
+			</when>
+			<otherwise>
+				 AND &lt;&gt; 9
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<select id="fetchByGovCode" resultType="com.linkallcloud.um.domain.sys.Area" >
+		select
+			<include refid="Column_with_parent" />
+		from 
+			um_area u left join um_area p on u.parentId=p.id 
+		where 
+			u.status &lt;&gt; 9  AND u.govCode=#{govCode}
+	</select>
+	
+	<select id="fetchById" resultType="com.linkallcloud.um.domain.sys.Area" parameterType="java.lang.Long">
+		select
+			<include refid="Column_with_parent" />
+		from 
+			um_area u left join um_area p on u.parentId=p.id 
+		where 
+			u.id=#{id}
+	</select>
+	
+	<select id="fetchByIdUuid" resultType="com.linkallcloud.um.domain.sys.Area">
+		SELECT
+			<include refid="Column_with_parent" />
+		FROM
+			um_area u left join um_area p on u.parentId=p.id 
+		WHERE
+			u.id = #{id} and u.uuid=#{uuid} and u.status &lt;&gt; 9
+	</select>
+	
+	<select id="findByIds" resultType="com.linkallcloud.um.domain.sys.Area" parameterType="java.lang.Long">
+		select
+			<include refid="Base_Column_List" />
+		from um_area u 
+		where u.status &lt;&gt; 9 and  u.id in
+			<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</select>
+	
+	<select id="find" resultType="com.linkallcloud.um.domain.sys.Area">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_area u
+		WHERE
+			u.status &lt;&gt; 9 
+		    <if test="query!=null and query.cnds!=null and query.cnds.name != null"> AND u.name like #{query.cnds.name}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.status != null"> AND u.status = #{query.cnds.status}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.govCode != null"> AND u.govCode = #{query.cnds.govCode}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.govCodeLike != null"> AND u.govCode like #{query.cnds.govCodeLike}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.levelLt != null"> AND u.level &lt; #{query.cnds.levelLt}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.parentId != null"> AND u.parentId = #{query.cnds.parentId}</if>
+		<choose>
+			<when test="query != null and query.orders != null and query.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="query.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.parentId,u.sort
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findPage" resultType="com.linkallcloud.um.domain.sys.Area">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_area u
+		WHERE
+			u.status &lt;&gt; 9 
+			<if test="page.cnds!=null and page.cnds.status != null"> AND u.status = #{page.cnds.status}</if>
+			<if test="page.cnds!=null and page.cnds.name != null"> AND u.name like #{page.cnds.name}</if>
+			<if test="page.cnds!=null and page.cnds.govCode != null"> AND u.govCode = #{page.cnds.govCode}</if>
+			<if test="page.cnds!=null and page.cnds.govCodeLike != null"> AND u.govCode like #{page.cnds.govCodeLike}</if>
+			<if test="page.cnds!=null and page.cnds.levelLt != null"> AND u.level &lt; #{page.cnds.levelLt}</if>
+			<if test="page.cnds!=null and page.cnds.parentId != null"> AND u.parentId = #{page.cnds.parentId}</if>
+		<choose>
+			<when test="page.orders != null and page.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="page.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findByParentCode" resultType="com.linkallcloud.um.domain.sys.Area">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_area u
+		WHERE
+			substring(u.code, 1, #{len}) = #{parentCode} 
+			<include refid="status_condition" />
+	</select>
+	
+	<select id="findByParent" resultType="com.linkallcloud.um.domain.sys.Area">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_area u
+		WHERE
+			u.parentId=#{parentId} 
+			<include refid="status_condition" />
+	</select>
+	
+	<select id="findPermedKhCompanyAppAreas" resultType="com.linkallcloud.um.domain.sys.Area">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_area u JOIN um_kh_company_perm_area p ON u.id=p.areaId 
+		WHERE
+			p.companyId=#{companyId}  AND p.appId=#{appId}
+	</select>
+	
+	<select id="findPermedYwCompanyAppAreas" resultType="com.linkallcloud.um.domain.sys.Area">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_area u JOIN um_yw_company_perm_area p ON u.id=p.areaId 
+		WHERE
+			p.companyId=#{companyId}  AND p.appId=#{appId}
+	</select>
+	
+	<insert id="insert" parameterType="com.linkallcloud.um.domain.sys.Area" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into um_area
+			(uuid, status,createTime,updateTime,code,parentId,govCode,name,fullName,sort,level,remark)
+		values(#{entity.uuid},#{entity.status},now(),now(),#{entity.code},#{entity.parentId},#{entity.govCode},#{entity.name},#{entity.fullName},#{entity.sort},#{entity.level},#{entity.remark})
+	</insert>
+	
+	<update id="update">
+		update 
+			um_area 
+		set 
+			name=#{entity.name},fullName=#{entity.fullName},sort=#{entity.sort},remark=#{entity.remark}
+			<if test="entity.status != null"> ,status=#{entity.status}</if>
+			<if test="entity.level != null and entity.level > 0"> ,level=#{entity.level}</if>
+			,updateTime=now()
+		where 
+			id=#{entity.id} and uuid=#{entity.uuid}
+	</update>
+	
+	<delete id="delete">
+		update 
+			um_area 
+		set
+			status=9,updateTime=now()
+		where
+			id=#{id} and uuid=#{uuid}
+	</delete>
+	
+	<update id="updateCode">
+		update um_area set code=#{code},updateTime=now() where id=#{id}
+	</update>
+	
+	<select id="getChildrenCount" resultType="Integer" >
+		select count(1) from um_area 
+		where parentId=#{parenId}
+			<include refid="status_condition" />
+	</select>
+	
+</mapper>

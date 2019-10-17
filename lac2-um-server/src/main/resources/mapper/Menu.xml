@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linkallcloud.um.server.dao.sys.IMenuDao">
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.parentId,u.parentClass,u.code,u.name,u.sort,u.url,u.type,u.ico,u.remark,u.govCode,u.appId
+	</sql>
+	
+	<sql id="Column_with_parent">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.parentId,u.parentClass,u.code,u.name,u.sort,u.url,u.type,u.ico,u.remark,u.govCode,u.appId,
+		p.name as parentName
+	</sql>
+	
+	<select id="fetchByGovCode" resultType="com.linkallcloud.um.domain.sys.Menu">
+		select
+			<include refid="Column_with_parent" />
+		from 
+			um_app_menu u left join um_app_menu p on u.parentId=p.id 
+		where 
+			u.govCode=#{govCode}
+	</select>
+	
+	<select id="fetchById" resultType="com.linkallcloud.um.domain.sys.Menu" parameterType="java.lang.Long">
+		select
+			<include refid="Column_with_parent" />
+		from 
+			um_app_menu u left join um_app_menu p on u.parentId=p.id 
+		where 
+			u.id=#{id}
+	</select>
+	
+	<select id="fetchByIdUuid" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			<include refid="Column_with_parent" />
+		FROM
+			um_app_menu u left join um_app_menu p on u.parentId=p.id 
+		WHERE
+			u.id = #{id} and u.uuid=#{uuid} and u.status &lt;&gt; 9
+	</select>
+	
+	<select id="findByIds" resultType="com.linkallcloud.um.domain.sys.Menu" parameterType="java.lang.Long">
+		select
+			<include refid="Base_Column_List" />
+		from um_app_menu u 
+		where u.status &lt;&gt; 9 and  u.id in
+			<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</select>
+	
+	<select id="find" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_app_menu u
+		WHERE
+			u.status &lt;&gt; 9 AND u.appId = #{query.cnds.appId} 
+		    <if test="query!=null and query.cnds!=null and query.cnds.name != null"> AND u.name like #{query.cnds.name}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.status != null"> AND u.status = #{query.cnds.status}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.govCode != null"> AND u.govCode = #{query.cnds.govCode}</if>
+		<choose>
+			<when test="query != null and query.orders != null and query.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="query.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.parentId,u.sort
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAppMenus" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_app_menu u
+		WHERE
+			u.status &lt;&gt; 9 AND u.type=0 AND u.appId = #{appId} 
+		    <if test="valid==true"> AND u.status=0</if>
+	</select>
+	
+	<select id="findAppMenusWithButton" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_app_menu u
+		WHERE
+			u.status &lt;&gt; 9 AND u.appId = #{appId} 
+		    <if test="valid==true"> AND u.status=0</if>
+	</select>
+	
+	<select id="findKhCompanyAppMenus" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_app_menu u JOIN um_kh_company_perm_menu cpm ON u.id=cpm.menuId
+		WHERE
+			u.status &lt;&gt; 9 AND u.type=0 AND u.appId = #{appId} AND cpm.companyId = #{khCompanyId} 
+		    <if test="valid==true"> AND u.status=0</if>
+	</select>
+	
+	<select id="findKhCompanyAppMenusWithButton" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_app_menu u JOIN um_kh_company_perm_menu cpm ON u.id=cpm.menuId
+		WHERE
+			u.status &lt;&gt; 9 AND u.appId = #{appId} AND cpm.companyId = #{khCompanyId} 
+		    <if test="valid==true"> AND u.status=0</if>
+	</select>
+	
+	<select id="findYwCompanyAppMenus" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_app_menu u JOIN um_yw_company_perm_menu cpm ON u.id=cpm.menuId
+		WHERE
+			u.status &lt;&gt; 9 AND u.type=0 AND u.appId = #{appId} AND cpm.companyId = #{ywCompanyId} 
+		    <if test="valid==true"> AND u.status=0</if>
+	</select>
+	
+	<select id="findYwCompanyAppMenusWithButton" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_app_menu u JOIN um_yw_company_perm_menu cpm ON u.id=cpm.menuId
+		WHERE
+			u.status &lt;&gt; 9 AND u.appId = #{appId} AND cpm.companyId = #{ywCompanyId} 
+		    <if test="valid==true"> AND u.status=0</if>
+	</select>
+	
+	<insert id="insert" parameterType="com.linkallcloud.um.domain.sys.Menu" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into um_app_menu
+			(uuid, status,createTime,updateTime,parentId,parentClass,code,name,sort,url,type,ico,remark,govCode,appId)
+		values(#{entity.uuid},#{entity.status},now(),now(),#{entity.parentId},#{entity.parentClass},#{entity.code},
+		#{entity.name},#{entity.sort},#{entity.url},#{entity.type},#{entity.ico},#{entity.remark},#{entity.govCode},#{entity.appId})
+	</insert>
+	
+	<update id="update">
+		update 
+			um_app_menu 
+		set 
+			name=#{entity.name},sort=#{entity.sort},url=#{entity.url},type=#{entity.type},ico=#{entity.ico},remark=#{entity.remark}
+			<if test="entity.govCode != null"> ,govCode=#{entity.govCode}</if>
+			<if test="entity.parentId != null"> ,parentId=#{entity.parentId},parentClass=#{entity.parentClass}</if>
+			<if test="entity.status != null"> ,status=#{entity.status}</if>
+			,updateTime=now()
+		where 
+			id=#{entity.id} and uuid=#{entity.uuid}
+	</update>
+	
+	<delete id="delete">
+		update 
+			um_app_menu 
+		set
+			status=9,updateTime=now()
+		where
+			id=#{id} and uuid=#{uuid}
+	</delete>
+	
+	<update id="updateCode">
+		update um_app_menu set code=#{code},updateTime=now() where id=#{id}
+	</update>
+	
+</mapper>

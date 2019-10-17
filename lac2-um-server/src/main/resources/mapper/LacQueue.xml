@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linkallcloud.um.server.dao.queue.ILacQueueDao">
+
+	<sql id="Base_Column_List">
+		u.id,u.uuid,u.createTime,u.updateTime,
+		u.traceId,u.type,u.status,u.consumeStatus,u.locker,u.lastConsumeTime,u.nextConsumeTime,u.consumeCount,u.jsonData
+	</sql>
+	
+	<select id="fetchById" resultType="com.linkallcloud.um.domain.queue.LacQueue">
+		select
+			<include refid="Base_Column_List" />
+		from 
+			scgc_queue u 
+		where 
+			u.id=#{id}
+	</select>
+	
+	<select id="fetchByIdUuid" resultType="com.linkallcloud.um.domain.queue.LacQueue">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			scgc_queue u
+		WHERE
+			u.id = #{id} and u.uuid=#{uuid} and u.status &lt;&gt; 9
+	</select>
+	
+	<select id="findByIds" resultType="com.linkallcloud.um.domain.queue.LacQueue" parameterType="java.lang.Long">
+		select
+			<include refid="Base_Column_List" />
+		from scgc_queue u 
+		where u.status &lt;&gt; 9 and  u.id in
+			<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</select>
+	
+	<select id="getByLocker" resultType="com.linkallcloud.um.domain.queue.LacQueue">
+		select 
+			<include refid="Base_Column_List" />
+		from 
+			scgc_queue u 
+		where 
+			u.locker=#{locker}
+	</select>
+	
+	<select id="find" resultType="com.linkallcloud.um.domain.queue.LacQueue">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			scgc_queue u
+		WHERE
+			u.status &lt;&gt; 9 
+			<if test="query!=null and query.cnds!=null and query.cnds.status != null"> AND u.status = #{query.cnds.status}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.nextConsumeTime != null"> AND u.nextConsumeTime &lt; #{query.cnds.nextConsumeTime}</if>
+		<choose>
+			<when test="query != null and query.orders != null and query.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="query.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert" parameterType="com.linkallcloud.um.domain.queue.LacQueue" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into scgc_queue 
+			(uuid,createTime,updateTime,
+				traceId,type,status,consumeStatus,locker,lastConsumeTime,nextConsumeTime,consumeCount,jsonData)
+		values
+			(#{entity.uuid},#{entity.createTime},#{entity.updateTime},
+				#{entity.traceId},#{entity.type},#{entity.status},#{entity.consumeStatus},#{entity.locker},
+				#{entity.lastConsumeTime},#{entity.nextConsumeTime},#{entity.consumeCount},#{entity.jsonData})
+	</insert>
+	
+	<update id="update">
+		update 
+			scgc_queue 
+		set 
+			updateTime=#{entity.updateTime},status=#{entity.status},consumeStatus=#{entity.consumeStatus},
+			lastConsumeTime=#{entity.lastConsumeTime},nextConsumeTime=#{entity.nextConsumeTime},consumeCount=#{entity.consumeCount}
+			<if test="entity.traceId != null"> ,traceId=#{entity.traceId}</if>
+		where 
+			id=#{entity.id}
+	</update>
+	
+	<update id="updateActiveQueue">
+		UPDATE 
+			scgc_queue 
+		SET 
+			status=#{destStatus},locker=#{locker}
+		WHERE 
+			status=#{srcStatus} AND nextConsumeTime &lt; unix_timestamp()*1000
+		LIMIT #{count} 
+	</update>
+	
+	<update id="updateQueueStatus">
+		UPDATE 
+			scgc_queue 
+		SET 
+			status=#{status}
+		WHERE 
+			id=#{id}
+	</update>
+
+	<delete id="delete">
+		update 
+			scgc_queue 
+		set
+			status=9,updateTime=unix_timestamp()*1000
+		where
+			id=#{id} and uuid=#{uuid} and status &lt;&gt; 9
+	</delete>
+	
+	<delete id="deletes">
+		update 
+			scgc_queue 
+		set 
+			status=9,updateTime=unix_timestamp()*1000
+		where 
+			status &lt;&gt; 9 and id in 
+			<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</delete>
+	
+</mapper>

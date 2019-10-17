@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linkallcloud.um.server.dao.party.IYwDepartmentDao">
+
+	<!-- 通用查询结果列 
+	        针对sort被清理
+	    u.id,u.uuid,u.status,u.createTime,u.updateTime,sort-->
+	<sql id="Base_Column_List">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.sort,u.type,u.ico,u.remark,
+		u.code,u.name,u.fullName,u.govCode,u.level,u.companyId,u.parentId,u.parentClass,
+		u.linkUserId,u.linkUserName,u.linkUserPhone
+	</sql>
+	
+	<sql id="Column_with_orgName">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.sort,u.type,u.ico,u.remark,
+		u.code,u.name,u.fullName,u.govCode,u.level,u.companyId,u.parentId,u.parentClass,u.linkUserId,u.linkUserName,u.linkUserPhone,d.name as orgName
+	</sql>
+	
+	<select id="fetchById" resultType="com.linkallcloud.um.domain.party.YwDepartment" parameterType="java.lang.Long">
+		select
+			<include refid="Column_with_orgName" />
+		from 
+			um_yw_department u left join um_yw_department d on u.parentId=d.id 
+		where 
+			u.id=#{id}
+	</select>
+	
+	<select id="fetchByIdUuid" resultType="com.linkallcloud.um.domain.party.YwDepartment">
+		SELECT
+			<include refid="Column_with_orgName" />
+		FROM
+			um_yw_department u left join um_yw_department d on u.parentId=d.id 
+		WHERE
+			u.id = #{id} and u.uuid=#{uuid} and u.status &lt;&gt; 9
+	</select>
+	
+	<select id="fetchByGovCode" resultType="com.linkallcloud.um.domain.party.YwDepartment" parameterType="java.lang.String">
+		select
+			<include refid="Base_Column_List" />
+		from 
+			um_yw_department u 
+		where 
+			u.govCode=#{govCode}
+	</select>
+	
+	<select id="findByIds" resultType="com.linkallcloud.um.domain.party.YwDepartment" parameterType="java.lang.Long">
+		select
+			<include refid="Base_Column_List" />
+		from um_yw_department u 
+		where u.status &lt;&gt; 9 and  u.id in
+			<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</select>
+	
+	<select id="findPage" resultType="com.linkallcloud.um.domain.party.YwDepartment">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_yw_department u 
+		WHERE
+			u.status &lt;&gt; 9 
+		    <if test="page.cnds!=null and page.cnds.address != null"> AND u.address like #{page.cnds.address}</if>
+			<if test="page.cnds!=null and page.cnds.name != null"> AND u.name like #{page.cnds.name}</if>
+			<if test="page.cnds!=null and page.cnds.govCode != null"> AND u.govCode = #{page.cnds.govCode}</if>
+			<if test="page.cnds!=null and page.cnds.govCodeLike != null"> AND u.govCode like #{page.cnds.govCodeLike}</if>
+			<if test="page.cnds!=null and page.cnds.status != null"> AND u.status = #{page.cnds.status}</if>
+		<choose>
+			<when test="page.orders != null and page.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="page.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="find" resultType="com.linkallcloud.um.domain.party.YwDepartment">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_yw_department u
+		WHERE
+			u.status &lt;&gt; 9 
+			<if test="query!=null and query.cnds!=null and query.cnds.type != null"> AND u.type = #{query.cnds.type}</if>
+		    <if test="query!=null and query.cnds!=null and query.cnds.name != null"> AND u.name like #{query.cnds.name}</if>
+		    <if test="query!=null and query.cnds!=null and query.cnds.govCode != null"> AND u.govCode = #{query.cnds.govCode}</if>
+		    <if test="query!=null and query.cnds!=null and query.cnds.govCodeLike != null"> AND u.govCode like #{query.cnds.govCodeLike}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.status != null"> AND u.status = #{query.cnds.status}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.companyId != null"> AND u.companyId = #{query.cnds.companyId}</if>
+		<choose>
+			<when test="query != null and query.orders != null and query.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="query.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert" parameterType="com.linkallcloud.um.domain.party.YwDepartment" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into um_yw_department 
+			(uuid, status,createTime,updateTime,sort,type,ico,remark,code,name,fullName,govCode,level,companyId,parentId,parentClass,
+			 linkUserId,linkUserName,linkUserPhone)
+		values
+			(#{entity.uuid},#{entity.status},now(),now(),#{entity.sort},#{entity.type},#{entity.ico},#{entity.remark},
+				#{entity.code},#{entity.name},#{entity.fullName},#{entity.govCode},#{entity.level},#{entity.companyId},#{entity.parentId},#{entity.parentClass},
+				#{entity.linkUserId},#{entity.linkUserName},#{entity.linkUserPhone})
+	</insert>
+	
+	<update id="update">
+		update 
+			um_yw_department 
+		set 
+			type=#{entity.type},ico=#{entity.ico},remark=#{entity.remark},
+			linkUserId=#{entity.linkUserId},linkUserName=#{entity.linkUserName},linkUserPhone=#{entity.linkUserPhone},
+			name=#{entity.name},level=#{entity.level},updateTime=now()
+			<if test="entity.fullName != null"> ,fullName=#{entity.fullName}</if>
+			<if test="entity.status != null"> ,status=#{entity.status}</if>
+			<if test="entity.parentId != null"> ,parentId=#{entity.parentId},parentClass=#{entity.parentClass}</if>
+			<if test="entity.code != null"> ,code=#{entity.code}</if>
+			<if test="entity.sort != null"> ,sort=#{entity.sort}</if>
+		where 
+			id=#{entity.id} and uuid=#{entity.uuid}
+	</update>
+	
+	<update id="updateCode">
+		update um_yw_department set code=#{code},updateTime=now() where id=#{id}
+	</update>
+	
+	<update id="updateStatus">
+		update 
+			um_yw_department 
+		set 
+			status=#{status},updateTime=now()
+		where 
+			id=#{id} and uuid=#{uuid}
+	</update>
+	
+	<delete id="delete">
+		update 
+			um_yw_department 
+		set
+			status=9,updateTime=now()
+		where
+			id=#{id} and uuid=#{uuid}
+	</delete>
+	
+	<select id="findCompanyDepartments" resultType="com.linkallcloud.um.domain.party.YwDepartment" parameterType="java.lang.Long">
+		select <include refid="Base_Column_List" />
+		from   um_yw_department u 
+		where  u.status &lt;&gt; 9 AND u.companyId=#{companyId}
+		order by u.sort asc, u.id asc
+	</select>
+	
+	<select id="findAllDepartments" resultType="com.linkallcloud.um.domain.party.YwDepartment">
+		select <include refid="Base_Column_List" />
+		from   um_yw_department u 
+		where  u.status &lt;&gt; 9 
+			<if test="companyIds != null"> 
+				AND u.companyId IN 
+				<foreach item="companyId" index="index" collection="companyIds" open="(" separator="," close=")">
+					#{companyId}
+				</foreach>
+			</if>
+		order by u.sort asc
+	</select>
+	
+	<select id="findCompanyDirectDepartments" resultType="com.linkallcloud.um.domain.party.YwDepartment">
+		select <include refid="Base_Column_List" />
+		from   um_yw_department u 
+		where  u.status &lt;&gt; 9 AND u.companyId=#{companyId} AND u.parentId=0 
+		order by u.sort asc
+	</select>
+	
+	<select id="findDepartmentsByParentDepartmentCode" resultType="com.linkallcloud.um.domain.party.YwDepartment">
+		select <include refid="Base_Column_List" />
+		from   um_yw_department u 
+		where  u.status &lt;&gt; 9 
+			AND substring(u.code, 1, LENGTH(#{parentDepartmentCode})) = #{parentDepartmentCode}
+			AND u.code &lt;&gt; #{parentDepartmentCode}
+		order by u.sort asc
+	</select>
+	
+	<select id="findDirectDepartmentsByParentDepartmentId" resultType="com.linkallcloud.um.domain.party.YwDepartment">
+		select <include refid="Base_Column_List" />
+		from   um_yw_department u 
+		where  u.status &lt;&gt; 9 AND u.parentId=#{parentDepartmentId} AND u.parentClass='YwDepartment' 
+		order by u.sort asc
+	</select>
+	
+</mapper>

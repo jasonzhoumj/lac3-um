@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linkallcloud.um.server.dao.party.IKhRoleDao">
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.companyId,u.parentId,u.parentClass,u.name,u.sort,u.type,u.level,u.ico,u.code,u.govCode,u.remark
+	</sql>
+	
+	<sql id="Column_with_orgName">
+		u.id,u.uuid,u.status,u.createTime,u.updateTime,u.companyId,u.parentId,u.parentClass,u.name,u.sort,u.type,u.level,u.ico,u.code,u.govCode,u.remark,d.name as orgName
+	</sql>
+	
+	<select id="fetchByGovCode" resultType="com.linkallcloud.um.domain.party.KhRole">
+		select
+			<include refid="Column_with_orgName" />
+		from 
+			um_kh_role u left join um_kh_company d on u.parentId=d.id 
+		where 
+			u.govCode=#{govCode}
+	</select>
+	
+	<select id="fetchById" resultType="com.linkallcloud.um.domain.party.KhRole" parameterType="java.lang.Long">
+		select
+			<include refid="Column_with_orgName" />
+		from 
+			um_kh_role u left join um_kh_company d on u.parentId=d.id 
+		where 
+			u.id=#{id}
+	</select>
+	
+	<select id="fetchByIdUuid" resultType="com.linkallcloud.um.domain.party.KhRole">
+		SELECT
+			<include refid="Column_with_orgName" />
+		FROM
+			um_kh_role u left join um_kh_company d on u.parentId=d.id 
+		WHERE
+			u.id = #{id} and u.uuid=#{uuid} and u.status &lt;&gt; 9
+	</select>
+	
+	<select id="findByIds" resultType="com.linkallcloud.um.domain.party.KhRole" parameterType="java.lang.Long">
+		select
+			<include refid="Base_Column_List" />
+		from um_kh_role u 
+		where u.status &lt;&gt; 9 and  u.id in
+			<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</select>
+	
+	<select id="findPage" resultType="com.linkallcloud.um.domain.party.KhRole">
+		SELECT
+			<include refid="Column_with_orgName" />
+		FROM
+			um_kh_role u left join um_kh_company d on u.parentId=d.id 
+		WHERE
+			u.status &lt;&gt; 9 
+			<if test="page.cnds!=null and page.cnds.type != null"> AND u.type = #{page.cnds.type}</if>
+			<if test="page.cnds!=null and page.cnds.companyId != null"> AND u.companyId = #{page.cnds.companyId}</if>
+			<if test="page.cnds!=null and page.cnds.parentId != null"> AND u.parentId = #{page.cnds.parentId}</if>
+			<if test="page.cnds!=null and page.cnds.name != null"> AND u.name like #{page.cnds.name}</if>
+			<if test="page.cnds!=null and page.cnds.govCode != null"> AND u.govCode like #{page.cnds.govCode}</if>
+			<if test="page.cnds!=null and page.cnds.status != null"> AND u.status = #{page.cnds.status}</if>
+		<choose>
+			<when test="page.orders != null and page.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="page.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="find" resultType="com.linkallcloud.um.domain.party.KhRole">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_kh_role u 
+		WHERE
+			u.status &lt;&gt; 9
+			<if test="query!=null and query.cnds!=null and query.cnds.govCode != null"> AND u.govCode = #{query.cnds.govCode}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.type != null"> AND u.type = #{query.cnds.type}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.companyId != null"> AND u.companyId = #{query.cnds.companyId}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.parentId != null"> AND u.parentId = #{query.cnds.parentId}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.name != null"> AND u.name like #{query.cnds.name}</if>
+			<if test="query!=null and query.cnds!=null and query.cnds.status != null"> AND u.status = #{query.cnds.status}</if>
+		<choose>
+			<when test="query != null and query.orders != null and query.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="query.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findCompanyAllRole" resultType="com.linkallcloud.um.domain.party.KhRole">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_kh_role u 
+		WHERE
+			u.status &lt;&gt; 9  AND ( u.companyId = #{companyId} OR u.type = 9 )
+	</select>
+	
+	<select id="findCompanyRolesByLevel" resultType="com.linkallcloud.um.domain.party.KhRole">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_kh_role u 
+		WHERE
+			u.status &lt;&gt; 9  AND ( u.companyId = #{companyId} OR u.type = 9 ) 
+			<if test="levelNotEqual != null"> AND u.level &lt;&gt; #{levelNotEqual}</if>
+	</select>
+	
+	<select id="findPage4Select" resultType="com.linkallcloud.um.domain.party.KhRole">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_kh_role u 
+		WHERE
+			u.status=0 
+			<if test="page.cnds!=null and page.cnds.userId != null">
+				 AND u.id not in ( SELECT rel.roleId FROM um_kh_rel_role_user rel WHERE rel.userId = #{page.cnds.userId} ) 
+			</if>
+			<if test="page.cnds!=null and page.cnds.companyId != null"> 
+				AND ( u.companyId = #{page.cnds.companyId} OR u.type = 9 )
+			</if>
+			<if test="page.cnds!=null and page.cnds.levelNotEqual != null"> AND u.level &lt;&gt; #{page.cnds.levelNotEqual}</if>
+			<if test="page.cnds!=null and page.cnds.type != null"> AND u.type = #{page.cnds.type}</if>
+			<if test="page.cnds!=null and page.cnds.parentId != null"> AND u.parentId = #{page.cnds.parentId}</if>
+			<if test="page.cnds!=null and page.cnds.name != null"> AND u.name like #{page.cnds.name}</if>
+			<if test="page.cnds!=null and page.cnds.govCode != null"> AND u.govCode like #{page.cnds.govCode}</if>
+		<choose>
+			<when test="page.orders != null and page.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="page.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findPage4User" resultType="com.linkallcloud.um.domain.party.KhRole">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_kh_role u join um_kh_rel_role_user rel on u.id=rel.roleId 
+		WHERE
+			u.status=0 AND rel.userId=#{page.cnds.userId}
+			<if test="page.cnds!=null and page.cnds.type != null"> AND u.type = #{page.cnds.type}</if>
+			<if test="page.cnds!=null and page.cnds.companyId != null"> AND u.companyId = #{page.cnds.companyId}</if>
+			<if test="page.cnds!=null and page.cnds.parentId != null"> AND u.parentId = #{page.cnds.parentId}</if>
+			<if test="page.cnds!=null and page.cnds.name != null"> AND u.name like #{page.cnds.name}</if>
+			<if test="page.cnds!=null and page.cnds.govCode != null"> AND u.govCode like #{page.cnds.govCode}</if>
+		<choose>
+			<when test="page.orders != null and page.orders.length > 0">
+				order by <foreach item="ord" index="index" collection="page.orders" separator=","> u.${ord} </foreach>
+			</when>
+			<otherwise>
+				order by u.id
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="find4User" resultType="com.linkallcloud.um.domain.party.KhRole">
+		SELECT
+			<include refid="Base_Column_List" />
+		FROM
+			um_kh_role u join um_kh_rel_role_user rel on u.id=rel.roleId 
+		WHERE
+			u.status &lt;&gt; 9 AND rel.userId=#{userId}
+	</select>
+
+	<insert id="insert" parameterType="com.linkallcloud.um.domain.party.KhRole" useGeneratedKeys="true" keyProperty="entity.id">
+		insert into um_kh_role
+			(uuid, status,createTime,updateTime,companyId,parentId,parentClass,name,sort,type,level,ico,code,govCode,remark)
+		values(#{entity.uuid},0,now(),now(),#{entity.companyId},#{entity.parentId},#{entity.parentClass},#{entity.name},
+			#{entity.sort},#{entity.type},#{entity.level},#{entity.ico},#{entity.code},#{entity.govCode},#{entity.remark})
+	</insert>
+	
+	<update id="update">
+		update 
+			um_kh_role 
+		set 
+			name=#{entity.name},sort=#{entity.sort},type=#{entity.type},ico=#{entity.ico},remark=#{entity.remark},updateTime=now()
+			<if test="entity.parentId != null"> ,parentId=#{entity.parentId},parentClass=#{entity.parentClass}</if>
+			<if test="entity.status != null"> ,status=#{entity.status}</if>
+			<if test="entity.code != null"> ,code=#{entity.code}</if>
+			<if test="entity.govCode != null"> ,govCode=#{entity.govCode}</if>
+			<if test="entity.level != null and entity.level > 0"> ,level=#{entity.level}</if>
+		where 
+			id=#{entity.id} and uuid=#{entity.uuid}
+	</update>
+
+	<delete id="delete">
+		update 
+			um_kh_role 
+		set
+			status=9,updateTime=now()
+		where
+			id=#{id} and uuid=#{uuid} and status &lt;&gt; 9
+	</delete>
+	
+	<delete id="deletes">
+		update 
+			um_kh_role 
+		set 
+			status=9,updateTime=now()
+		where 
+			status &lt;&gt; 9 and id in 
+			<foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+	</delete>
+	
+	<update id="updateLastLoginTime">
+		update 
+			um_kh_role 
+		set 
+			lastLoginTime=now()
+		where 
+			id=#{id}
+	</update>
+	
+	<update id="updateCode">
+		update um_kh_role set code=#{code},updateTime=now() where id=#{id}
+	</update>
+	
+	<insert id="addRoleApps">
+        insert into 
+        	um_kh_rel_role_app (status,createTime,updateTime,roleId,appId)
+        values 
+	        <foreach collection="appIds" item="appId" index="index" separator=",">
+	        (0,now(),now(),#{roleId},#{appId})
+	        </foreach>
+    </insert>
+    
+    <delete id="removeRoleApps">
+		delete from 
+			um_kh_rel_role_app 
+		where 
+			roleId=#{roleId} and appId in 
+			<foreach item="appId" index="index" collection="appIds" open="(" separator="," close=")">
+				#{appId}
+			</foreach>
+	</delete>
+	
+	<insert id="addRoleUsers">
+        insert into 
+        	um_kh_rel_role_user (status,createTime,updateTime,roleId,userId)
+        values 
+	        <foreach collection="userIds" item="userId" index="index" separator=",">
+	        (0,now(),now(),#{roleId},#{userId})
+	        </foreach>
+    </insert>
+    
+    <delete id="removeRoleUsers">
+		delete from 
+			um_kh_rel_role_user 
+		where 
+			roleId=#{roleId} and userId in 
+			<foreach item="userId" index="index" collection="userIds" open="(" separator="," close=")">
+				#{userId}
+			</foreach>
+	</delete>
+	
+	<select id="findPermedMenuIds" resultType="java.lang.Long">
+		SELECT
+			u.menuId
+		FROM
+			um_kh_perm_menu u
+		WHERE
+			u.roleId=#{roleId}  AND u.appId=#{appId}
+	</select>
+	
+	<select id="findPermedMenuResCodes" resultType="java.lang.String">
+		SELECT
+			m.govCode
+		FROM
+			um_app_menu m join um_kh_perm_menu u on m.id=u.menuId 
+		WHERE
+			u.status=0 AND u.roleId=#{roleId}  AND u.appId=#{appId}
+	</select>
+	
+	<select id="findPermedMenus" resultType="com.linkallcloud.um.domain.sys.Menu">
+		SELECT
+			m.*
+		FROM
+			um_app_menu m join um_kh_perm_menu u on m.id=u.menuId 
+		WHERE
+			u.status=0 AND u.roleId=#{roleId}  AND u.appId=#{appId}
+	</select>
+	
+	<delete id="clearRoleAppMenuPerms">
+		delete from 
+			um_kh_perm_menu 
+		where 
+			roleId=#{roleId} and appId=#{appId}
+	</delete>
+	
+	<insert id="saveRoleAppMenuPerms">
+        insert into 
+        	um_kh_perm_menu (status,createTime,updateTime,roleId,appId,menuId)
+        values 
+	        <foreach collection="menuIds" item="menuId" index="index" separator=",">
+	        (0,now(),now(),#{roleId},#{appId},#{menuId})
+	        </foreach>
+    </insert>
+    
+    <select id="findPermedOrgIds" resultType="java.lang.Long">
+		SELECT
+			u.orgId
+		FROM
+			um_kh_perm_org u
+		WHERE
+			u.roleId=#{roleId}  AND u.appId=#{appId}
+	</select>
+    
+    <delete id="clearRoleAppOrgPerms">
+		delete from 
+			um_kh_perm_org 
+		where 
+			roleId=#{roleId} and appId=#{appId}
+	</delete>
+	
+	<insert id="saveRoleAppOrgPerms">
+        insert into 
+        	um_kh_perm_org (status,createTime,updateTime,roleId,appId,orgId)
+        values 
+	        <foreach collection="orgIds" item="orgId" index="index" separator=",">
+	        (0,now(),now(),#{roleId},#{appId},#{orgId})
+	        </foreach>
+    </insert>
+    
+    <select id="findPermedAreaIds" resultType="java.lang.Long">
+		SELECT
+			u.areaId
+		FROM
+			um_kh_perm_area u
+		WHERE
+			u.roleId=#{roleId}  AND u.appId=#{appId}
+	</select>
+    
+    <delete id="clearRoleAppAreaPerms">
+		delete from 
+			um_kh_perm_area 
+		where 
+			roleId=#{roleId} and appId=#{appId}
+	</delete>
+	
+	<insert id="saveRoleAppAreaPerms">
+        insert into 
+        	um_kh_perm_area (status,createTime,updateTime,roleId,appId,areaId)
+        values 
+	        <foreach collection="areaIds" item="areaId" index="index" separator=",">
+	        (0,now(),now(),#{roleId},#{appId},#{areaId})
+	        </foreach>
+    </insert>
+    
+</mapper>

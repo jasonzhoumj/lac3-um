@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>用户中心</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" th:href="@{{path}/AdminLTE3/font-awesome/4.4.0/css/font-awesome.min.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" th:href="@{{path}/AdminLTE3/ionicons/2.0.1/css/ionicons.min.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="../../static/AdminLTE3/css/adminlte.min.css" th:href="@{{path}/AdminLTE3/css/adminlte.min.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="../../plugins/iCheck/square/blue.css" th:href="@{{path}/plugins/iCheck/square/blue.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="https://fonts.proxy.ustclug.org/css?family=Source+Sans+Pro:300,400,400i,700" th:href="@{{path}/AdminLTE3/googleapis-fonts/fonts.css(path=${static_server},v=${static_res_version})}">
+
+<link rel="stylesheet" href="../../AdminLTE3/css/index.css" th:href="@{{path}/AdminLTE3/css/index.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.css" th:href="@{{path}/plugins/datatables/dataTables.bootstrap4.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="../../plugins/ztree/css/metroStyle/metroStyle.css" th:href="@{{path}/plugins/ztree/css/metroStyle/metroStyle.css(path=${static_server},v=${static_res_version})}">
+<link rel="stylesheet" href="../../plugins/iCheck/all.css" th:href="@{{path}/plugins/iCheck/all.css(path=${static_server},v=${static_res_version})}">
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+	      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+	      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link active">用户中心</a>
+      </li>
+      <!-- 
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">业务管理</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">报表统计</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">系统管理</a>
+      </li>
+       -->
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="fa fa-bell-o"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fa fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="helpToPage pageTab nav-link">
+          <i class="fa fa-book"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/exit" th:href="@{/exit}">
+          <i class="fa fa-power-off"></i>
+        </a>
+      </li>
+      <!-- 
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
+          <i class="fa fa-th-large"></i>
+        </a>
+      </li>
+       -->
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="../../AdminLTE3/img/AdminLTELogo.png"
+      		th:src="@{{path}/AdminLTE3/img/AdminLTELogo.png(path=${static_server})}" 
+           alt="AdminLTE Logo"
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">用户中心</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+				<!-- Sidebar user (optional) -->
+				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+					<div class="image">
+						<img src="../../AdminLTE3/img/user2-160x160.jpg"
+							th:src="@{{path}/AdminLTE3/img/user2-160x160.jpg(path=${static_server})}"
+							class="img-circle elevation-2" alt="User Image">
+					</div>
+					<div class="info">
+						<a href="#" class="d-block"><span class="userName"
+							th:text="${session._LAC_SESSION_USER_KEY_.name}">Admin</span</a>
+					</div>
+					<!-- <div class="info right">
+						<a href="#" class="d-block"><span class="userName">退出</span</a>
+					</div> -->
+				</div>
+
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+						<li th:each="item : ${ items }" class="nav-item" th:classappend="${item.children != null && item.children.size()>0}? 'has-treeview'">
+				            <a th:if="${ item.attributes.url == null || item.attributes.url.length() <= 1 }"  href="#" class="nav-link lac-tab0">
+				              <i class="nav-icon fa fa-th-large"></i>
+				              <p>
+				              	<span th:text="${item.name}"></span>
+				                <i class="right fa fa-angle-left"></i>
+				              </p>
+				            </a>
+				            <a th:if="${ item.attributes.url != null && item.attributes.url.length() > 1 }" href="#" class="nav-link lac-tab lac-tab1" th:data-id="${item.govCode}" th:data-title="${item.name}" th:data-url="${item.attributes.url}">
+				              <i class="nav-icon fa fa-th-large"></i>
+				              <p>
+				              	<span th:text="${item.name}">菜单项</span>
+				              </p>
+				            </a>
+				            <ul th:if="${ item.children != null && item.children.size()>0 }" class="nav nav-treeview">
+				              <li th:each="child : ${ item.children }" class="nav-item">
+				                <a class="nav-link lac-tab lac-tab2" href="#" th:data-id="${child.govCode}" th:data-title="${child.name}" th:data-url="${child.attributes.url}">
+				                  <i class="fa fa-circle-o nav-icon"></i>
+				                  <p th:text="${child.name}">菜单项</p>
+				                </a>
+				              </li>
+				            </ul>
+				        </li>
+					</ul>
+				</nav>
+			  	<!-- /.sidebar-menu -->
+
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+	<div class="content-wrapper">
+	    <div class="content-tabs">
+	        <button class="roll-nav roll-left tabLeft" onclick="LacTab.scrollTabLeft()"><i class="fa fa-backward"></i></button>
+	        <nav class="page-tabs menuTabs tab-ui-menu" id="tab-menu"><div class="page-tabs-content" style="margin-left: 0px;"></div></nav>
+	        <button class="roll-nav roll-right tabRight" onclick="LacTab.scrollTabRight()"><i class="fa fa-forward" style="margin-left: 3px;"></i></button>
+	        <div class="btn-group roll-nav roll-right">
+	            <button class="dropdown tabClose" data-toggle="dropdown">页签操作<i class="fa fa-caret-down" style="padding-left: 3px;"></i></button>
+	            <ul class="dropdown-menu dropdown-menu-right" style="min-width: 128px;">
+	                <li><a class="tabReload" href="javascript:LacTab.refreshTab();">刷新当前</a></li>
+	                <li><a class="tabCloseAll" href="javascript:LacTab.closeOtherTabs(true);">全部关闭</a></li>
+	                <li><a class="tabCloseOther" href="javascript:LacTab.closeOtherTabs(false);">除此之外全部关闭</a></li>
+	                <li><a class="tabCloseOther" href="javascript:exitSys();">退出系统</a></li>
+	            </ul>
+	        </div>
+	        <button class="roll-nav roll-right fullscreen" onclick="LacTab.handleFullScreen()"><i class="fa fa-arrows-alt"></i></button>
+	    </div>
+	    <div class="content">
+	        <div class="tabs_box"></div>
+	    </div>
+	</div>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<script th:replace="page/base/global :: jsVar"></script>
+<script src="../../plugins/jquery/jquery.min.js" th:src="@{{path}/plugins/jquery/jquery.min.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js" th:src="@{{path}/plugins/bootstrap/js/bootstrap.bundle.min.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../plugins/slimScroll/jquery.slimscroll.min.js" th:src="@{{path}/plugins/slimScroll/jquery.slimscroll.min.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../plugins/fastclick/fastclick.js" th:src="@{{path}/plugins/fastclick/fastclick.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../AdminLTE3/js/adminlte.min.js" th:src="@{{path}/AdminLTE3/js/adminlte.min.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../AdminLTE3/js/demo.js" th:src="@{{path}/AdminLTE3/js/demo.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../plugins/iCheck/icheck.min.js" th:src="@{{path}/plugins/iCheck/icheck.min.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../lac/json2.js" th:src="@{{path}/lac/json2.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../lac/utils.js" th:src="@{{path}/lac/utils.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../lac/lac2.js" th:src="@{{path}/lac/lac2.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../lac/lac2Tab.js" th:src="@{{path}/lac/lac2Tab.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../lac/lac2Menu.js" th:src="@{{path}/lac/lac2Menu.js(path=${static_server},v=${static_res_version})}"></script>
+<script src="../../lac/lac2FieldTree.js" th:src="@{{path}/lac/lac2FieldTree.js(path=${static_server},v=${static_res_version})}"></script>
+
+	<script src="../../plugins/jQueryUI/jquery-ui.min.js" th:src="@{{path}/plugins/jQueryUI/jquery-ui.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/jqueryForm-4.2.2/jquery.form.min.js" th:src="@{{path}/plugins/jqueryForm-4.2.2/jquery.form.min.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/datatables/jquery.dataTables.js" th:src="@{{path}/plugins/datatables/jquery.dataTables.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/datatables/dataTables.bootstrap4.js" th:src="@{{path}/plugins/datatables/dataTables.bootstrap4.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2DataTables.js" th:src="@{{path}/lac/lac2DataTables.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../lac/lac2Dialog.js" th:src="@{{path}/lac/lac2Dialog.js(path=${static_server},v=${static_res_version})}"></script>
+	<script src="../../plugins/ztree/js/jquery.ztree.all.min.js" th:src="@{{path}/plugins/ztree/js/jquery.ztree.all.min.js(path=${static_server},v=${static_res_version})}"></script>
+<script>
+	$(function() {
+		//$("#um_menu").lac2Menu(ctx + "/menu/getUmMenuTree");
+		
+		var t = setTimeout(function() {
+			LacTab.addTab({
+				id : '000',
+				title : '首页',
+				url : ctx + '/welcome',
+				canClose : false
+			});
+			LacTab.resize();
+			clearTimeout(t);
+		}, 100);
+		
+		LAC.initPermission(ctx + '/getPermes');
+
+		$(document).on("click", ".pageTab", function(){
+			var me = $(this);
+			var url = ctx + "/help";
+			LacTab.addTab({
+				id : "helpPage",
+				title : '帮助',
+				url : url
+			});
+		});
+		
+		$(document).on("click", ".nav-link", function(){
+			var me = $(this);
+			var m1 = me.parents(".has-treeview");
+			if(m1 && m1.length>0){//二级
+				$(".nav-link").removeClass("active");
+				me.addClass("active");
+				m1.children("a").addClass("active");
+			} else {//一级
+				$(".nav-link").removeClass("active");
+				me.addClass("active");
+			}
+		});
+		
+		$(document).on("click", ".lac-tab", function(){
+			var me = $(this);
+			var url = me.attr("data-url");
+			if(url && url.indexOf("http") == -1 && url.indexOf(ctx) == -1){
+				url = ctx + url;
+			}
+			var menu = { id: me.attr("data-id"), title: me.attr("data-title"), url: url };
+			LacTab.addTab(menu);
+		});
+	});
+	
+	function exitSys() {
+		window.parent.location = ctx + '/exit';
+	}
+</script>
+</body>
+</html>
