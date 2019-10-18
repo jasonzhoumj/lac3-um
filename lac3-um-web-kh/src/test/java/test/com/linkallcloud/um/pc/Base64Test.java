@@ -1,7 +1,7 @@
 package test.com.linkallcloud.um.pc;
 
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
 import com.linkallcloud.um.kh.utils.Base64Util;
 
 public class Base64Test {

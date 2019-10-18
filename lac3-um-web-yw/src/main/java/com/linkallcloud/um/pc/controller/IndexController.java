@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.exception.IllegalParameterException;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.exception.IllegalParameterException;
 import com.linkallcloud.um.iapi.party.IYwCompanyManager;
 import com.linkallcloud.um.iapi.party.IYwUserManager;
 import com.linkallcloud.um.iapi.sys.IApplicationManager;
 import com.linkallcloud.um.iapi.sys.IMenuManager;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.www.ISessionUser;
 
 @Controller
 public class IndexController {

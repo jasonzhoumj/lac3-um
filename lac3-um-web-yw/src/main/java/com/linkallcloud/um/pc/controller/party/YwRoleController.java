@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.AppVisitor;
-import com.linkallcloud.dto.Result;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.exception.IllegalParameterException;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.pagination.WebPage;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.AppVisitor;
+import com.linkallcloud.core.dto.Result;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.exception.IllegalParameterException;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.pagination.WebPage;
 import com.linkallcloud.um.domain.party.YwCompany;
 import com.linkallcloud.um.domain.party.YwRole;
 import com.linkallcloud.um.domain.party.YwUser;
@@ -33,8 +33,8 @@ import com.linkallcloud.um.iapi.party.IYwRoleManager;
 import com.linkallcloud.um.iapi.party.IYwUserManager;
 import com.linkallcloud.um.iapi.sys.IAreaManager;
 import com.linkallcloud.um.iapi.sys.IYwSystemConfigManager;
-import com.linkallcloud.util.Domains;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.util.Domains;
+import com.linkallcloud.core.www.ISessionUser;
 
 @Controller
 @RequestMapping(value = "/YwRole", method = RequestMethod.POST)

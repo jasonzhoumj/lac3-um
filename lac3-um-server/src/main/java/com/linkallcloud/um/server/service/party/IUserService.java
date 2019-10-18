@@ -3,10 +3,10 @@ package com.linkallcloud.um.server.service.party;
 import java.util.List;
 import java.util.Map;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.IllegalParameterException;
-import com.linkallcloud.pagination.Page;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.IllegalParameterException;
+import com.linkallcloud.core.pagination.Page;
 import com.linkallcloud.um.domain.party.User;
 
 public abstract interface IUserService<T extends User> extends IPartyService<T> {

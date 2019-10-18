@@ -1,14 +1,14 @@
 package com.linkallcloud.um.server.face;
 
 import com.alibaba.fastjson.TypeReference;
-import com.linkallcloud.comm.security.sm.ISignatureMessage;
-import com.linkallcloud.comm.security.sm.SignatureMessage;
-import com.linkallcloud.face.message.request.FaceRequest;
-import com.linkallcloud.face.message.request.ObjectFaceRequest;
-import com.linkallcloud.face.message.response.ObjectFaceResponse;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
+import com.linkallcloud.sh.sm.ISignatureMessage;
+import com.linkallcloud.sh.sm.SignatureMessage;
+import com.linkallcloud.core.face.message.request.FaceRequest;
+import com.linkallcloud.core.face.message.request.ObjectFaceRequest;
+import com.linkallcloud.core.face.message.response.ObjectFaceResponse;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
 
 public class BaseTest {
 	protected static Log log = Logs.get();

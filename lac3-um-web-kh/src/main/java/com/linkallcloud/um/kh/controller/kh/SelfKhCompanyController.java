@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.AppVisitor;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.exception.IllegalParameterException;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.AppVisitor;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.exception.IllegalParameterException;
 import com.linkallcloud.um.domain.party.KhCompany;
 import com.linkallcloud.um.domain.party.KhUser;
 import com.linkallcloud.um.dto.base.PermedAreaVo;
@@ -26,7 +26,7 @@ import com.linkallcloud.um.iapi.party.IKhCompanyManager;
 import com.linkallcloud.um.iapi.party.IKhUserManager;
 import com.linkallcloud.um.iapi.sys.IDictTypeManager;
 import com.linkallcloud.um.kh.controller.party.CompanyTreeController;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.www.ISessionUser;
 
 @Controller
 @RequestMapping(value = "/SelfKhCompany", method = RequestMethod.POST)

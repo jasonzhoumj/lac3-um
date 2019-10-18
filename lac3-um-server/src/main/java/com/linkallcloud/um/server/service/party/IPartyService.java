@@ -1,7 +1,7 @@
 package com.linkallcloud.um.server.service.party;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.service.ITreeService;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.service.ITreeService;
 import com.linkallcloud.um.domain.party.Party;
 
 public interface IPartyService<T extends Party> extends ITreeService<Long, T> {

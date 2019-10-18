@@ -8,12 +8,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.service.TreeDomainService;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.service.TreeDomainService;
 import com.linkallcloud.um.domain.sys.Dict;
 import com.linkallcloud.um.domain.sys.DictType;
 import com.linkallcloud.um.server.dao.sys.IDictDao;

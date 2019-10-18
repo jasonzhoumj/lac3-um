@@ -1,7 +1,7 @@
 package com.linkallcloud.um.server.manager.party;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.manager.TreeDomainManager;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.manager.TreeDomainManager;
 import com.linkallcloud.um.domain.party.Party;
 import com.linkallcloud.um.iapi.party.IPartyManager;
 import com.linkallcloud.um.server.service.party.IPartyService;

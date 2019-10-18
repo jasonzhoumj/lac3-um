@@ -5,8 +5,8 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.linkallcloud.domain.Domain;
-import com.linkallcloud.domain.annotation.ShowName;
+import com.linkallcloud.core.domain.Domain;
+import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName("账号")
 public class Account extends Domain<Long> {

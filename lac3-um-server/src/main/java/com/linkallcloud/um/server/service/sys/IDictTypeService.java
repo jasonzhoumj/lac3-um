@@ -1,8 +1,8 @@
 package com.linkallcloud.um.server.service.sys;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.service.ITreeService;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.service.ITreeService;
 import com.linkallcloud.um.domain.sys.DictType;
 
 public interface IDictTypeService extends ITreeService<Long, DictType> {

@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.lang.Strings;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.lang.Strings;
 import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.domain.sys.Account;
 import com.linkallcloud.um.iapi.party.IUserManager;
 import com.linkallcloud.um.iapi.party.IYwUserManager;
 import com.linkallcloud.um.iapi.sys.IAccountManager;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.www.ISessionUser;
 
 @Controller
 @RequestMapping(value = "/uprofile", method = RequestMethod.POST)

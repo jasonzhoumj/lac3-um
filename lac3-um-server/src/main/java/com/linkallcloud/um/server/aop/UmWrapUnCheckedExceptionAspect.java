@@ -7,9 +7,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.linkallcloud.exception.BaseException;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.WrapUnCheckedExceptionAspect;
+import com.linkallcloud.core.exception.BaseException;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.WrapUnCheckedExceptionAspect;
 
 @Aspect
 @Component
@@ -20,7 +20,7 @@ public class UmWrapUnCheckedExceptionAspect extends WrapUnCheckedExceptionAspect
     public void manager() {
     }
 
-    @Pointcut("execution(* com.linkallcloud.manager.*.*(..))")
+    @Pointcut("execution(* com.linkallcloud.core.manager.*.*(..))")
     public void manager2() {
     }
 

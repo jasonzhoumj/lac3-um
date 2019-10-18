@@ -7,18 +7,18 @@ import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.busilog.annotation.ServLog;
-import com.linkallcloud.castor.Castors;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.lang.Mirror;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.query.Query;
-import com.linkallcloud.query.rule.CompareRule;
-import com.linkallcloud.query.rule.Equal;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.busilog.annotation.ServLog;
+import com.linkallcloud.core.castor.Castors;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.lang.Mirror;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.query.Query;
+import com.linkallcloud.core.query.rule.CompareRule;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.party.Org;
 import com.linkallcloud.um.domain.party.Role;
 import com.linkallcloud.um.domain.party.User;
@@ -28,7 +28,7 @@ import com.linkallcloud.um.server.dao.party.IRoleDao;
 import com.linkallcloud.um.server.dao.party.IUserDao;
 import com.linkallcloud.um.server.dao.sys.IApplicationDao;
 import com.linkallcloud.um.server.service.party.IRoleService;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.util.Domains;
 
 @Module(name = "角色")
 @Transactional(readOnly = true)

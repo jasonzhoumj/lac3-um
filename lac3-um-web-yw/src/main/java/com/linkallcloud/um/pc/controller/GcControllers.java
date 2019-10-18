@@ -2,10 +2,10 @@ package com.linkallcloud.um.pc.controller;
 
 import java.io.Serializable;
 
-import com.linkallcloud.domain.Domain;
-import com.linkallcloud.dto.AppVisitor;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.query.rule.Equal;
+import com.linkallcloud.core.domain.Domain;
+import com.linkallcloud.core.dto.AppVisitor;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.query.rule.Equal;
 
 public class GcControllers {
 

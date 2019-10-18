@@ -1,8 +1,8 @@
 package com.linkallcloud.um.server.service.sys;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.service.IService;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.service.IService;
 import com.linkallcloud.um.domain.sys.Account;
 
 public interface IAccountService extends IService<Long, Account> {

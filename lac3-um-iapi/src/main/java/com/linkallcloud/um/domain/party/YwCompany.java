@@ -1,6 +1,6 @@
 package com.linkallcloud.um.domain.party;
 
-import com.linkallcloud.domain.annotation.ShowName;
+import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName("运维公司")
 public class YwCompany extends Company {

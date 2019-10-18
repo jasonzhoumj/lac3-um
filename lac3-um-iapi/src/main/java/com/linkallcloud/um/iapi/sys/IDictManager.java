@@ -2,8 +2,8 @@ package com.linkallcloud.um.iapi.sys;
 
 import java.util.List;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.manager.IManager;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.manager.IManager;
 import com.linkallcloud.um.domain.sys.Dict;
 
 public interface IDictManager extends IManager<Long, Dict> {

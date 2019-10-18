@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.linkallcloud.comm.web.controller.BaseLController4ParentTree;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.AppVisitor;
-import com.linkallcloud.dto.Result;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.lang.Mirror;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.pagination.WebPage;
-import com.linkallcloud.query.rule.Equal;
+import com.linkallcloud.web.controller.BaseLController4ParentTree;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.AppVisitor;
+import com.linkallcloud.core.dto.Result;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.lang.Mirror;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.pagination.WebPage;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.party.Company;
 import com.linkallcloud.um.domain.party.Department;
 import com.linkallcloud.um.domain.party.MockUser;
@@ -32,7 +32,7 @@ import com.linkallcloud.um.iapi.party.IDepartmentManager;
 import com.linkallcloud.um.iapi.party.IOrgManager;
 import com.linkallcloud.um.iapi.party.IRoleManager;
 import com.linkallcloud.um.iapi.party.IUserManager;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.www.ISessionUser;
 
 public abstract class UserController<T extends User, S extends IUserManager<T>, R extends Role, RS extends IRoleManager<R, T>, P extends Org, PS extends IOrgManager<P>>
 		extends BaseLController4ParentTree<T, S, P, PS> {

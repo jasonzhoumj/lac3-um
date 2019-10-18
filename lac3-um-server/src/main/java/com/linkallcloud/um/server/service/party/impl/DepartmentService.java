@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.query.Query;
-import com.linkallcloud.query.rule.Equal;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.query.Query;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.party.Company;
 import com.linkallcloud.um.domain.party.Department;
 import com.linkallcloud.um.domain.party.User;
@@ -20,7 +20,7 @@ import com.linkallcloud.um.server.dao.party.IDepartmentDao;
 import com.linkallcloud.um.server.dao.party.IUserDao;
 import com.linkallcloud.um.server.dao.sys.IAreaDao;
 import com.linkallcloud.um.server.service.party.IDepartmentService;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.util.Domains;
 
 @Transactional(readOnly = true)
 public abstract class DepartmentService<T extends Department, M extends IDepartmentDao<T>, U extends User, UM extends IUserDao<U>, C extends Company, CM extends ICompanyDao<C>>

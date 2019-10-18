@@ -6,9 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.alibaba.fastjson.TypeReference;
-import com.linkallcloud.face.message.response.ObjectFaceResponse;
+import com.linkallcloud.core.face.message.response.ObjectFaceResponse;
 import com.linkallcloud.um.oapi.dd.dto.DdFaceRequest;
-import com.linkallcloud.www.utils.HttpClientFactory;
+import com.linkallcloud.core.www.utils.HttpClientFactory;
 
 import test.com.linkallcloud.um.web.oapi.BaseTest;
 

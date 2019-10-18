@@ -3,8 +3,8 @@ package com.linkallcloud.um.dto.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.vo.Vo;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.vo.Vo;
 
 public class PermedAreaVo extends Vo {
     private static final long serialVersionUID = 1085403983834072506L;

@@ -1,7 +1,7 @@
 package com.linkallcloud.um.domain.party;
 
-import com.linkallcloud.domain.annotation.ShowName;
-import com.linkallcloud.dto.Tree;
+import com.linkallcloud.core.domain.annotation.ShowName;
+import com.linkallcloud.core.dto.Tree;
 
 @ShowName("单位")
 public abstract class Company extends Org {

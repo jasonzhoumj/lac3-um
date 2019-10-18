@@ -1,8 +1,8 @@
 package com.linkallcloud.um.domain.sys;
 
-import com.linkallcloud.domain.Domain;
-import com.linkallcloud.domain.annotation.ShowName;
-import com.linkallcloud.dto.Tree;
+import com.linkallcloud.core.domain.Domain;
+import com.linkallcloud.core.domain.annotation.ShowName;
+import com.linkallcloud.core.dto.Tree;
 
 @ShowName("应用")
 public class Application extends Domain<Long> {

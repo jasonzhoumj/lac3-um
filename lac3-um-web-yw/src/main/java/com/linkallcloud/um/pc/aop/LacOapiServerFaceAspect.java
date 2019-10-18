@@ -9,14 +9,14 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.comm.web.face.FaceAspect;
-import com.linkallcloud.comm.web.face.processor.PackageJsonProcessor;
-import com.linkallcloud.comm.web.face.processor.PackageXmlProcessor;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.query.Query;
-import com.linkallcloud.query.rule.Equal;
-import com.linkallcloud.security.MsgSignObject;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.web.face.FaceAspect;
+import com.linkallcloud.web.face.processor.PackageJsonProcessor;
+import com.linkallcloud.web.face.processor.PackageXmlProcessor;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.query.Query;
+import com.linkallcloud.core.query.rule.Equal;
+import com.linkallcloud.core.security.MsgSignObject;
 import com.linkallcloud.um.domain.sys.Application;
 import com.linkallcloud.um.iapi.sys.IApplicationManager;
 

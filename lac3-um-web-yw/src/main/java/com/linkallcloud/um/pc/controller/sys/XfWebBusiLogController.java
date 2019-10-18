@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
-import com.linkallcloud.comm.web.controller.BaseFullWebBusiLogController;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.query.Query;
+import com.linkallcloud.web.controller.BaseFullWebBusiLogController;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.query.Query;
 import com.linkallcloud.um.domain.sys.XfWebBusiLog;
 import com.linkallcloud.um.excel.LogExport;
 import com.linkallcloud.um.iapi.sys.ILacWebBusiLogManager;

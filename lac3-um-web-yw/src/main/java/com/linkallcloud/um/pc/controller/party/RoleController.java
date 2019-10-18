@@ -14,24 +14,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.linkallcloud.busilog.annotation.WebLog;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.AppVisitor;
-import com.linkallcloud.dto.Result;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.lang.Mirror;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.pagination.WebPage;
-import com.linkallcloud.query.rule.Equal;
-import com.linkallcloud.query.rule.NotEqual;
-import com.linkallcloud.query.rule.desc.StringRuleDescriptor;
+import com.linkallcloud.core.busilog.annotation.WebLog;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.AppVisitor;
+import com.linkallcloud.core.dto.Result;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.lang.Mirror;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.pagination.WebPage;
+import com.linkallcloud.core.query.rule.Equal;
+import com.linkallcloud.core.query.rule.NotEqual;
+import com.linkallcloud.core.query.rule.desc.StringRuleDescriptor;
 import com.linkallcloud.um.domain.party.Role;
 import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.iapi.party.IRoleManager;
 import com.linkallcloud.um.iapi.party.IUserManager;
-import com.linkallcloud.util.Domains;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.util.Domains;
+import com.linkallcloud.core.www.ISessionUser;
 
 public abstract class RoleController<T extends Role, U extends User, M extends IRoleManager<T, U>, UM extends IUserManager<U>> {
 

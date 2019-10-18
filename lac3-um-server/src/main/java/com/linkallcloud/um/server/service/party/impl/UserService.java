@@ -12,15 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.busilog.annotation.ServLog;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.exception.IllegalParameterException;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.security.Securities;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.busilog.annotation.ServLog;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.exception.IllegalParameterException;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.security.Securities;
 import com.linkallcloud.um.domain.party.Company;
 import com.linkallcloud.um.domain.party.Department;
 import com.linkallcloud.um.domain.party.KhUser;
@@ -38,7 +38,7 @@ import com.linkallcloud.um.server.dao.sys.IAccountDao;
 import com.linkallcloud.um.server.dao.sys.IApplicationDao;
 import com.linkallcloud.um.server.dao.sys.IMenuDao;
 import com.linkallcloud.um.server.service.party.IUserService;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.util.Domains;
 
 @Module(name = "用户")
 @Transactional(readOnly = true)

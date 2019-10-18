@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.busilog.annotation.WebLog;
-import com.linkallcloud.comm.web.controller.BaseLController;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.AppVisitor;
-import com.linkallcloud.dto.Result;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.exception.IllegalParameterException;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.pagination.WebPage;
-import com.linkallcloud.query.Query;
-import com.linkallcloud.query.rule.Equal;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.busilog.annotation.WebLog;
+import com.linkallcloud.web.controller.BaseLController;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.AppVisitor;
+import com.linkallcloud.core.dto.Result;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.exception.IllegalParameterException;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.pagination.WebPage;
+import com.linkallcloud.core.query.Query;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.party.KhCompany;
 import com.linkallcloud.um.domain.party.KhRole;
 import com.linkallcloud.um.domain.party.YwRole;
@@ -34,8 +34,8 @@ import com.linkallcloud.um.iapi.party.IKhCompanyManager;
 import com.linkallcloud.um.iapi.party.IKhRoleManager;
 import com.linkallcloud.um.iapi.party.IYwRoleManager;
 import com.linkallcloud.um.iapi.sys.IApplicationManager;
-import com.linkallcloud.util.Domains;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.util.Domains;
+import com.linkallcloud.core.www.ISessionUser;
 
 @Controller
 @RequestMapping(value = "/Application", method = RequestMethod.POST)

@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.comm.web.interceptors.PermissionInterceptor;
-import com.linkallcloud.dto.Trace;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.web.interceptors.PermissionInterceptor;
+import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.iapi.sys.IOperationManager;
 
 public class LacPermissionInterceptor extends PermissionInterceptor {

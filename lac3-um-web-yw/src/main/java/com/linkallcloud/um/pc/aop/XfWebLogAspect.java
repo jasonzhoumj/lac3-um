@@ -7,8 +7,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.comm.web.busilog.BusiWebLogAspect;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.web.busilog.BusiWebLogAspect;
 import com.linkallcloud.um.domain.sys.XfWebBusiLog;
 import com.linkallcloud.um.iapi.sys.ILacWebBusiLogManager;
 
@@ -25,12 +25,12 @@ public class XfWebLogAspect extends BusiWebLogAspect<Long, XfWebBusiLog, ILacWeb
 		return lacWebBusiLogManager;
 	}
 
-	// @Pointcut("@annotation(com.linkallcloud.busilog.annotation.WebLog)")
+	// @Pointcut("@annotation(com.linkallcloud.core.busilog.annotation.WebLog)")
 	@Pointcut("execution(public * com.linkallcloud.um.pc.controller..*.*(..))")
 	public void xfWebLog() {
 	}
 
-	@Pointcut("execution(* com.linkallcloud.comm.web.controller.*.*(..))")
+	@Pointcut("execution(* com.linkallcloud.web.controller.*.*(..))")
 	public void webLog() {
 	}
 

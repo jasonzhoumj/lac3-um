@@ -1,6 +1,6 @@
 package com.linkallcloud.um.domain.sys;
 
-import com.linkallcloud.laclog.ServiceBusiLog;
+import com.linkallcloud.core.laclog.ServiceBusiLog;
 
 public class XfServiceBusiLog extends ServiceBusiLog<Long> {
 	private static final long serialVersionUID = -6207912802597778114L;

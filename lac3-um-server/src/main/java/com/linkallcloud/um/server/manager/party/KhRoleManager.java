@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
+import org.apache.dubbo.config.annotation.Service;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
 import com.linkallcloud.um.domain.party.KhRole;
 import com.linkallcloud.um.domain.party.KhUser;
 import com.linkallcloud.um.domain.sys.Application;

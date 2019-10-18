@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.comm.web.face.annotation.Face;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.face.message.request.IdFaceRequest;
-import com.linkallcloud.face.message.request.ListFaceRequest;
-import com.linkallcloud.face.message.request.ObjectFaceRequest;
-import com.linkallcloud.face.message.request.PageFaceRequest;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.query.WebQuery;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.web.face.annotation.Face;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.face.message.request.IdFaceRequest;
+import com.linkallcloud.core.face.message.request.ListFaceRequest;
+import com.linkallcloud.core.face.message.request.ObjectFaceRequest;
+import com.linkallcloud.core.face.message.request.PageFaceRequest;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.query.WebQuery;
 import com.linkallcloud.um.domain.party.YwDepartment;
 import com.linkallcloud.um.iapi.party.IYwDepartmentManager;
 

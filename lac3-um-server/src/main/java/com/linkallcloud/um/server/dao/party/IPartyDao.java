@@ -1,6 +1,6 @@
 package com.linkallcloud.um.server.dao.party;
 
-import com.linkallcloud.dao.ITreeDao;
+import com.linkallcloud.core.dao.ITreeDao;
 import com.linkallcloud.um.domain.party.Party;
 
 public interface IPartyDao<T extends Party> extends ITreeDao<Long, T> {

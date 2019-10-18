@@ -1,7 +1,7 @@
 package com.linkallcloud.um.domain.sys;
 
-import com.linkallcloud.domain.Domain;
-import com.linkallcloud.domain.annotation.ShowName;
+import com.linkallcloud.core.domain.Domain;
+import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName(value = "操作", logFields = "id,name,uri")
 public class Operation extends Domain<Long> {

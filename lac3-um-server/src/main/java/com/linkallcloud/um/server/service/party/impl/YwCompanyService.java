@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.dto.Trees;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.exception.IllegalParameterException;
-import com.linkallcloud.exception.IllegalParameterRuntimeException;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.query.rule.Equal;
-import com.linkallcloud.security.Securities;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.dto.Trees;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.exception.IllegalParameterException;
+import com.linkallcloud.core.exception.IllegalParameterRuntimeException;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.query.rule.Equal;
+import com.linkallcloud.core.security.Securities;
 import com.linkallcloud.um.domain.party.YwCompany;
 import com.linkallcloud.um.domain.party.YwDepartment;
 import com.linkallcloud.um.domain.party.YwUser;
@@ -34,7 +34,7 @@ import com.linkallcloud.um.server.dao.sys.IAreaDao;
 import com.linkallcloud.um.server.dao.sys.IMenuDao;
 import com.linkallcloud.um.server.dao.sys.IYwSystemConfigDao;
 import com.linkallcloud.um.server.service.party.IYwCompanyService;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.util.Domains;
 
 @Service
 @Transactional(readOnly = true)

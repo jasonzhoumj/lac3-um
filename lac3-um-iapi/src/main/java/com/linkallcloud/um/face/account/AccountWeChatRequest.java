@@ -1,6 +1,6 @@
 package com.linkallcloud.um.face.account;
 
-import com.linkallcloud.face.message.request.FaceRequest;
+import com.linkallcloud.core.face.message.request.FaceRequest;
 
 public class AccountWeChatRequest extends FaceRequest {
 	private static final long serialVersionUID = 1202605397245526387L;

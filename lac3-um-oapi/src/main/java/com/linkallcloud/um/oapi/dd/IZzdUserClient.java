@@ -3,7 +3,7 @@ import java.net.ConnectException;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
-import com.linkallcloud.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.BaseRuntimeException;
 import com.linkallcloud.um.oapi.dd.dto.ZZDOrgBean;
 import com.linkallcloud.um.oapi.dd.dto.ZZDSubOrgBean;
 import com.linkallcloud.um.oapi.dd.dto.ZZDSubUserBean;

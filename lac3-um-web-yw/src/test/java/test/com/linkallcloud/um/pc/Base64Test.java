@@ -1,9 +1,9 @@
 package test.com.linkallcloud.um.pc;
 
-import com.linkallcloud.lang.Lang;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
-import com.linkallcloud.security.Securities;
+import com.linkallcloud.core.lang.Lang;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
+import com.linkallcloud.core.security.Securities;
 import com.linkallcloud.um.domain.party.YwUser;
 import com.linkallcloud.um.pc.utils.Base64Util;
 

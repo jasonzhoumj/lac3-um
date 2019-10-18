@@ -3,7 +3,7 @@ package com.linkallcloud.um.server.service.party;
 import java.util.List;
 import java.util.Map;
 
-import com.linkallcloud.dto.Trace;
+import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.party.KhCompany;
 
 public interface IKhCompanyService extends ICompanyService<KhCompany> {

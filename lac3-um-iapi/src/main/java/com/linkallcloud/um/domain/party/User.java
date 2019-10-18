@@ -6,8 +6,8 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.linkallcloud.domain.annotation.ShowName;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.domain.annotation.ShowName;
+import com.linkallcloud.core.util.Domains;
 
 @ShowName("用户")
 public abstract class User extends Party {

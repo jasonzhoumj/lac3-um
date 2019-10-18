@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseException;
-import com.linkallcloud.pagination.Page;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseException;
+import com.linkallcloud.core.pagination.Page;
 import com.linkallcloud.um.domain.party.KhCompany;
 import com.linkallcloud.um.domain.party.KhDepartment;
 import com.linkallcloud.um.domain.party.KhRole;

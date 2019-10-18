@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.linkallcloud.query.Query;
+import com.linkallcloud.core.query.Query;
 import com.linkallcloud.um.domain.queue.LacQueue;
 
 public interface ILacQueueDao {

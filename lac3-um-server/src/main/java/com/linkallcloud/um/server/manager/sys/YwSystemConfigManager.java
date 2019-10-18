@@ -1,12 +1,12 @@
 package com.linkallcloud.um.server.manager.sys;
 
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.manager.BaseManager;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.manager.BaseManager;
 import com.linkallcloud.um.domain.party.YwCompany;
 import com.linkallcloud.um.domain.sys.YwSystemConfig;
 import com.linkallcloud.um.iapi.sys.IYwSystemConfigManager;

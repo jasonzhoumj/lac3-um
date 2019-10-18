@@ -2,7 +2,7 @@ package com.linkallcloud.um.server.service.party;
 
 import java.util.List;
 
-import com.linkallcloud.dto.Trace;
+import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.party.Department;
 
 public interface IDepartmentService<T extends Department> extends IOrgService<T> {

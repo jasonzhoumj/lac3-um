@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.busilog.annotation.WebLog;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.lang.Strings;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.busilog.annotation.WebLog;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.lang.Strings;
 import com.linkallcloud.um.domain.party.KhCompany;
 import com.linkallcloud.um.domain.party.KhDepartment;
 import com.linkallcloud.um.iapi.party.IKhCompanyManager;
 import com.linkallcloud.um.iapi.party.IKhDepartmentManager;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.www.ISessionUser;
 
 @Controller
 @RequestMapping(value = "/SelfKhDepartment", method = RequestMethod.POST)

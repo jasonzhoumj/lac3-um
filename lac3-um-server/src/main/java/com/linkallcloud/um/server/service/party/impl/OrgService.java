@@ -6,17 +6,17 @@ import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.busilog.annotation.ServLog;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.lang.Mirror;
+import com.linkallcloud.core.busilog.annotation.ServLog;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.lang.Mirror;
 import com.linkallcloud.um.domain.party.Org;
 import com.linkallcloud.um.domain.party.Rel4OrgLeader;
 import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.server.dao.party.IOrgDao;
 import com.linkallcloud.um.server.dao.party.IUserDao;
 import com.linkallcloud.um.server.service.party.IOrgService;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.util.Domains;
 
 @Transactional(readOnly = true)
 public abstract class OrgService<T extends Org, M extends IOrgDao<T>, U extends User, UM extends IUserDao<U>>

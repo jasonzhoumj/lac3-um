@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.linkallcloud.dao.ITreeDao;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.query.rule.QueryRule;
+import com.linkallcloud.core.dao.ITreeDao;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.query.rule.QueryRule;
 import com.linkallcloud.um.domain.sys.Area;
 
 public interface IAreaDao extends ITreeDao<Long, Area> {

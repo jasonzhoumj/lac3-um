@@ -1,8 +1,8 @@
 package com.linkallcloud.um.iapi.sys;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.manager.ITreeManager;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.manager.ITreeManager;
 import com.linkallcloud.um.domain.sys.DictType;
 
 public interface IDictTypeManager extends ITreeManager<Long, DictType> {

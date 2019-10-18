@@ -3,8 +3,8 @@ package com.linkallcloud.um.iapi.party;
 import java.util.List;
 import java.util.Map;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
 import com.linkallcloud.um.domain.party.Company;
 import com.linkallcloud.um.dto.base.PermedAreaVo;
 

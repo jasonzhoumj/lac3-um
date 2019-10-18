@@ -1,8 +1,8 @@
 package com.linkallcloud.um.iapi.sys;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.manager.IManager;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.manager.IManager;
 import com.linkallcloud.um.domain.sys.Account;
 
 public interface IAccountManager extends IManager<Long, Account> {

@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.AppVisitor;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.exception.IllegalParameterException;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.pagination.WebPage;
-import com.linkallcloud.query.rule.Equal;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.AppVisitor;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.exception.IllegalParameterException;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.pagination.WebPage;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.party.KhRole;
 import com.linkallcloud.um.domain.party.KhUser;
 import com.linkallcloud.um.domain.party.Org;
@@ -31,7 +31,7 @@ import com.linkallcloud.um.iapi.party.IKhUserManager;
 import com.linkallcloud.um.iapi.party.IOrgManager;
 import com.linkallcloud.um.iapi.sys.IApplicationManager;
 import com.linkallcloud.um.kh.controller.party.UserController;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.www.ISessionUser;
 
 @Controller
 @RequestMapping(value = "/SelfKhUser", method = RequestMethod.POST)

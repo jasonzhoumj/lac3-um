@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.manager.TreeDomainManager;
+import org.apache.dubbo.config.annotation.Service;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.manager.TreeDomainManager;
 import com.linkallcloud.um.domain.sys.Menu;
 import com.linkallcloud.um.iapi.sys.IMenuManager;
 import com.linkallcloud.um.server.service.sys.IMenuService;

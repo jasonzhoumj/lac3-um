@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.busilog.annotation.WebLog;
-import com.linkallcloud.comm.web.session.SessionUser;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.comm.web.vc.SessionValidateCode;
-import com.linkallcloud.dto.Result;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.busilog.annotation.WebLog;
+import com.linkallcloud.web.session.SessionUser;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.web.vc.SessionValidateCode;
+import com.linkallcloud.core.dto.Result;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
 import com.linkallcloud.um.domain.party.Company;
 import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.domain.party.YwDepartment;
@@ -33,7 +33,7 @@ import com.linkallcloud.um.iapi.party.IYwUserManager;
 import com.linkallcloud.um.iapi.sys.IAccountManager;
 import com.linkallcloud.um.iapi.sys.IApplicationManager;
 import com.linkallcloud.um.iapi.sys.IAreaManager;
-import com.linkallcloud.vo.LoginVo;
+import com.linkallcloud.core.vo.LoginVo;
 
 @Controller
 @RequestMapping

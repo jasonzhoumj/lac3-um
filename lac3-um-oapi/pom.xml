@@ -21,7 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.linkallcloud</groupId>
-			<artifactId>lac3-comm-core</artifactId>
+			<artifactId>lac3-core</artifactId>
 			<version>${comm-core.version}</version>
 			<exclusions>
 				<exclusion>
@@ -32,7 +32,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.linkallcloud</groupId>
-			<artifactId>lac3-comm-handshake</artifactId>
+			<artifactId>lac3-handshake</artifactId>
 			<version>${comm-handshake.version}</version>
 			<exclusions>
 				<exclusion>

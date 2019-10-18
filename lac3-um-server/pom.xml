@@ -43,10 +43,26 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
-        <dependency>
-			<groupId>com.alibaba.boot</groupId>
+
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
 			<artifactId>dubbo-spring-boot-starter</artifactId>
 			<version>${dubbo-spring-boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>${dubbo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>${curator.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>${curator.version}</version>
 		</dependency>
 
 		<dependency>
@@ -110,7 +126,7 @@
 		
 		<dependency>
 			<groupId>com.linkallcloud</groupId>
-			<artifactId>lac3-comm-core</artifactId>
+			<artifactId>lac3-core</artifactId>
 			<version>${comm-core.version}</version>
 			<exclusions>
 				<exclusion>
@@ -121,7 +137,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.linkallcloud</groupId>
-			<artifactId>lac3-comm-cache</artifactId>
+			<artifactId>lac3-cache</artifactId>
 			<version>${comm-cache.version}</version>
 			<exclusions>
 				<exclusion>
@@ -132,7 +148,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.linkallcloud</groupId>
-			<artifactId>lac3-comm-handshake</artifactId>
+			<artifactId>lac3-handshake</artifactId>
 			<version>${comm-handshake.version}</version>
 			<exclusions>
 				<exclusion>
@@ -152,11 +168,7 @@
 			<artifactId>curator-framework</artifactId>
 			<version>${curator.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>dubbo</artifactId>
-			<version>${dubbo.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf</artifactId>

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.linkallcloud.dao.IDao;
-import com.linkallcloud.dto.Trace;
+import com.linkallcloud.core.dao.IDao;
+import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.sys.Operation;
 
 public interface IOperationDao extends IDao<Long, Operation> {

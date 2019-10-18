@@ -10,18 +10,18 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
 import com.linkallcloud.um.oapi.dd.IZzdUserClient;
 import com.linkallcloud.um.oapi.dd.dto.ZZDOrgBean;
 import com.linkallcloud.um.oapi.dd.dto.ZZDOrgUserBean;
 import com.linkallcloud.um.oapi.dd.dto.ZZDSubOrgBean;
 import com.linkallcloud.um.oapi.dd.dto.ZZDSubUserBean;
 import com.linkallcloud.um.oapi.dd.dto.ZZDUserBean;
-import com.linkallcloud.www.utils.HttpClientFactory;
+import com.linkallcloud.core.www.utils.HttpClientFactory;
 
 /**
  * 浙政钉用户对接相关工具类 1.获取accessToken 2.获取jsapi中的ticket 3.根据传入的临时code获取用户的基本信息

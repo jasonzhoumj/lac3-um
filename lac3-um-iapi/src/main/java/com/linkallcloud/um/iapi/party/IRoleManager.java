@@ -1,15 +1,15 @@
 package com.linkallcloud.um.iapi.party;
 
-import java.util.List;
-import java.util.Map;
-
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.pagination.Page;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.pagination.Page;
 import com.linkallcloud.um.domain.party.Role;
 import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.dto.base.PermedAreaVo;
+
+import java.util.List;
+import java.util.Map;
 
 public abstract interface IRoleManager<T extends Role, U extends User> extends IPartyManager<T> {
 

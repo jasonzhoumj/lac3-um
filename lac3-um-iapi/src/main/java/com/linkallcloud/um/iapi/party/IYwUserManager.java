@@ -1,7 +1,7 @@
 package com.linkallcloud.um.iapi.party;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.pagination.Page;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.pagination.Page;
 import com.linkallcloud.um.domain.party.YwUser;
 
 public interface IYwUserManager extends IUserManager<YwUser> {

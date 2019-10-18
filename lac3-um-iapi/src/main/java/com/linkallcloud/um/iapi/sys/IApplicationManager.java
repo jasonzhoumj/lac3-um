@@ -2,10 +2,10 @@ package com.linkallcloud.um.iapi.sys;
 
 import java.util.List;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.IllegalParameterException;
-import com.linkallcloud.manager.IManager;
-import com.linkallcloud.pagination.Page;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.IllegalParameterException;
+import com.linkallcloud.core.manager.IManager;
+import com.linkallcloud.core.pagination.Page;
 import com.linkallcloud.um.domain.sys.Application;
 
 public interface IApplicationManager extends IManager<Long, Application> {

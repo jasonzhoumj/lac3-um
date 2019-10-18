@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.linkallcloud.web.perm.RequirePermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,17 +14,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.busilog.annotation.WebLog;
-import com.linkallcloud.comm.web.perm.RequirePermissions;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.Result;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.enums.Logical;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.lang.Strings;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.busilog.annotation.WebLog;
+import com.linkallcloud.web.perm.RequirePermissions;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.Result;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.enums.Logical;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.lang.Strings;
 import com.linkallcloud.um.domain.party.YwCompany;
 import com.linkallcloud.um.domain.party.YwDepartment;
 import com.linkallcloud.um.domain.party.YwUser;
@@ -33,7 +34,7 @@ import com.linkallcloud.um.iapi.party.IYwDepartmentManager;
 import com.linkallcloud.um.iapi.party.IYwUserManager;
 import com.linkallcloud.um.iapi.sys.IDictTypeManager;
 import com.linkallcloud.um.iapi.sys.IYwSystemConfigManager;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.www.ISessionUser;
 
 @Controller
 @RequestMapping(value = "/YwDepartment", method = RequestMethod.POST)

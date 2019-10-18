@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.lang.Strings;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.lang.Strings;
 import com.linkallcloud.um.domain.sys.Area;
 import com.linkallcloud.um.server.service.sys.IAreaService;
 

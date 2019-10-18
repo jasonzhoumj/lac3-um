@@ -1,7 +1,7 @@
 package com.linkallcloud.um.domain.party;
 
-import com.linkallcloud.domain.TreeDomain;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.domain.TreeDomain;
+import com.linkallcloud.core.util.Domains;
 
 public abstract class Party extends TreeDomain<Long> {
 	private static final long serialVersionUID = -3380518626600403369L;

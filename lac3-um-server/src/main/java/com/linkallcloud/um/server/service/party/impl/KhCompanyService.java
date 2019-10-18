@@ -8,17 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.dto.Trees;
-import com.linkallcloud.exception.BaseException;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.exception.IllegalParameterRuntimeException;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.query.Query;
-import com.linkallcloud.query.rule.Equal;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.dto.Trees;
+import com.linkallcloud.core.exception.BaseException;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.exception.IllegalParameterRuntimeException;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.query.Query;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.party.KhCompany;
 import com.linkallcloud.um.domain.party.KhDepartment;
 import com.linkallcloud.um.domain.party.KhUser;
@@ -39,7 +39,7 @@ import com.linkallcloud.um.server.dao.sys.IKhSystemConfigDao;
 import com.linkallcloud.um.server.dao.sys.IMenuDao;
 import com.linkallcloud.um.server.service.party.IKhCompanyService;
 import com.linkallcloud.um.server.utils.UmTools;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.util.Domains;
 
 @Service
 @Transactional(readOnly = true)

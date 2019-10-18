@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.WebLog;
-import com.linkallcloud.comm.web.utils.Controllers;
-import com.linkallcloud.dto.AppVisitor;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.lang.Mirror;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.pagination.WebPage;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.WebLog;
+import com.linkallcloud.web.utils.Controllers;
+import com.linkallcloud.core.dto.AppVisitor;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.lang.Mirror;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.pagination.WebPage;
 import com.linkallcloud.um.domain.party.Company;
 import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.domain.sys.Application;
 import com.linkallcloud.um.iapi.party.ICompanyManager;
 import com.linkallcloud.um.iapi.party.IUserManager;
 import com.linkallcloud.um.iapi.sys.IApplicationManager;
-import com.linkallcloud.www.ISessionUser;
+import com.linkallcloud.core.www.ISessionUser;
 
 public abstract class CompanyTreeController<C extends Company, CS extends ICompanyManager<C>, U extends User, US extends IUserManager<U>> {
 

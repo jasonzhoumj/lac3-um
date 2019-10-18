@@ -1,7 +1,7 @@
 package com.linkallcloud.um.server.aop;
 
-import com.linkallcloud.busilog.BusiServiceLogAspect;
-import com.linkallcloud.service.IServiceBusiLogService;
+import com.linkallcloud.core.busilog.BusiServiceLogAspect;
+import com.linkallcloud.core.service.IServiceBusiLogService;
 import com.linkallcloud.um.domain.sys.XfServiceBusiLog;
 import com.linkallcloud.um.server.service.sys.ILacServiceBusiLogService;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -25,12 +25,12 @@ public class XfBusiServiceLogAspect extends BusiServiceLogAspect<Long, XfService
         return xfServiceBusiLogService;
     }
 
-    // @Pointcut("@annotation(com.linkallcloud.busilog.annotation.ServLog)")
+    // @Pointcut("@annotation(com.linkallcloud.core.busilog.annotation.ServLog)")
     @Pointcut("execution(public * com.linkallcloud.um.server.manager..*.*(..))")
     public void manager() {
     }
 
-    @Pointcut("execution(* com.linkallcloud.manager.*.*(..))")
+    @Pointcut("execution(* com.linkallcloud.core.manager.*.*(..))")
     public void manager2() {
     }
 

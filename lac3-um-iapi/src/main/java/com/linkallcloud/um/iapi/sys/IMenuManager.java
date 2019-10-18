@@ -2,9 +2,9 @@ package com.linkallcloud.um.iapi.sys;
 
 import java.util.List;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.manager.ITreeManager;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.manager.ITreeManager;
 import com.linkallcloud.um.domain.sys.Menu;
 
 public interface IMenuManager extends ITreeManager<Long, Menu> {

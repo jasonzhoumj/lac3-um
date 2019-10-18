@@ -1,6 +1,6 @@
 package com.linkallcloud.um.domain.party;
 
-import com.linkallcloud.domain.annotation.ShowName;
+import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName("运维部门")
 public class YwDepartment extends Department {

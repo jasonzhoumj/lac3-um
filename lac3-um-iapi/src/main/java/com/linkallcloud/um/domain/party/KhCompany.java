@@ -3,7 +3,7 @@ package com.linkallcloud.um.domain.party;
 import java.util.Date;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.linkallcloud.domain.annotation.ShowName;
+import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName("客户单位")
 public class KhCompany extends Company {

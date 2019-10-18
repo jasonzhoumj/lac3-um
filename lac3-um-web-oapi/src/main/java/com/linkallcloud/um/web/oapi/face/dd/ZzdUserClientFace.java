@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.comm.web.face.annotation.Face;
-import com.linkallcloud.dto.Trace;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.web.face.annotation.Face;
+import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.oapi.dd.IZzdUserClient;
 import com.linkallcloud.um.oapi.dd.dto.DdFaceRequest;
 

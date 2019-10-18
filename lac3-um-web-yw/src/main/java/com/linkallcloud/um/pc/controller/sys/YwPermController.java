@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.query.Query;
-import com.linkallcloud.query.rule.Equal;
+import org.apache.dubbo.config.annotation.Reference;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.query.Query;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.party.YwRole;
 import com.linkallcloud.um.iapi.party.IYwRoleManager;
 

@@ -1,6 +1,6 @@
 package com.linkallcloud.um.domain.party;
 
-import com.linkallcloud.domain.Domain;
+import com.linkallcloud.core.domain.Domain;
 
 public class Rel4OrgLeader extends Domain<Long> {
 	private static final long serialVersionUID = -7896035517824623445L;

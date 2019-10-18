@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.linkallcloud.dto.Trace;
+import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.party.Company;
 
 public interface ICompanyDao<T extends Company> extends IOrgDao<T> {

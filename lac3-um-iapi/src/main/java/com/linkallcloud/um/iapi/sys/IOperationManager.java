@@ -3,8 +3,8 @@ package com.linkallcloud.um.iapi.sys;
 import java.util.List;
 import java.util.Map;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.manager.IManager;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.manager.IManager;
 import com.linkallcloud.um.domain.sys.Operation;
 
 public interface IOperationManager extends IManager<Long, Operation> {

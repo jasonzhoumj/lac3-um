@@ -10,7 +10,8 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.linkallcloud.repo.Base64;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.repo.Base64;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.jeecgframework.poi.excel.ExcelExportUtil;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
@@ -18,8 +19,6 @@ import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.excel.entity.enmus.ExcelType;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.alibaba.dubbo.common.utils.StringUtils;
 
 public class FileUtil {
 	
@@ -66,7 +65,7 @@ public class FileUtil {
 	}
 
 	public static <T> List<T> importExcel(String filePath, Integer titleRows, Integer headerRows, Class<T> pojoClass) {
-		if (StringUtils.isBlank(filePath)) {
+		if (Strings.isBlank(filePath)) {
 			return null;
 		}
 		ImportParams params = new ImportParams();

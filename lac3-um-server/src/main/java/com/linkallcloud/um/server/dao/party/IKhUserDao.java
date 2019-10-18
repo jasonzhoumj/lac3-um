@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.pagination.Page;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.pagination.Page;
 import com.linkallcloud.um.domain.party.KhUser;
 
 public interface IKhUserDao extends IUserDao<KhUser> {

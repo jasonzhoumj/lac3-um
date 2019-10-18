@@ -8,13 +8,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.dto.Tree;
-import com.linkallcloud.dto.Trees;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.exception.Exceptions;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.security.Securities;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.dto.Tree;
+import com.linkallcloud.core.dto.Trees;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.exception.Exceptions;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.security.Securities;
 import com.linkallcloud.um.domain.party.Company;
 import com.linkallcloud.um.domain.party.Department;
 import com.linkallcloud.um.domain.party.User;
@@ -29,7 +29,7 @@ import com.linkallcloud.um.server.dao.sys.IAccountDao;
 import com.linkallcloud.um.server.dao.sys.IApplicationDao;
 import com.linkallcloud.um.server.dao.sys.IAreaDao;
 import com.linkallcloud.um.server.service.party.ICompanyService;
-import com.linkallcloud.util.Domains;
+import com.linkallcloud.core.util.Domains;
 
 @Transactional(readOnly = true)
 public abstract class CompanyService<T extends Company, M extends ICompanyDao<T>, U extends User, UM extends IUserDao<U>, D extends Department, DM extends IDepartmentDao<D>>

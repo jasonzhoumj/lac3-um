@@ -1,6 +1,6 @@
 package com.linkallcloud.um.domain.party;
 
-import com.linkallcloud.domain.annotation.ShowName;
+import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName("角色")
 public abstract class Role extends Party {

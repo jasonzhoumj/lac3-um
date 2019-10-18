@@ -4,18 +4,18 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.exception.BaseRuntimeException;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
-import com.linkallcloud.query.Query;
-import com.linkallcloud.query.rule.Equal;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.exception.BaseRuntimeException;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
+import com.linkallcloud.core.query.Query;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.queue.LacQueue;
 import com.linkallcloud.um.domain.queue.LacQueues;
 import com.linkallcloud.um.server.dao.queue.ILacQueueDao;
 import com.linkallcloud.um.server.service.queue.ILacQueueService;
-import com.linkallcloud.util.Utils;
+import com.linkallcloud.core.util.Utils;
 
 public abstract class LacQueueService implements ILacQueueService {
     private static Log log = Logs.get();

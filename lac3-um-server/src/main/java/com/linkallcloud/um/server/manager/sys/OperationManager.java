@@ -5,10 +5,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.manager.BaseManager;
+import org.apache.dubbo.config.annotation.Service;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.manager.BaseManager;
 import com.linkallcloud.um.domain.sys.Operation;
 import com.linkallcloud.um.iapi.sys.IOperationManager;
 import com.linkallcloud.um.server.service.sys.IOperationService;

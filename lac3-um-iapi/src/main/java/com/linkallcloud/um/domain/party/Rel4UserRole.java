@@ -1,6 +1,6 @@
 package com.linkallcloud.um.domain.party;
 
-import com.linkallcloud.domain.Domain;
+import com.linkallcloud.core.domain.Domain;
 
 public class Rel4UserRole extends Domain<Long> {
 	private static final long serialVersionUID = -683413935477448765L;

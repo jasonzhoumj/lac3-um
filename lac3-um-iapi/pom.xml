@@ -21,7 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.linkallcloud</groupId>
-			<artifactId>lac3-comm-core</artifactId>
+			<artifactId>lac3-core</artifactId>
 			<version>${comm-core.version}</version>
 		</dependency>
 		<dependency>

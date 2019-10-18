@@ -1,8 +1,8 @@
 package com.linkallcloud.um.domain.sys;
 
-import com.linkallcloud.domain.TreeDomain;
-import com.linkallcloud.domain.annotation.ShowName;
-import com.linkallcloud.dto.Tree;
+import com.linkallcloud.core.domain.TreeDomain;
+import com.linkallcloud.core.domain.annotation.ShowName;
+import com.linkallcloud.core.dto.Tree;
 
 @ShowName(value = "菜单", logFields = "id,name,govCode")
 public class Menu extends TreeDomain<Long> {

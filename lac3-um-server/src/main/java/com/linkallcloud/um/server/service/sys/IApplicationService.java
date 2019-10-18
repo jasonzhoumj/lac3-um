@@ -2,9 +2,9 @@ package com.linkallcloud.um.server.service.sys;
 
 import java.util.List;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.pagination.Page;
-import com.linkallcloud.service.IService;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.service.IService;
 import com.linkallcloud.um.domain.sys.Application;
 
 public interface IApplicationService extends IService<Long, Application> {

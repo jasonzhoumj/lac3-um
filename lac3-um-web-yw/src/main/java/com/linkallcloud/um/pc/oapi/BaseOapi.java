@@ -2,18 +2,18 @@ package com.linkallcloud.um.pc.oapi;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import com.alibaba.dubbo.config.annotation.Reference;
+import org.apache.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.TypeReference;
-import com.linkallcloud.comm.security.sm.ISignatureMessage;
-import com.linkallcloud.comm.security.sm.SignatureMessage;
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.face.message.request.FaceRequest;
-import com.linkallcloud.face.message.request.ObjectFaceRequest;
-import com.linkallcloud.face.message.response.ObjectFaceResponse;
-import com.linkallcloud.lang.Strings;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
-import com.linkallcloud.security.MsgSignObject;
+import com.linkallcloud.sh.sm.ISignatureMessage;
+import com.linkallcloud.sh.sm.SignatureMessage;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.face.message.request.FaceRequest;
+import com.linkallcloud.core.face.message.request.ObjectFaceRequest;
+import com.linkallcloud.core.face.message.response.ObjectFaceResponse;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
+import com.linkallcloud.core.security.MsgSignObject;
 import com.linkallcloud.um.domain.sys.Application;
 import com.linkallcloud.um.iapi.sys.IApplicationManager;
 

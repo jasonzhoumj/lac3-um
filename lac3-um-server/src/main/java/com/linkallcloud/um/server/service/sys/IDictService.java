@@ -2,8 +2,8 @@ package com.linkallcloud.um.server.service.sys;
 
 import java.util.List;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.service.ITreeService;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.service.ITreeService;
 import com.linkallcloud.um.domain.sys.Dict;
 
 public interface IDictService extends ITreeService<Long, Dict> {

@@ -1,8 +1,8 @@
 package com.linkallcloud.um.domain.sys;
 
-import com.linkallcloud.domain.Domain;
-import com.linkallcloud.domain.annotation.ShowName;
-import com.linkallcloud.lang.Strings;
+import com.linkallcloud.core.domain.Domain;
+import com.linkallcloud.core.domain.annotation.ShowName;
+import com.linkallcloud.core.lang.Strings;
 
 @ShowName(value = "系统配置", logFields = "id")
 public class KhSystemConfig extends Domain<Long> {

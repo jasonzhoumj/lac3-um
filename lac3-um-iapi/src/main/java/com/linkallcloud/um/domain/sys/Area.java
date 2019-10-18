@@ -1,7 +1,7 @@
 package com.linkallcloud.um.domain.sys;
 
-import com.linkallcloud.domain.TreeDomain;
-import com.linkallcloud.domain.annotation.ShowName;
+import com.linkallcloud.core.domain.TreeDomain;
+import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName(value = "区域", logFields = "id,name,govCode")
 public class Area extends TreeDomain<Long> {

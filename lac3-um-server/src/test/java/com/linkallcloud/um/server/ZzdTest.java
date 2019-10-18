@@ -6,9 +6,9 @@ import java.util.Map;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
-import com.linkallcloud.www.utils.HttpClientFactory;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
+import com.linkallcloud.core.www.utils.HttpClientFactory;
 
 public class ZzdTest {
 

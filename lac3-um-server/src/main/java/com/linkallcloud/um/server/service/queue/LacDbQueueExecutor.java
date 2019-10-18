@@ -4,8 +4,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
 
 public class LacDbQueueExecutor {
 

@@ -1,7 +1,7 @@
 package com.linkallcloud.um.face.area;
 
-import com.linkallcloud.face.message.request.FaceRequest;
-import com.linkallcloud.query.rule.QueryRule;
+import com.linkallcloud.core.face.message.request.FaceRequest;
+import com.linkallcloud.core.query.rule.QueryRule;
 
 public class ParentIdAreaRequest extends FaceRequest {
 	private static final long serialVersionUID = 4565844469558968741L;

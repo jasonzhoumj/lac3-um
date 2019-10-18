@@ -3,9 +3,9 @@ package com.linkallcloud.um.server.manager.sys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import com.linkallcloud.busilog.annotation.Module;
-import com.linkallcloud.manager.BaseManager;
+import org.apache.dubbo.config.annotation.Service;
+import com.linkallcloud.core.busilog.annotation.Module;
+import com.linkallcloud.core.manager.BaseManager;
 import com.linkallcloud.um.domain.sys.XfServiceBusiLog;
 import com.linkallcloud.um.iapi.sys.ILacServiceBusiLogManager;
 import com.linkallcloud.um.server.service.sys.ILacServiceBusiLogService;

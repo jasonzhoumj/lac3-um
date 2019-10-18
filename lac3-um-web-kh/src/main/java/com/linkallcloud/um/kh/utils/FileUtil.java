@@ -1,16 +1,7 @@
 package com.linkallcloud.um.kh.utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-
-import javax.servlet.http.HttpServletResponse;
-
-import com.linkallcloud.repo.Base64;
+import com.linkallcloud.core.lang.Strings;
+import com.linkallcloud.core.repo.Base64;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.jeecgframework.poi.excel.ExcelExportUtil;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
@@ -19,7 +10,13 @@ import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.excel.entity.enmus.ExcelType;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.alibaba.dubbo.common.utils.StringUtils;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class FileUtil {
 	
@@ -66,7 +63,7 @@ public class FileUtil {
 	}
 
 	public static <T> List<T> importExcel(String filePath, Integer titleRows, Integer headerRows, Class<T> pojoClass) {
-		if (StringUtils.isBlank(filePath)) {
+		if (Strings.isBlank(filePath)) {
 			return null;
 		}
 		ImportParams params = new ImportParams();

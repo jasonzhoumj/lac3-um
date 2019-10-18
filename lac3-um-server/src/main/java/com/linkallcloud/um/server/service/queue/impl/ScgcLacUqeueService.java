@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.log.Log;
-import com.linkallcloud.log.Logs;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.log.Log;
+import com.linkallcloud.core.log.Logs;
 import com.linkallcloud.um.server.dao.queue.ILacQueueDao;
 
 @Service

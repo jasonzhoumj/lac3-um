@@ -3,10 +3,10 @@ package com.linkallcloud.um.pc.oapi.dd;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.TypeReference;
-import com.linkallcloud.face.message.response.ObjectFaceResponse;
+import com.linkallcloud.core.face.message.response.ObjectFaceResponse;
 import com.linkallcloud.um.oapi.dd.dto.DdFaceRequest;
 import com.linkallcloud.um.pc.oapi.BaseOapi;
-import com.linkallcloud.www.utils.HttpClientFactory;
+import com.linkallcloud.core.www.utils.HttpClientFactory;
 
 @Component
 public class ZzdUserOapi extends BaseOapi {

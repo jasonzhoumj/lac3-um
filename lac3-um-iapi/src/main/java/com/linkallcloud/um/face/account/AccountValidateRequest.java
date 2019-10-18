@@ -1,6 +1,6 @@
 package com.linkallcloud.um.face.account;
 
-import com.linkallcloud.face.message.request.FaceRequest;
+import com.linkallcloud.core.face.message.request.FaceRequest;
 
 public class AccountValidateRequest extends FaceRequest {
 	private static final long serialVersionUID = -3546050383758784423L;

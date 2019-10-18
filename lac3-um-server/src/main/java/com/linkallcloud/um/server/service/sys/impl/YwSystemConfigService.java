@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.linkallcloud.dto.Trace;
-import com.linkallcloud.service.BaseService;
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.core.service.BaseService;
 import com.linkallcloud.um.domain.sys.YwSystemConfig;
 import com.linkallcloud.um.server.dao.sys.IYwSystemConfigDao;
 import com.linkallcloud.um.server.service.sys.IYwSystemConfigService;
