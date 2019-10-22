@@ -34,14 +34,13 @@ public class AccountService extends BaseService<Account, IAccountActivity> imple
 
     @Override
     @Transactional(readOnly = false)
-    public Account loginValidate(Trace t, String account, String password) throws AuthException {
+    public Account loginValidate(Trace t, String account, String password) {
         return activity().loginValidate(t, account, password);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd)
-            throws AuthException {
+    public boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd) {
         return activity().updatePassword(t, id, uuid, oldPwd, newPwd);
     }
 

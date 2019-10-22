@@ -31,13 +31,12 @@ public class AccountManager extends BaseManager<Account, IAccountService> implem
     }
 
     @Override
-    public Account loginValidate(Trace t, String accountOrMobile, String password) throws AuthException {
+    public Account loginValidate(Trace t, String accountOrMobile, String password) {
         return service().loginValidate(t, accountOrMobile, password);
     }
 
     @Override
-    public boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd)
-            throws AuthException {
+    public boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd) {
         return service().updatePassword(t, id, uuid, oldPwd, newPwd);
     }
 

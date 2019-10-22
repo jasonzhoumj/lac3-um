@@ -1,8 +1,6 @@
 package com.linkallcloud.um.exception;
 
-import com.linkallcloud.core.exception.BizException;
-
-public class AccountException extends BizException {
+public class AccountException extends UmException {
     public AccountException() {
     }
 

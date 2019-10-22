@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.linkallcloud.um.exception.AuthException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -93,6 +94,7 @@ public class LoginController {
 			}
 		} catch (Throwable e) {
 			log.error(e.getMessage(), e);
+			return new Result<String>("10002005", "账号或者密码错误，请重试！");
 		}
 
 		return new Result<String>("10002005", "账号或者密码错误，请重试！");
