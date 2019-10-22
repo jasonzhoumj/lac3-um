@@ -3,7 +3,7 @@ package com.linkallcloud.um.domain.party;
 import com.linkallcloud.core.domain.TreeDomain;
 import com.linkallcloud.core.util.Domains;
 
-public abstract class Party extends TreeDomain<Long> {
+public abstract class Party extends TreeDomain {
 	private static final long serialVersionUID = -3380518626600403369L;
 
 	// private String govCode;// Org:网格（区域）/组织 编码；Dept：部门编号；User：员工工号

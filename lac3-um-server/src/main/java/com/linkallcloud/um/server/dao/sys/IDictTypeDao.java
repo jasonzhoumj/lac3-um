@@ -8,7 +8,7 @@ import com.linkallcloud.core.dao.ITreeDao;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.sys.DictType;
 
-public interface IDictTypeDao extends ITreeDao<Long, DictType> {
+public interface IDictTypeDao extends ITreeDao<DictType> {
 
 	//List<DictType> getChildrenByParentId(@Param("t") Trace t, @Param("parentId") Long parentId);
 

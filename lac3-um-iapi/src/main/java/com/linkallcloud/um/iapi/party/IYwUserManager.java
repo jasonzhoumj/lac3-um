@@ -13,7 +13,7 @@ public interface IYwUserManager extends IUserManager<YwUser> {
 	 * @param page
 	 * @return
 	 */
-	Page<Long, YwUser> findPermedUserPage(Trace t, Page<Long, YwUser> page);
+	Page<YwUser> findPermedUserPage(Trace t, Page<YwUser> page);
 
 	/**
 	 * 清除除userId外的所有手机号码为mobile的用户的手机号码为空

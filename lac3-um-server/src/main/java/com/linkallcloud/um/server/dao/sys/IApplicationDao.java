@@ -9,15 +9,15 @@ import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.pagination.Page;
 import com.linkallcloud.um.domain.sys.Application;
 
-public interface IApplicationDao extends IDao<Long, Application> {
+public interface IApplicationDao extends IDao<Application> {
 
 	Application fetchByCode(@Param("t") Trace t, @Param("code") String code);
 
-	List<Application> findPage4YwRole(@Param("t") Trace t, @Param("page") Page<Long, Application> page);
+	List<Application> findPage4YwRole(@Param("t") Trace t, @Param("page") Page<Application> page);
 
-	List<Application> findPage4KhRole(@Param("t") Trace t, @Param("page") Page<Long, Application> page);
+	List<Application> findPage4KhRole(@Param("t") Trace t, @Param("page") Page<Application> page);
 
-	List<Application> findPage4KhCompany(@Param("t") Trace t, @Param("page") Page<Long, Application> page);
+	List<Application> findPage4KhCompany(@Param("t") Trace t, @Param("page") Page<Application> page);
 
 	List<Application> find4YwUser(@Param("t") Trace t, @Param("ywUserId") Long ywUserId);
 

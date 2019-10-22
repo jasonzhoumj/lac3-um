@@ -39,7 +39,7 @@ public interface IRoleDao<T extends Role, U extends User> extends IPartyDao<T> {
 	 * @param page
 	 * @return
 	 */
-	List<T> findPage4User(@Param("t") Trace t, @Param("page") Page<Long, T> page);
+	List<T> findPage4User(@Param("t") Trace t, @Param("page") Page<T> page);
 
 	/**
 	 * 获取用户未拥有的角色分页列表
@@ -48,7 +48,7 @@ public interface IRoleDao<T extends Role, U extends User> extends IPartyDao<T> {
 	 * @param page
 	 * @return
 	 */
-	List<T> findNoRolePage4User(@Param("t") Trace t, @Param("page") Page<Long, T> page);
+	List<T> findNoRolePage4User(@Param("t") Trace t, @Param("page") Page<T> page);
 
 	/**
 	 * 获取用户的角色列表

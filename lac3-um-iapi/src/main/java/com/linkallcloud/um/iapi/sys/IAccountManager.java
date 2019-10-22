@@ -1,20 +1,20 @@
 package com.linkallcloud.um.iapi.sys;
 
 import com.linkallcloud.core.dto.Trace;
-import com.linkallcloud.core.exception.BaseRuntimeException;
 import com.linkallcloud.core.manager.IManager;
 import com.linkallcloud.um.domain.sys.Account;
+import com.linkallcloud.um.exception.AuthException;
 
-public interface IAccountManager extends IManager<Long, Account> {
+public interface IAccountManager extends IManager<Account> {
 
     Account fecthByMobile(Trace t, String mobile);
 
     Account fecthByAccount(Trace t, String account);
 
-    Account loginValidate(Trace t, String accountOrMobile, String password) throws BaseRuntimeException;
+    Account loginValidate(Trace t, String accountOrMobile, String password);
 
     boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd)
-            throws BaseRuntimeException;
+            throws AuthException;
 
     Account fechByWechatOpenId(Trace t, String userType, String openid);
 

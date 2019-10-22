@@ -80,10 +80,10 @@ public abstract class RoleController<T extends Role, U extends User, M extends I
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public @ResponseBody Page<Long, T> page(@RequestBody WebPage webPage, Trace t, AppVisitor av) {
+    public @ResponseBody Page<T> page(@RequestBody WebPage webPage, Trace t, AppVisitor av) {
         ISessionUser su = Controllers.getSessionUser();
         int type = getRoleType();
-        Page<Long, T> page = webPage.toPage();
+        Page<T> page = webPage.toPage();
         return manager().findCompanyRolePage(t, Long.parseLong(su.getCompanyId()), type, page);
     }
 
@@ -192,12 +192,12 @@ public abstract class RoleController<T extends Role, U extends User, M extends I
     }
 
     @RequestMapping(value = "/page4Select", method = RequestMethod.GET)
-    public @ResponseBody Page<Long, T> page4Select(@RequestBody WebPage webPage, Trace t, AppVisitor av) {
+    public @ResponseBody Page<T> page4Select(@RequestBody WebPage webPage, Trace t, AppVisitor av) {
         return doPage4Select(webPage, t, av);
     }
 
-    protected Page<Long, T> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
-        Page<Long, T> page = webPage.toPage();
+    protected Page<T> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
+        Page<T> page = webPage.toPage();
         Equal r = (Equal) page.getRule4Field("userId");
         if (r != null) {
             U user = userManager().fetchById(t, (Long) r.getValue());

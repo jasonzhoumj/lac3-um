@@ -8,7 +8,7 @@ import com.linkallcloud.core.dao.ITreeDao;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.sys.Menu;
 
-public interface IMenuDao extends ITreeDao<Long, Menu> {
+public interface IMenuDao extends ITreeDao<Menu> {
 
     /**
      * 获取应用的菜单

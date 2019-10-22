@@ -59,7 +59,7 @@ public class YwDepartmentFace {
 	@Face(login = false)
 	@RequestMapping(value = "/findPage", method = RequestMethod.POST)
 	public @ResponseBody Object findPage(PageFaceRequest faceReq, Trace t) throws Exception {
-		Page<Long, YwDepartment> page = new Page<>(faceReq);
+		Page<YwDepartment> page = new Page<>(faceReq);
 		return ywDepartmentManager.findPage(t, page);
 	}
 

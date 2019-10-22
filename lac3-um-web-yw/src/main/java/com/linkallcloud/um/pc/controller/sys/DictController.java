@@ -114,8 +114,8 @@ public class DictController {
 	}
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, Dict>> page(@RequestBody WebPage webPage, Trace t) {
-		Page<Long, Dict> page = dictManager.findPage(t, webPage.toPage());
+	public @ResponseBody Result<Page<Dict>> page(@RequestBody WebPage webPage, Trace t) {
+		Page<Dict> page = dictManager.findPage(t, webPage.toPage());
 		return new Result<>(page);
 	}
 

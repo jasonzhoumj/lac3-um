@@ -2,6 +2,10 @@ package com.linkallcloud.um.server.manager.party;
 
 import java.util.List;
 
+import com.linkallcloud.um.service.party.IKhCompanyService;
+import com.linkallcloud.um.service.party.IKhRoleService;
+import com.linkallcloud.um.service.sys.IApplicationService;
+import com.linkallcloud.um.service.sys.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +18,6 @@ import com.linkallcloud.um.domain.party.KhUser;
 import com.linkallcloud.um.domain.sys.Application;
 import com.linkallcloud.um.dto.base.PermedAreaVo;
 import com.linkallcloud.um.iapi.party.IKhRoleManager;
-import com.linkallcloud.um.server.service.party.IKhCompanyService;
-import com.linkallcloud.um.server.service.party.IKhRoleService;
-import com.linkallcloud.um.server.service.sys.IApplicationService;
-import com.linkallcloud.um.server.service.sys.IMenuService;
 
 @Service(interfaceClass = IKhRoleManager.class, version = "${dubbo.service.version}")
 @Component

@@ -77,16 +77,16 @@ public class KhUserController extends BaseLController4ParentTree<KhUser, IKhUser
 	}
 
 	@Override
-	protected Page<Long, KhUser> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
-		Page<Long, KhUser> page = webPage.toPage();
+	protected Page<KhUser> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
+		Page<KhUser> page = webPage.toPage();
 		page.addRule(new Equal("ywUserId", Long.parseLong(av.getId())));
 		page.addRule(new Equal("appId", Long.parseLong(av.getAppId())));
 		return manager().findPage(t, page);
 	}
 
 	@Override
-	protected Page<Long, KhUser> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
-		Page<Long, KhUser> page = webPage.toPage();
+	protected Page<KhUser> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
+		Page<KhUser> page = webPage.toPage();
 		page.addRule(new Equal("ywUserId", Long.parseLong(av.getId())));
 		page.addRule(new Equal("appId", Long.parseLong(av.getAppId())));
 		return manager().findPage4Select(t, page);
@@ -132,9 +132,9 @@ public class KhUserController extends BaseLController4ParentTree<KhUser, IKhUser
 
 	// page4SysRole
 	@RequestMapping(value = "/page4SysRole", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, KhUser>> page4SysRole(@RequestBody WebPage webPage, Trace t, AppVisitor av)
+	public @ResponseBody Result<Page<KhUser>> page4SysRole(@RequestBody WebPage webPage, Trace t, AppVisitor av)
 			throws IllegalParameterException {
-		Page<Long, KhUser> page = webPage.toPage();
+		Page<KhUser> page = webPage.toPage();
 		if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
 		}

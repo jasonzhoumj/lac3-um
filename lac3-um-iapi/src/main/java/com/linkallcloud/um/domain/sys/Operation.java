@@ -4,7 +4,7 @@ import com.linkallcloud.core.domain.Domain;
 import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName(value = "操作", logFields = "id,name,uri")
-public class Operation extends Domain<Long> {
+public class Operation extends Domain {
 	private static final long serialVersionUID = 6556598825525421528L;
 
 	/*

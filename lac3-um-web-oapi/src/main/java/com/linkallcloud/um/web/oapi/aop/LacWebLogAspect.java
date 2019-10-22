@@ -15,7 +15,7 @@ import com.linkallcloud.um.iapi.sys.ILacWebBusiLogManager;
 @Aspect
 @Component
 @Order(3)
-public class LacWebLogAspect extends BusiWebLogAspect<Long, XfWebBusiLog, ILacWebBusiLogManager> {
+public class LacWebLogAspect extends BusiWebLogAspect<XfWebBusiLog, ILacWebBusiLogManager> {
 
 	@Reference(version = "${dubbo.service.version}", application = "${dubbo.application.id}")
 	private ILacWebBusiLogManager lacWebBusiLogManager;

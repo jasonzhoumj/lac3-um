@@ -9,7 +9,7 @@ import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.query.rule.QueryRule;
 import com.linkallcloud.um.domain.sys.Area;
 
-public interface IAreaDao extends ITreeDao<Long, Area> {
+public interface IAreaDao extends ITreeDao<Area> {
 
 	/**
 	 * 统计非删除状态的子节点数量

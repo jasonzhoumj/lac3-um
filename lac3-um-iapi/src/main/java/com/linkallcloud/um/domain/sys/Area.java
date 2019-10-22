@@ -4,7 +4,7 @@ import com.linkallcloud.core.domain.TreeDomain;
 import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName(value = "区域", logFields = "id,name,govCode")
-public class Area extends TreeDomain<Long> {
+public class Area extends TreeDomain {
 	private static final long serialVersionUID = -2121584720685444135L;
 
 	private String fullName;

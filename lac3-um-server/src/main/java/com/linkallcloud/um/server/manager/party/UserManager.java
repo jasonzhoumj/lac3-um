@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.linkallcloud.um.service.party.ICompanyService;
+import com.linkallcloud.um.service.party.IRoleService;
+import com.linkallcloud.um.service.party.IUserService;
+import com.linkallcloud.um.service.sys.IApplicationService;
+import com.linkallcloud.um.service.sys.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 
@@ -24,11 +29,6 @@ import com.linkallcloud.um.domain.party.YwUser;
 import com.linkallcloud.um.domain.sys.Application;
 import com.linkallcloud.um.domain.sys.Menu;
 import com.linkallcloud.um.iapi.party.IUserManager;
-import com.linkallcloud.um.server.service.party.ICompanyService;
-import com.linkallcloud.um.server.service.party.IRoleService;
-import com.linkallcloud.um.server.service.party.IUserService;
-import com.linkallcloud.um.server.service.sys.IApplicationService;
-import com.linkallcloud.um.server.service.sys.IMenuService;
 
 public abstract class UserManager<T extends User, S extends IUserService<T>, R extends Role, RS extends IRoleService<R, T>, C extends Company, CS extends ICompanyService<C>>
 		extends PartyManager<T, S> implements IUserManager<T> {
@@ -154,7 +154,7 @@ public abstract class UserManager<T extends User, S extends IUserService<T>, R e
 	}
 
 	@Override
-	public Page<Long, T> findPage4Role(Trace t, Page<Long, T> page) throws IllegalParameterException {
+	public Page<T> findPage4Role(Trace t, Page<T> page) throws IllegalParameterException {
 		return service().findPage4Role(t, page);
 	}
 
@@ -240,7 +240,7 @@ public abstract class UserManager<T extends User, S extends IUserService<T>, R e
 	}
 
 	@Override
-	public Page<Long, T> findPermedUserPage4Select(Trace t, Page<Long, T> page) {
+	public Page<T> findPermedUserPage4Select(Trace t, Page<T> page) {
 		return service().findPermedUserPage4Select(t, page);
 	}
 

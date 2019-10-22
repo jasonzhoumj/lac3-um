@@ -22,7 +22,7 @@ public abstract interface IRoleManager<T extends Role, U extends User> extends I
 	 * @param page
 	 * @return
 	 */
-	Page<Long, T> findCompanyRolePage(Trace t, Long companyId, int type, Page<Long, T> page)
+	Page<T> findCompanyRolePage(Trace t, Long companyId, int type, Page<T> page)
 			throws BaseRuntimeException;
 
 	/**
@@ -44,7 +44,7 @@ public abstract interface IRoleManager<T extends Role, U extends User> extends I
 	 * @return
 	 * @throws BaseRuntimeException
 	 */
-	Page<Long, T> findCompanyAllRolePage(Trace t, Long companyId, Page<Long, T> page) throws BaseRuntimeException;
+	Page<T> findCompanyAllRolePage(Trace t, Long companyId, Page<T> page) throws BaseRuntimeException;
 
 	/**
 	 * 根据orgId，获取orgId所在公司的所有角色，包含系统角色
@@ -74,7 +74,7 @@ public abstract interface IRoleManager<T extends Role, U extends User> extends I
 	 * @param page
 	 * @return
 	 */
-	Page<Long, T> findPage4User(Trace t, Page<Long, T> page);
+	Page<T> findPage4User(Trace t, Page<T> page);
 
 	/**
 	 * 获取用户未拥有的角色分页列表
@@ -83,7 +83,7 @@ public abstract interface IRoleManager<T extends Role, U extends User> extends I
 	 * @param page
 	 * @return
 	 */
-	Page<Long, T> findNoRolePage4User(Trace t, Page<Long, T> page);
+	Page<T> findNoRolePage4User(Trace t, Page<T> page);
 
 	List<T> find4User(Trace t, Long userId, String userUuid);
 

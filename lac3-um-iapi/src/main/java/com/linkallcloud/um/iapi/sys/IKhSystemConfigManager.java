@@ -4,7 +4,7 @@ import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.manager.IManager;
 import com.linkallcloud.um.domain.sys.KhSystemConfig;
 
-public interface IKhSystemConfigManager extends IManager<Long, KhSystemConfig> {
+public interface IKhSystemConfigManager extends IManager<KhSystemConfig> {
 
     KhSystemConfig fetchByCompanyId(Trace t, Long companyId);
 

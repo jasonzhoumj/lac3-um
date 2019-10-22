@@ -20,7 +20,7 @@ public interface IUserDao<T extends User> extends IPartyDao<T> {
 
 	boolean updateLastLoginTime(@Param("t") Trace t, @Param("id") Long userId);
 
-	List<T> findLeaderPageByOrgId(@Param("t") Trace t, @Param("page") Page<Long, T> page);
+	List<T> findLeaderPageByOrgId(@Param("t") Trace t, @Param("page") Page<T> page);
 
 	List<T> findOrgLeaders(@Param("t") Trace t, @Param("orgId") Long orgId, @Param("orgUuid") String orgUuid);
 
@@ -32,7 +32,7 @@ public interface IUserDao<T extends User> extends IPartyDao<T> {
 	 * 
 	 * @return
 	 */
-	List<T> findPage4Role(@Param("t") Trace t, @Param("page") Page<Long, T> page);
+	List<T> findPage4Role(@Param("t") Trace t, @Param("page") Page<T> page);
 
 	/**
 	 * 查询某角色已分配的用户
@@ -162,7 +162,7 @@ public interface IUserDao<T extends User> extends IPartyDao<T> {
 	 * @param page
 	 * @return
 	 */
-	List<T> findPermedUserPage4Select(@Param("t") Trace t, @Param("page") Page<Long, T> page);
+	List<T> findPermedUserPage4Select(@Param("t") Trace t, @Param("page") Page<T> page);
 
 	/**
 	 * 根据政务服务网uid查询用户

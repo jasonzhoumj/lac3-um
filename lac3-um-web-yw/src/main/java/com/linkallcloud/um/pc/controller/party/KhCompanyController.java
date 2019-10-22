@@ -71,16 +71,16 @@ public class KhCompanyController extends BaseLController<KhCompany, IKhCompanyMa
 	}
 
 	@Override
-	protected Page<Long, KhCompany> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
-		Page<Long, KhCompany> page = webPage.toPage();
+	protected Page<KhCompany> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
+		Page<KhCompany> page = webPage.toPage();
 		page.addRule(new Equal("ywUserId", Long.parseLong(av.getId())));
 		page.addRule(new Equal("appId", Long.parseLong(av.getAppId())));
 		return manager().findPage4Select(t, page);
 	}
 
 	@Override
-	protected Page<Long, KhCompany> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
-		Page<Long, KhCompany> page = webPage.toPage();
+	protected Page<KhCompany> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
+		Page<KhCompany> page = webPage.toPage();
 		page.addRule(new Equal("ywUserId", Long.parseLong(av.getId())));
 		page.addRule(new Equal("appId", Long.parseLong(av.getAppId())));
 		return manager().findPage(t, page);

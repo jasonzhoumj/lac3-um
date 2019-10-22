@@ -17,7 +17,7 @@ public interface IKhUserDao extends IUserDao<KhUser> {
      * @param page
      * @return
      */
-    List<KhUser> findSelfUserPage(@Param("t") Trace t, @Param("page") Page<Long, KhUser> page);
+    List<KhUser> findSelfUserPage(@Param("t") Trace t, @Param("page") Page<KhUser> page);
 
     /**
      * 客户单位操作员，根据用户组织权限查某用户某应用全公司人员分页列表，Page中必须包含appId，userId，companyId参数
@@ -26,6 +26,6 @@ public interface IKhUserDao extends IUserDao<KhUser> {
      * @param page
      * @return
      */
-    List<KhUser> findPermedSelfUserPage(@Param("t") Trace t, @Param("page") Page<Long, KhUser> page);
+    List<KhUser> findPermedSelfUserPage(@Param("t") Trace t, @Param("page") Page<KhUser> page);
 
 }

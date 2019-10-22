@@ -6,7 +6,7 @@ import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.exception.BaseRuntimeException;
 import com.linkallcloud.um.domain.party.Org;
 import com.linkallcloud.um.iapi.party.IOrgManager;
-import com.linkallcloud.um.server.service.party.IOrgService;
+import com.linkallcloud.um.service.party.IOrgService;
 
 public abstract class OrgManager<T extends Org, S extends IOrgService<T>> // , U extends User, US extends IUserService<U>
 		extends PartyManager<T, S> implements IOrgManager<T> {

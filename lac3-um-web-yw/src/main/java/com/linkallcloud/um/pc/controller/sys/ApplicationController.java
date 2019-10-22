@@ -108,9 +108,9 @@ public class ApplicationController extends BaseLController<Application, IApplica
 	}
 
 	@RequestMapping(value = "/page4KhCompany", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, Application>> page4KhCompany(@RequestBody WebPage webPage, Trace t,
+	public @ResponseBody Result<Page<Application>> page4KhCompany(@RequestBody WebPage webPage, Trace t,
 			AppVisitor av) throws IllegalParameterException {
-		Page<Long, Application> page = webPage.toPage();
+		Page<Application> page = webPage.toPage();
 		if (!page.hasRule4Field("khCompanyId") || !page.hasRule4Field("khCompanyUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "khCompanyId,khCompanyUuid参数错误。");
 		}
@@ -140,9 +140,9 @@ public class ApplicationController extends BaseLController<Application, IApplica
 	}
 
 	@RequestMapping(value = "/page4YwRole", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, Application>> page4YwRole(@RequestBody WebPage webPage, Trace t,
+	public @ResponseBody Result<Page<Application>> page4YwRole(@RequestBody WebPage webPage, Trace t,
 			AppVisitor av) throws IllegalParameterException {
-		Page<Long, Application> page = webPage.toPage();
+		Page<Application> page = webPage.toPage();
 		if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
 		}
@@ -170,9 +170,9 @@ public class ApplicationController extends BaseLController<Application, IApplica
 
 	// page4YwSysRole
 	@RequestMapping(value = "/page4YwSysRole", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, Application>> page4YwSysRole(@RequestBody WebPage webPage, Trace t,
+	public @ResponseBody Result<Page<Application>> page4YwSysRole(@RequestBody WebPage webPage, Trace t,
 			AppVisitor av) throws IllegalParameterException {
-		Page<Long, Application> page = webPage.toPage();
+		Page<Application> page = webPage.toPage();
 		if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
 		}
@@ -200,9 +200,9 @@ public class ApplicationController extends BaseLController<Application, IApplica
 
 	// page4KhSysRole
 	@RequestMapping(value = "/page4KhSysRole", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, Application>> page4KhSysRole(@RequestBody WebPage webPage, Trace t,
+	public @ResponseBody Result<Page<Application>> page4KhSysRole(@RequestBody WebPage webPage, Trace t,
 			AppVisitor av) throws IllegalParameterException {
-		Page<Long, Application> page = webPage.toPage();
+		Page<Application> page = webPage.toPage();
 		if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
 		}
@@ -230,9 +230,9 @@ public class ApplicationController extends BaseLController<Application, IApplica
 	}
 
 	@RequestMapping(value = "/page4SelfKhRole", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, Application>> page4SelfKhRole(@RequestBody WebPage webPage, Trace t,
+	public @ResponseBody Result<Page<Application>> page4SelfKhRole(@RequestBody WebPage webPage, Trace t,
 			AppVisitor av) throws IllegalParameterException {
-		Page<Long, Application> page = webPage.toPage();
+		Page<Application> page = webPage.toPage();
 		if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
 		}

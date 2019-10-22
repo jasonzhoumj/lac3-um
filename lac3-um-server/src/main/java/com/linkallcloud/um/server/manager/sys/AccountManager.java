@@ -1,21 +1,21 @@
 package com.linkallcloud.um.server.manager.sys;
 
+import com.linkallcloud.um.exception.AuthException;
+import com.linkallcloud.um.service.sys.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import org.apache.dubbo.config.annotation.Service;
 import com.linkallcloud.core.busilog.annotation.Module;
 import com.linkallcloud.core.dto.Trace;
-import com.linkallcloud.core.exception.BaseRuntimeException;
 import com.linkallcloud.core.manager.BaseManager;
 import com.linkallcloud.um.domain.sys.Account;
 import com.linkallcloud.um.iapi.sys.IAccountManager;
-import com.linkallcloud.um.server.service.sys.IAccountService;
 
 @Service(interfaceClass = IAccountManager.class, version = "${dubbo.service.version}")
 @Component
 @Module(name = "账号")
-public class AccountManager extends BaseManager<Long, Account, IAccountService> implements IAccountManager {
+public class AccountManager extends BaseManager<Account, IAccountService> implements IAccountManager {
 
     @Autowired
     private IAccountService accountService;
@@ -31,13 +31,13 @@ public class AccountManager extends BaseManager<Long, Account, IAccountService> 
     }
 
     @Override
-    public Account loginValidate(Trace t, String accountOrMobile, String password) throws BaseRuntimeException {
+    public Account loginValidate(Trace t, String accountOrMobile, String password) throws AuthException {
         return service().loginValidate(t, accountOrMobile, password);
     }
 
     @Override
     public boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd)
-            throws BaseRuntimeException {
+            throws AuthException {
         return service().updatePassword(t, id, uuid, oldPwd, newPwd);
     }
 

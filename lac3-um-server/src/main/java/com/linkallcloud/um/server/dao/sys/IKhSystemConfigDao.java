@@ -6,7 +6,7 @@ import com.linkallcloud.core.dao.IDao;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.sys.KhSystemConfig;
 
-public interface IKhSystemConfigDao extends IDao<Long, KhSystemConfig> {
+public interface IKhSystemConfigDao extends IDao<KhSystemConfig> {
 
     KhSystemConfig fetchByCompanyId(@Param("t") Trace t, @Param("companyId") Long companyId);
 

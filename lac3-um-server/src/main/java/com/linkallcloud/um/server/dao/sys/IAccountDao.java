@@ -6,7 +6,7 @@ import com.linkallcloud.core.dao.IDao;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.sys.Account;
 
-public interface IAccountDao extends IDao<Long, Account> {
+public interface IAccountDao extends IDao<Account> {
 
     Account fecthByMobile(@Param("t") Trace t, @Param("mobile") String mobile);
 

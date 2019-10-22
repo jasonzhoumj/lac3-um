@@ -1,5 +1,7 @@
 package com.linkallcloud.um.server.manager.party;
 
+import com.linkallcloud.um.service.party.IKhDepartmentService;
+import com.linkallcloud.um.service.party.IKhUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,8 +10,6 @@ import com.linkallcloud.core.busilog.annotation.Module;
 import com.linkallcloud.um.domain.party.KhDepartment;
 import com.linkallcloud.um.domain.party.KhUser;
 import com.linkallcloud.um.iapi.party.IKhDepartmentManager;
-import com.linkallcloud.um.server.service.party.IKhDepartmentService;
-import com.linkallcloud.um.server.service.party.IKhUserService;
 
 @Service(interfaceClass = IKhDepartmentManager.class, version = "${dubbo.service.version}")
 @Component

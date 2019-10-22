@@ -213,14 +213,14 @@ public class YwRoleController extends RoleController<YwRole, YwUser, IYwRoleMana
 	}
 
 	@RequestMapping(value = "/page4User", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, YwRole>> page4User(@RequestBody WebPage webPage, Trace t, AppVisitor av)
+	public @ResponseBody Result<Page<YwRole>> page4User(@RequestBody WebPage webPage, Trace t, AppVisitor av)
 			throws IllegalParameterException {
-		Page<Long, YwRole> page = webPage.toPage();
+		Page<YwRole> page = webPage.toPage();
 		if (!page.hasRule4Field("userId") || !page.hasRule4Field("userUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "userId,userUuid参数错误。");
 		}
 		page = manager().findPage4User(t, page);
-		return new Result<Page<Long, YwRole>>(page);
+		return new Result<Page<YwRole>>(page);
 	}
 
 }

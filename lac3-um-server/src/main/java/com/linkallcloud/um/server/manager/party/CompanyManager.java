@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.linkallcloud.um.service.party.ICompanyService;
+import com.linkallcloud.um.service.party.IDepartmentService;
+import com.linkallcloud.um.service.party.IRoleService;
+import com.linkallcloud.um.service.party.IUserService;
+import com.linkallcloud.um.service.sys.IAreaService;
+import com.linkallcloud.um.service.sys.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.linkallcloud.core.dto.Trace;
@@ -18,12 +24,6 @@ import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.domain.sys.Area;
 import com.linkallcloud.um.dto.base.PermedAreaVo;
 import com.linkallcloud.um.iapi.party.ICompanyManager;
-import com.linkallcloud.um.server.service.party.ICompanyService;
-import com.linkallcloud.um.server.service.party.IDepartmentService;
-import com.linkallcloud.um.server.service.party.IRoleService;
-import com.linkallcloud.um.server.service.party.IUserService;
-import com.linkallcloud.um.server.service.sys.IAreaService;
-import com.linkallcloud.um.server.service.sys.IMenuService;
 
 public abstract class CompanyManager<T extends Company, S extends ICompanyService<T>, D extends Department, DS extends IDepartmentService<D>, U extends User, US extends IUserService<U>, R extends Role, RS extends IRoleService<R, U>>
 		extends OrgManager<T, S> implements ICompanyManager<T> {

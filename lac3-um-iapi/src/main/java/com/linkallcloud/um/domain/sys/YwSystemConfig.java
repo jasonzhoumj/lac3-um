@@ -5,7 +5,7 @@ import com.linkallcloud.core.domain.annotation.ShowName;
 import com.linkallcloud.core.lang.Strings;
 
 @ShowName(value = "系统配置", logFields = "id")
-public class YwSystemConfig extends Domain<Long> {
+public class YwSystemConfig extends Domain {
 	private static final long serialVersionUID = 5879268663137672486L;
 
 	private Long companyId;

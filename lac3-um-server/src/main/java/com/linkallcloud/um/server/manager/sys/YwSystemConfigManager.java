@@ -1,5 +1,7 @@
 package com.linkallcloud.um.server.manager.sys;
 
+import com.linkallcloud.um.service.party.IYwCompanyService;
+import com.linkallcloud.um.service.sys.IYwSystemConfigService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,13 +12,11 @@ import com.linkallcloud.core.manager.BaseManager;
 import com.linkallcloud.um.domain.party.YwCompany;
 import com.linkallcloud.um.domain.sys.YwSystemConfig;
 import com.linkallcloud.um.iapi.sys.IYwSystemConfigManager;
-import com.linkallcloud.um.server.service.party.IYwCompanyService;
-import com.linkallcloud.um.server.service.sys.IYwSystemConfigService;
 
 @Service(interfaceClass = IYwSystemConfigManager.class, version = "${dubbo.service.version}")
 @Component
 @Module(name = "系统配置")
-public class YwSystemConfigManager extends BaseManager<Long, YwSystemConfig, IYwSystemConfigService>
+public class YwSystemConfigManager extends BaseManager<YwSystemConfig, IYwSystemConfigService>
         implements IYwSystemConfigManager {
 
     @Autowired

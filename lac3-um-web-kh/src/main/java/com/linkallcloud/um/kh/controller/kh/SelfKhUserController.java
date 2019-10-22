@@ -92,9 +92,9 @@ public class SelfKhUserController
     }
 
     @Override
-    protected Page<Long, KhUser> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
+    protected Page<KhUser> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
         ISessionUser su = Controllers.getSessionUser();
-        Page<Long, KhUser> page = webPage.toPage();
+        Page<KhUser> page = webPage.toPage();
         if (!page.hasRule4Field("companyId")) {
             page.addRule(new Equal("companyId", Long.valueOf(su.getCompanyId())));
         }
@@ -135,9 +135,9 @@ public class SelfKhUserController
     }
 
     @RequestMapping(value = "/page4Role", method = RequestMethod.GET)
-    public @ResponseBody Page<Long, KhUser> page4Role(@RequestBody WebPage webPage, Trace t, AppVisitor av)
+    public @ResponseBody Page<KhUser> page4Role(@RequestBody WebPage webPage, Trace t, AppVisitor av)
             throws IllegalParameterException {
-        Page<Long, KhUser> page = webPage.toPage();
+        Page<KhUser> page = webPage.toPage();
         if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
             throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
         }
@@ -176,8 +176,8 @@ public class SelfKhUserController
     }
 
     @Override
-    protected Page<Long, KhUser> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
-        Page<Long, KhUser> page = webPage.toPage();
+    protected Page<KhUser> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
+        Page<KhUser> page = webPage.toPage();
         Equal r = (Equal) page.getRule4Field("companyId");
         if (r != null) {
             r.setValue(Long.valueOf(av.getCompanyId()));

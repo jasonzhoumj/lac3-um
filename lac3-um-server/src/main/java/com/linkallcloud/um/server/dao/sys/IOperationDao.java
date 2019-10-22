@@ -8,7 +8,7 @@ import com.linkallcloud.core.dao.IDao;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.sys.Operation;
 
-public interface IOperationDao extends IDao<Long, Operation> {
+public interface IOperationDao extends IDao<Operation> {
 
 	List<Operation> findByMenuId(@Param("t") Trace t, @Param("menuId") Long menuId);
 

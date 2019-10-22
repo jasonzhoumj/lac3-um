@@ -2,6 +2,7 @@ package com.linkallcloud.um.server.manager.sys;
 
 import java.util.List;
 
+import com.linkallcloud.um.service.sys.IAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,17 +11,16 @@ import com.linkallcloud.core.busilog.annotation.Module;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.dto.Tree;
 import com.linkallcloud.core.exception.BaseRuntimeException;
-import com.linkallcloud.core.manager.TreeDomainManager;
+import com.linkallcloud.core.manager.BaseTreeManager;
 import com.linkallcloud.core.query.rule.QueryRule;
 import com.linkallcloud.um.domain.sys.Area;
 import com.linkallcloud.um.dto.base.PermedAreaVo;
 import com.linkallcloud.um.iapi.sys.IAreaManager;
-import com.linkallcloud.um.server.service.sys.IAreaService;
 
 @Service(interfaceClass = IAreaManager.class, version = "${dubbo.service.version}")
 @Component
 @Module(name = "区域")
-public class AreaManager extends TreeDomainManager<Long, Area, IAreaService> implements IAreaManager {
+public class AreaManager extends BaseTreeManager<Area, IAreaService> implements IAreaManager {
 
 	@Autowired
 	private IAreaService areaService;

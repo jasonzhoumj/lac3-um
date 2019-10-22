@@ -7,7 +7,7 @@ import com.linkallcloud.core.dto.Tree;
 import com.linkallcloud.core.manager.ITreeManager;
 import com.linkallcloud.um.domain.sys.Menu;
 
-public interface IMenuManager extends ITreeManager<Long, Menu> {
+public interface IMenuManager extends ITreeManager<Menu> {
 
     /**
      * 获取应用的菜单

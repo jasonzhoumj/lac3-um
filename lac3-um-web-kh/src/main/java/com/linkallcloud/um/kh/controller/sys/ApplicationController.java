@@ -74,9 +74,9 @@ public class ApplicationController extends BaseLController<Application, IApplica
     }
 
     @RequestMapping(value = "/page4SubKhCompany", method = RequestMethod.GET)
-    public @ResponseBody Page<Long, Application> page4SubKhCompany(@RequestBody WebPage webPage, Trace t, AppVisitor av)
+    public @ResponseBody Page<Application> page4SubKhCompany(@RequestBody WebPage webPage, Trace t, AppVisitor av)
             throws IllegalParameterException {
-        Page<Long, Application> page = webPage.toPage();
+        Page<Application> page = webPage.toPage();
         if (!page.hasRule4Field("khCompanyId") || !page.hasRule4Field("khCompanyUuid")) {
             throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER,
                     "khCompanyId,khCompanyUuid参数错误。");
@@ -106,9 +106,9 @@ public class ApplicationController extends BaseLController<Application, IApplica
     }
 
     @RequestMapping(value = "/page4SelfKhRole", method = RequestMethod.GET)
-    public @ResponseBody Page<Long, Application> page4SelfKhRole(@RequestBody WebPage webPage, Trace t, AppVisitor av)
+    public @ResponseBody Page<Application> page4SelfKhRole(@RequestBody WebPage webPage, Trace t, AppVisitor av)
             throws IllegalParameterException {
-        Page<Long, Application> page = webPage.toPage();
+        Page<Application> page = webPage.toPage();
         if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
             throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
         }
@@ -116,8 +116,8 @@ public class ApplicationController extends BaseLController<Application, IApplica
     }
 
     @Override
-    protected Page<Long, Application> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
-        Page<Long, Application> page = webPage.toPage();
+    protected Page<Application> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
+        Page<Application> page = webPage.toPage();
         addAreaCnd2Page(page, av);
         if (page.hasRule4Field("command")) {
             Equal r = (Equal) page.getRule4Field("command");

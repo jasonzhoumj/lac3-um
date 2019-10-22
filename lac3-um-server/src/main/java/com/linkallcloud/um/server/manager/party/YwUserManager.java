@@ -2,6 +2,9 @@ package com.linkallcloud.um.server.manager.party;
 
 import java.util.List;
 
+import com.linkallcloud.um.service.party.IYwCompanyService;
+import com.linkallcloud.um.service.party.IYwRoleService;
+import com.linkallcloud.um.service.party.IYwUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +18,6 @@ import com.linkallcloud.um.domain.party.YwRole;
 import com.linkallcloud.um.domain.party.YwUser;
 import com.linkallcloud.um.domain.sys.Application;
 import com.linkallcloud.um.iapi.party.IYwUserManager;
-import com.linkallcloud.um.server.service.party.IYwCompanyService;
-import com.linkallcloud.um.server.service.party.IYwRoleService;
-import com.linkallcloud.um.server.service.party.IYwUserService;
 
 @Service(interfaceClass = IYwUserManager.class, version = "${dubbo.service.version}")
 @Component
@@ -51,7 +51,7 @@ public class YwUserManager
 	}
 
 	@Override
-	public Page<Long, YwUser> findPermedUserPage(Trace t, Page<Long, YwUser> page) {
+	public Page<YwUser> findPermedUserPage(Trace t, Page<YwUser> page) {
 		return service().findPermedUserPage(t, page);
 	}
 

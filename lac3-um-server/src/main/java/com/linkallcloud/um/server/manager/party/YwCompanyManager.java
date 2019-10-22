@@ -3,6 +3,10 @@ package com.linkallcloud.um.server.manager.party;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.linkallcloud.um.service.party.IYwCompanyService;
+import com.linkallcloud.um.service.party.IYwDepartmentService;
+import com.linkallcloud.um.service.party.IYwRoleService;
+import com.linkallcloud.um.service.party.IYwUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +21,6 @@ import com.linkallcloud.um.domain.party.YwRole;
 import com.linkallcloud.um.domain.party.YwUser;
 import com.linkallcloud.um.domain.sys.Area;
 import com.linkallcloud.um.iapi.party.IYwCompanyManager;
-import com.linkallcloud.um.server.service.party.IYwCompanyService;
-import com.linkallcloud.um.server.service.party.IYwDepartmentService;
-import com.linkallcloud.um.server.service.party.IYwRoleService;
-import com.linkallcloud.um.server.service.party.IYwUserService;
 
 @Service(interfaceClass = IYwCompanyManager.class, version = "${dubbo.service.version}")
 @Component

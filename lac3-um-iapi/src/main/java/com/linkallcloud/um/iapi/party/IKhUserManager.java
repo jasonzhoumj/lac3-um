@@ -13,7 +13,7 @@ public interface IKhUserManager extends IUserManager<KhUser> {
      * @param page
      * @return
      */
-    Page<Long, KhUser> findSelfUserPage(Trace t, Page<Long, KhUser> page);
+    Page<KhUser> findSelfUserPage(Trace t, Page<KhUser> page);
 
     /**
      * 客户单位操作员，根据用户组织权限查某用户某应用全公司人员分页列表，Page中必须包含appId，userId，companyId参数
@@ -22,6 +22,6 @@ public interface IKhUserManager extends IUserManager<KhUser> {
      * @param page
      * @return
      */
-    Page<Long, KhUser> findPermedSelfUserPage(Trace t, Page<Long, KhUser> page);
+    Page<KhUser> findPermedSelfUserPage(Trace t, Page<KhUser> page);
 
 }

@@ -1,5 +1,7 @@
 package com.linkallcloud.um.server.manager.sys;
 
+import com.linkallcloud.um.service.party.IKhCompanyService;
+import com.linkallcloud.um.service.sys.IKhSystemConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,13 +12,11 @@ import com.linkallcloud.core.manager.BaseManager;
 import com.linkallcloud.um.domain.party.KhCompany;
 import com.linkallcloud.um.domain.sys.KhSystemConfig;
 import com.linkallcloud.um.iapi.sys.IKhSystemConfigManager;
-import com.linkallcloud.um.server.service.party.IKhCompanyService;
-import com.linkallcloud.um.server.service.sys.IKhSystemConfigService;
 
 @Service(interfaceClass = IKhSystemConfigManager.class, version = "${dubbo.service.version}")
 @Component
 @Module(name = "系统配置")
-public class KhSystemConfigManager extends BaseManager<Long, KhSystemConfig, IKhSystemConfigService>
+public class KhSystemConfigManager extends BaseManager<KhSystemConfig, IKhSystemConfigService>
         implements IKhSystemConfigManager {
 
     @Autowired

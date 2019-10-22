@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.linkallcloud.um.service.sys.IAreaService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.lang.Strings;
 import com.linkallcloud.um.domain.sys.Area;
-import com.linkallcloud.um.server.service.sys.IAreaService;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

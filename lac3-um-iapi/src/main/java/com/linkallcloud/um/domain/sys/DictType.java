@@ -4,7 +4,7 @@ import com.linkallcloud.core.domain.TreeDomain;
 import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName("数据字典类型")
-public class DictType extends TreeDomain<Long> {
+public class DictType extends TreeDomain {
 	private static final long serialVersionUID = 8174903020612495491L;
 
 	private Long topParentId;// 本字段表示本类型所在顶层类型ID

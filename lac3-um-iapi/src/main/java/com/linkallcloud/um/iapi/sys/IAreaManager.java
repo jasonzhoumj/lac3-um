@@ -9,7 +9,7 @@ import com.linkallcloud.core.query.rule.QueryRule;
 import com.linkallcloud.um.domain.sys.Area;
 import com.linkallcloud.um.dto.base.PermedAreaVo;
 
-public interface IAreaManager extends ITreeManager<Long, Area> {
+public interface IAreaManager extends ITreeManager<Area> {
 	
 	Area fetchByGovCode(Trace t, String areaRootGovCode);
 

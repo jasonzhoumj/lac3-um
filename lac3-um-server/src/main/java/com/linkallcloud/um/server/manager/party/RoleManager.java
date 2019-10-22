@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.linkallcloud.um.service.party.IRoleService;
+import com.linkallcloud.um.service.sys.IAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.linkallcloud.core.dto.Trace;
@@ -19,8 +21,6 @@ import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.domain.sys.Area;
 import com.linkallcloud.um.dto.base.PermedAreaVo;
 import com.linkallcloud.um.iapi.party.IRoleManager;
-import com.linkallcloud.um.server.service.party.IRoleService;
-import com.linkallcloud.um.server.service.sys.IAreaService;
 
 public abstract class RoleManager<T extends Role, U extends User, S extends IRoleService<T, U>>
         extends PartyManager<T, S> implements IRoleManager<T, U> {
@@ -31,7 +31,7 @@ public abstract class RoleManager<T extends Role, U extends User, S extends IRol
     protected IAreaService areaService;
 
     @Override
-    public Page<Long, T> findCompanyRolePage(Trace t, Long companyId, int type, Page<Long, T> page)
+    public Page<T> findCompanyRolePage(Trace t, Long companyId, int type, Page<T> page)
             throws BaseRuntimeException {
         return service().findCompanyRolePage(t, companyId, type, page);
     }
@@ -52,18 +52,18 @@ public abstract class RoleManager<T extends Role, U extends User, S extends IRol
 	}
 
 	@Override
-    public Page<Long, T> findCompanyAllRolePage(Trace t, Long companyId, Page<Long, T> page)
+    public Page<T> findCompanyAllRolePage(Trace t, Long companyId, Page<T> page)
             throws BaseRuntimeException {
         return service().findCompanyAllRolePage(t, companyId, page);
     }
 
     @Override
-    public Page<Long, T> findPage4User(Trace t, Page<Long, T> page) {
+    public Page<T> findPage4User(Trace t, Page<T> page) {
         return service().findPage4User(t, page);
     }
 
     @Override
-    public Page<Long, T> findNoRolePage4User(Trace t, Page<Long, T> page) {
+    public Page<T> findNoRolePage4User(Trace t, Page<T> page) {
         return service().findNoRolePage4User(t, page);
     }
 

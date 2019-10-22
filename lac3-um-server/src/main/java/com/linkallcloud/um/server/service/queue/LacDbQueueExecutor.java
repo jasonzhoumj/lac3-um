@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.linkallcloud.core.log.Log;
 import com.linkallcloud.core.log.Logs;
+import com.linkallcloud.um.service.queue.ILacQueueService;
 
 public class LacDbQueueExecutor {
 

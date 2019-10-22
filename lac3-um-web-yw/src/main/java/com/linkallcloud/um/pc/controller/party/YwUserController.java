@@ -122,8 +122,8 @@ public class YwUserController
 	}
 
 	@Override
-	protected Page<Long, YwUser> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
-		Page<Long, YwUser> page = webPage.toPage();
+	protected Page<YwUser> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
+		Page<YwUser> page = webPage.toPage();
 
 		ISessionUser su = Controllers.getSessionUser();
 		if (!page.hasRule4Field("companyId")) {
@@ -161,9 +161,9 @@ public class YwUserController
 	}
 
 	@RequestMapping(value = "/page4Role", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, YwUser>> page4Role(@RequestBody WebPage webPage, Trace t, AppVisitor av)
+	public @ResponseBody Result<Page<YwUser>> page4Role(@RequestBody WebPage webPage, Trace t, AppVisitor av)
 			throws IllegalParameterException {
-		Page<Long, YwUser> page = webPage.toPage();
+		Page<YwUser> page = webPage.toPage();
 		if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
 		}
@@ -208,9 +208,9 @@ public class YwUserController
 
 	// page4SysRole
 	@RequestMapping(value = "/page4SysRole", method = RequestMethod.GET)
-	public @ResponseBody Result<Page<Long, YwUser>> page4SysRole(@RequestBody WebPage webPage, Trace t, AppVisitor av)
+	public @ResponseBody Result<Page<YwUser>> page4SysRole(@RequestBody WebPage webPage, Trace t, AppVisitor av)
 			throws IllegalParameterException {
-		Page<Long, YwUser> page = webPage.toPage();
+		Page<YwUser> page = webPage.toPage();
 		if (!page.hasRule4Field("roleId") || !page.hasRule4Field("roleUuid")) {
 			throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "roleId,roleUuid参数错误。");
 		}

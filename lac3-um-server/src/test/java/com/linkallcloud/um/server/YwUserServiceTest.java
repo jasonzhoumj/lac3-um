@@ -1,5 +1,6 @@
 package com.linkallcloud.um.server;
 
+import com.linkallcloud.um.service.party.IYwUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.um.domain.party.YwUser;
-import com.linkallcloud.um.server.service.party.IYwUserService;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

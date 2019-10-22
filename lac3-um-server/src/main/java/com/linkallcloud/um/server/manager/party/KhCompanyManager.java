@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.linkallcloud.um.service.party.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,11 +21,6 @@ import com.linkallcloud.um.domain.party.KhUser;
 import com.linkallcloud.um.domain.party.YwCompany;
 import com.linkallcloud.um.domain.sys.Area;
 import com.linkallcloud.um.iapi.party.IKhCompanyManager;
-import com.linkallcloud.um.server.service.party.IKhCompanyService;
-import com.linkallcloud.um.server.service.party.IKhDepartmentService;
-import com.linkallcloud.um.server.service.party.IKhRoleService;
-import com.linkallcloud.um.server.service.party.IKhUserService;
-import com.linkallcloud.um.server.service.party.IYwCompanyService;
 
 @Service(interfaceClass = IKhCompanyManager.class, version = "${dubbo.service.version}")
 @Component

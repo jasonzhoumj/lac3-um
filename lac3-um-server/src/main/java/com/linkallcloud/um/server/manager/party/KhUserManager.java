@@ -2,6 +2,9 @@ package com.linkallcloud.um.server.manager.party;
 
 import java.util.List;
 
+import com.linkallcloud.um.service.party.IKhCompanyService;
+import com.linkallcloud.um.service.party.IKhRoleService;
+import com.linkallcloud.um.service.party.IKhUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +17,6 @@ import com.linkallcloud.um.domain.party.KhRole;
 import com.linkallcloud.um.domain.party.KhUser;
 import com.linkallcloud.um.domain.sys.Application;
 import com.linkallcloud.um.iapi.party.IKhUserManager;
-import com.linkallcloud.um.server.service.party.IKhCompanyService;
-import com.linkallcloud.um.server.service.party.IKhRoleService;
-import com.linkallcloud.um.server.service.party.IKhUserService;
 
 @Service(interfaceClass = IKhUserManager.class, version = "${dubbo.service.version}")
 @Component
@@ -50,12 +50,12 @@ public class KhUserManager
 	}
 
 	@Override
-	public Page<Long, KhUser> findSelfUserPage(Trace t, Page<Long, KhUser> page) {
+	public Page<KhUser> findSelfUserPage(Trace t, Page<KhUser> page) {
 		return service().findSelfUserPage(t, page);
 	}
 
 	@Override
-	public Page<Long, KhUser> findPermedSelfUserPage(Trace t, Page<Long, KhUser> page) {
+	public Page<KhUser> findPermedSelfUserPage(Trace t, Page<KhUser> page) {
 		return service().findPermedSelfUserPage(t, page);
 	}
 

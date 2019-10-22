@@ -19,7 +19,7 @@ public interface IYwUserDao extends IUserDao<YwUser> {
      * @param page
      * @return
      */
-    List<YwUser> findPermedUserPage(@Param("t") Trace t, @Param("page") Page<Long, YwUser> page);
+    List<YwUser> findPermedUserPage(@Param("t") Trace t, @Param("page") Page<YwUser> page);
     /**
 	 * 根据手机号码和dd同步状态获取用户对象
 	 * @param t

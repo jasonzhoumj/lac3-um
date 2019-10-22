@@ -2,6 +2,9 @@ package com.linkallcloud.um.server.manager.party;
 
 import java.util.List;
 
+import com.linkallcloud.um.service.party.IDepartmentService;
+import com.linkallcloud.um.service.party.IUserService;
+import com.linkallcloud.um.service.party.IYwCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +14,6 @@ import com.linkallcloud.um.domain.party.Department;
 import com.linkallcloud.um.domain.party.User;
 import com.linkallcloud.um.domain.party.YwCompany;
 import com.linkallcloud.um.iapi.party.IDepartmentManager;
-import com.linkallcloud.um.server.service.party.IDepartmentService;
-import com.linkallcloud.um.server.service.party.IUserService;
-import com.linkallcloud.um.server.service.party.IYwCompanyService;
 
 public abstract class DepartmentManager<T extends Department, S extends IDepartmentService<T>, U extends User, US extends IUserService<U>>
 		extends OrgManager<T, S> implements IDepartmentManager<T> {

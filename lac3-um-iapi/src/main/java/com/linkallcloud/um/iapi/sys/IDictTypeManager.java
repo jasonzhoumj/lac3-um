@@ -5,7 +5,7 @@ import com.linkallcloud.core.dto.Tree;
 import com.linkallcloud.core.manager.ITreeManager;
 import com.linkallcloud.um.domain.sys.DictType;
 
-public interface IDictTypeManager extends ITreeManager<Long, DictType> {
+public interface IDictTypeManager extends ITreeManager<DictType> {
 
 	/**
 	 * 根据DictType根节点的code，得到其下整棵树，包括类型树和具体字典数据

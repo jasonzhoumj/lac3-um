@@ -188,7 +188,7 @@ public abstract class CompanyTreeController<C extends Company, CS extends ICompa
     }
 
     @RequestMapping(value = "/leaderPage", method = RequestMethod.GET)
-    public @ResponseBody Page<Long, U> page(@RequestBody WebPage webPage, Trace t, AppVisitor av) {
+    public @ResponseBody Page<U> page(@RequestBody WebPage webPage, Trace t, AppVisitor av) {
         // return getUserService().findLeaderPage(t, webPage.toPage());
         return null;
     }

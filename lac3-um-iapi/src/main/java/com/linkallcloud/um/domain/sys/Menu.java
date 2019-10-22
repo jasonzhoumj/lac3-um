@@ -5,7 +5,7 @@ import com.linkallcloud.core.domain.annotation.ShowName;
 import com.linkallcloud.core.dto.Tree;
 
 @ShowName(value = "菜单", logFields = "id,name,govCode")
-public class Menu extends TreeDomain<Long> {
+public class Menu extends TreeDomain {
 	private static final long serialVersionUID = 1181542280532338073L;
 
 	private Long appId;

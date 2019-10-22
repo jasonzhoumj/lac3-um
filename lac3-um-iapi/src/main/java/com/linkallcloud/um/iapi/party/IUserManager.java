@@ -64,7 +64,7 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	 * 
 	 * @return
 	 */
-	Page<Long, T> findPage4Role(Trace t, Page<Long, T> page) throws IllegalParameterException;
+	Page<T> findPage4Role(Trace t, Page<T> page) throws IllegalParameterException;
 
 	/**
 	 * 查询某角色已分配的用户
@@ -146,7 +146,7 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	 * @param page
 	 * @return
 	 */
-	Page<Long, T> findPermedUserPage4Select(Trace t, Page<Long, T> page);
+	Page<T> findPermedUserPage4Select(Trace t, Page<T> page);
 
 	/**
 	 * 根据政务服务网uid查询用户

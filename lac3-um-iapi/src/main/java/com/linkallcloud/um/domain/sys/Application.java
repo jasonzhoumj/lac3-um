@@ -5,7 +5,7 @@ import com.linkallcloud.core.domain.annotation.ShowName;
 import com.linkallcloud.core.dto.Tree;
 
 @ShowName("应用")
-public class Application extends Domain<Long> {
+public class Application extends Domain {
 	private static final long serialVersionUID = -588316821409393023L;
 
 	private String code;

@@ -90,9 +90,9 @@ public abstract class UserController<T extends User, S extends IUserManager<T>, 
 	}
 
 	@Override
-	protected Page<Long, T> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
+	protected Page<T> doFindPage(WebPage webPage, Trace t, AppVisitor av) {
 		ISessionUser su = Controllers.getSessionUser();
-		Page<Long, T> page = webPage.toPage();
+		Page<T> page = webPage.toPage();
 		if (!page.hasRule4Field("companyId")) {
 			page.addRule(new Equal("companyId", Long.valueOf(su.getCompanyId())));
 		}
@@ -235,8 +235,8 @@ public abstract class UserController<T extends User, S extends IUserManager<T>, 
 	}
 
 	@Override
-	protected Page<Long, T> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
-		Page<Long, T> page = webPage.toPage();
+	protected Page<T> doPage4Select(WebPage webPage, Trace t, AppVisitor av) {
+		Page<T> page = webPage.toPage();
 		Equal rR = (Equal) page.getRule4Field("roleId");
 		if (rR != null) {
 			R role = getRoleManager().fetchById(t, (Long) rR.getValue());

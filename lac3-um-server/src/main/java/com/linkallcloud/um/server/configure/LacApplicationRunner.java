@@ -2,13 +2,13 @@ package com.linkallcloud.um.server.configure;
 
 import java.util.Date;
 
+import com.linkallcloud.um.service.queue.ILacQueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.linkallcloud.um.server.service.queue.ILacQueueService;
 import com.linkallcloud.um.server.service.queue.LacDbQueueExecutor;
 
 @Component

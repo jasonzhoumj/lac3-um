@@ -98,7 +98,7 @@ public class UmTools {
 	// * @param areaDao
 	// * @throws BaseException
 	// */
-	// public static void addAreaCnds4UserAppPermission(Trace t, Page<Long, ?> page,
+	// public static void addAreaCnds4UserAppPermission(Trace t, Page<?> page,
 	// IYwUserDao ywUserDao,
 	// IAreaDao areaDao) throws BaseException {
 	// Equal ywUserIdRule = (Equal) page.getRule4Field("ywUserId");

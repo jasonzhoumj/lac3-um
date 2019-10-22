@@ -9,7 +9,7 @@ import com.linkallcloud.core.domain.Domain;
 import com.linkallcloud.core.domain.annotation.ShowName;
 
 @ShowName("账号")
-public class Account extends Domain<Long> {
+public class Account extends Domain {
 	private static final long serialVersionUID = 1248490679564994775L;
 
 	/**

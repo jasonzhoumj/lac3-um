@@ -220,9 +220,9 @@ public class SelfKhRoleController extends RoleController<KhRole, KhUser, IKhRole
     }
 
     @RequestMapping(value = "/page4User", method = RequestMethod.GET)
-    public @ResponseBody Page<Long, KhRole> page4User(@RequestBody WebPage webPage, Trace t, AppVisitor av)
+    public @ResponseBody Page<KhRole> page4User(@RequestBody WebPage webPage, Trace t, AppVisitor av)
             throws IllegalParameterException {
-        Page<Long, KhRole> page = webPage.toPage();
+        Page<KhRole> page = webPage.toPage();
         if (!page.hasRule4Field("userId") || !page.hasRule4Field("userUuid")) {
             throw new IllegalParameterException(Exceptions.CODE_ERROR_PARAMETER, "userId,userUuid参数错误。");
         }
