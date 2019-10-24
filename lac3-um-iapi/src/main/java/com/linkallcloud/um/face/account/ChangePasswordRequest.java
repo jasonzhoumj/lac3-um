@@ -3,43 +3,54 @@ package com.linkallcloud.um.face.account;
 import com.linkallcloud.core.face.message.request.FaceRequest;
 
 public class ChangePasswordRequest extends FaceRequest {
-	private static final long serialVersionUID = 587511485012088440L;
+    private static final long serialVersionUID = 587511485012088440L;
 
-	private Long id;
-	private String uuid;
-	private String oldPwd;
-	private String newPwd;
+    private Long id;
+    private String uuid;
+    private String oldPwd;
+    private String newPwd;
 
-	public Long getId() {
-		return id;
-	}
+    public ChangePasswordRequest() {
+        super();
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public ChangePasswordRequest(Long id, String uuid, String oldPwd, String newPwd) {
+        this.id = id;
+        this.uuid = uuid;
+        this.oldPwd = oldPwd;
+        this.newPwd = newPwd;
+    }
 
-	public String getUuid() {
-		return uuid;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getOldPwd() {
-		return oldPwd;
-	}
+    public String getUuid() {
+        return uuid;
+    }
 
-	public void setOldPwd(String oldPwd) {
-		this.oldPwd = oldPwd;
-	}
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
-	public String getNewPwd() {
-		return newPwd;
-	}
+    public String getOldPwd() {
+        return oldPwd;
+    }
 
-	public void setNewPwd(String newPwd) {
-		this.newPwd = newPwd;
-	}
+    public void setOldPwd(String oldPwd) {
+        this.oldPwd = oldPwd;
+    }
+
+    public String getNewPwd() {
+        return newPwd;
+    }
+
+    public void setNewPwd(String newPwd) {
+        this.newPwd = newPwd;
+    }
 
 }

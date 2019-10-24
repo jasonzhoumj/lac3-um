@@ -47,6 +47,10 @@
 					<groupId>org.apache.logging.log4j</groupId>
 					<artifactId>log4j-api</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-to-slf4j</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -107,12 +111,6 @@
 			<groupId>com.linkallcloud</groupId>
 			<artifactId>lac3-core</artifactId>
 			<version>${comm-core.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>log4j</groupId>
-					<artifactId>log4j</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.linkallcloud</groupId>
@@ -246,9 +244,9 @@
 				<configuration>
 					<!-- <source>10</source>
 					<target>10</target> -->
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<encoding>UTF-8</encoding>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 					<fork>true</fork>
 					<compilerArguments>
 						<verbose />

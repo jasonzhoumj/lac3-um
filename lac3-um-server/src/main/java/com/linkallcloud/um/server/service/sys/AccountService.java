@@ -45,6 +45,15 @@ public class AccountService extends BaseService<Account, IAccountActivity> imple
     }
 
     @Override
+    public boolean modifyPassword(Trace t, String account, String oldPwd, String newPwd) {
+        Account ac = activity().fecthByAccount(t, account);
+        if (ac != null) {
+            return activity().updatePassword(t, ac.getId(), ac.getUuid(), oldPwd, newPwd);
+        }
+        return false;
+    }
+
+    @Override
     public Account fechByWechatOpenId(Trace t, String userType, String openid) {
         return activity().fechByWechatOpenId(t, userType, openid);
     }

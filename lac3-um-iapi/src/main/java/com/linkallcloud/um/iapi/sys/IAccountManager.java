@@ -14,6 +14,7 @@ public interface IAccountManager extends IManager<Account> {
     Account loginValidate(Trace t, String accountOrMobile, String password);
 
     boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd);
+    boolean modifyPassword(Trace t, String account, String oldPwd, String newPwd);
 
     Account fechByWechatOpenId(Trace t, String userType, String openid);
 

@@ -1,16 +1,14 @@
 package com.linkallcloud.um.server.manager.sys;
 
-import com.linkallcloud.um.exception.AuthException;
-import com.linkallcloud.um.service.sys.IAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import org.apache.dubbo.config.annotation.Service;
 import com.linkallcloud.core.busilog.annotation.Module;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.manager.BaseManager;
 import com.linkallcloud.um.domain.sys.Account;
 import com.linkallcloud.um.iapi.sys.IAccountManager;
+import com.linkallcloud.um.service.sys.IAccountService;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Service(interfaceClass = IAccountManager.class, version = "${dubbo.service.version}")
 @Component
@@ -38,6 +36,11 @@ public class AccountManager extends BaseManager<Account, IAccountService> implem
     @Override
     public boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd) {
         return service().updatePassword(t, id, uuid, oldPwd, newPwd);
+    }
+
+    @Override
+    public boolean modifyPassword(Trace t, String account, String oldPwd, String newPwd) {
+        return service().modifyPassword(t, account, oldPwd, newPwd);
     }
 
     @Override

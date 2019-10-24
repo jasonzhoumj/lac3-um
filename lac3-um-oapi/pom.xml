@@ -23,23 +23,11 @@
 			<groupId>com.linkallcloud</groupId>
 			<artifactId>lac3-core</artifactId>
 			<version>${comm-core.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>log4j</groupId>
-					<artifactId>log4j</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.linkallcloud</groupId>
 			<artifactId>lac3-handshake</artifactId>
 			<version>${comm-handshake.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>log4j</groupId>
-					<artifactId>log4j</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.jeecg</groupId>
