@@ -15,7 +15,7 @@ public class GcControllers {
      * @param page
      * @param av
      */
-    public static <PK extends Serializable, T extends Domain<PK>> void addAreaCnd2Page(Page<PK, T> page,
+    public static <PK extends Serializable, T extends Domain> void addAreaCnd2Page(Page<T> page,
             AppVisitor av) {
         if (av != null) {
             if (av.getAreaId() == null) {

@@ -1,26 +1,23 @@
 package com.linkallcloud.um.server.manager.sys;
 
-import com.linkallcloud.um.service.sys.ILacWebBusiLogService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import org.apache.dubbo.config.annotation.Service;
 import com.linkallcloud.core.busilog.annotation.Module;
 import com.linkallcloud.core.manager.BaseManager;
-import com.linkallcloud.um.domain.sys.XfWebBusiLog;
-import com.linkallcloud.um.iapi.sys.ILacWebBusiLogManager;
+import com.linkallcloud.um.domain.sys.UmWebLog;
+import com.linkallcloud.um.iapi.sys.IUmWebLogManager;
+import com.linkallcloud.um.service.sys.IUmWebLogService;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Service(interfaceClass = ILacWebBusiLogManager.class, version = "${dubbo.service.version}")
-@Component
+@Service(interfaceClass = IUmWebLogManager.class, version = "${dubbo.service.version}")
 @Module(name = "Web层日志")
-public class LacWebBusiLogManager extends BaseManager<XfWebBusiLog, ILacWebBusiLogService>
-		implements ILacWebBusiLogManager {
+public class LacWebBusiLogManager extends BaseManager<UmWebLog, IUmWebLogService>
+		implements IUmWebLogManager {
 
 	@Autowired
-	private ILacWebBusiLogService lacWebBusiLogService;
+	private IUmWebLogService lacWebBusiLogService;
 
 	@Override
-	protected ILacWebBusiLogService service() {
+	protected IUmWebLogService service() {
 		return lacWebBusiLogService;
 	}
 

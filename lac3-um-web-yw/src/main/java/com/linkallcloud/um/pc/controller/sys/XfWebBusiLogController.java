@@ -17,20 +17,20 @@ import com.alibaba.fastjson.JSON;
 import com.linkallcloud.web.controller.BaseFullWebBusiLogController;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.query.Query;
-import com.linkallcloud.um.domain.sys.XfWebBusiLog;
+import com.linkallcloud.um.domain.sys.UmWebLog;
 import com.linkallcloud.um.excel.LogExport;
-import com.linkallcloud.um.iapi.sys.ILacWebBusiLogManager;
+import com.linkallcloud.um.iapi.sys.IUmWebLogManager;
 import com.linkallcloud.um.pc.utils.FileUtil;
 
 @Controller
 @RequestMapping(value = "/log", method = RequestMethod.POST)
-public class XfWebBusiLogController extends BaseFullWebBusiLogController<XfWebBusiLog, ILacWebBusiLogManager> {
+public class XfWebBusiLogController extends BaseFullWebBusiLogController<UmWebLog, IUmWebLogManager> {
 
     @Reference(version = "${dubbo.service.version}", application = "${dubbo.application.id}")
-	private ILacWebBusiLogManager lacWebBusiLogManager;
+	private IUmWebLogManager lacWebBusiLogManager;
 
 	@Override
-	protected ILacWebBusiLogManager manager() {
+	protected IUmWebLogManager manager() {
 		return lacWebBusiLogManager;
 	}
 
@@ -39,10 +39,10 @@ public class XfWebBusiLogController extends BaseFullWebBusiLogController<XfWebBu
 			@RequestParam(value = "searchCnds", required = false) String searchCnds, Trace t) {
 		String fileName = "操作日志_" + DateFormatUtils.format(new Date(), "yyyyMMddHHmmss") + ".xls";
 		Query query = JSON.parseObject(searchCnds, Query.class);
-		List<XfWebBusiLog> logs = manager().find(t, query);
+		List<UmWebLog> logs = manager().find(t, query);
 		List<LogExport> list = new ArrayList<LogExport>();
 		if (logs != null && logs.size() > 0) {
-			for (XfWebBusiLog blog : logs) {
+			for (UmWebLog blog : logs) {
 				LogExport le = new LogExport(blog);
 				list.add(le);
 			}

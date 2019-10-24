@@ -2,6 +2,7 @@ package com.linkallcloud.um.exception;
 
 public class ArgException extends UmException {
     public ArgException() {
+        super("arg", "参数错误");
     }
 
     public ArgException(String code) {

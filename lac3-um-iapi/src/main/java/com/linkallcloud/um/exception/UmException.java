@@ -4,6 +4,7 @@ import com.linkallcloud.core.exception.BizException;
 
 public class UmException extends BizException {
     public UmException() {
+        super("um", "UM系统错误");
     }
 
     public UmException(String code) {

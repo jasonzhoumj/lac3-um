@@ -2,18 +2,18 @@ package com.linkallcloud.um.domain.sys;
 
 import com.linkallcloud.core.laclog.ServiceBusiLog;
 
-public class XfServiceBusiLog extends ServiceBusiLog {
+public class UmServiceLog extends ServiceBusiLog {
 	private static final long serialVersionUID = -6207912802597778114L;
 
-	public XfServiceBusiLog() {
+	public UmServiceLog() {
 		super();
 	}
 
-	public XfServiceBusiLog(Long id, String uuid) {
+	public UmServiceLog(Long id, String uuid) {
 		super(id, uuid);
 	}
 
-	public XfServiceBusiLog(Long id) {
+	public UmServiceLog(Long id) {
 		super(id);
 	}
 

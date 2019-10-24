@@ -1,21 +1,18 @@
 package com.linkallcloud.um.server.manager.sys;
 
-import java.util.List;
-
-import com.linkallcloud.um.service.sys.IMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import org.apache.dubbo.config.annotation.Service;
 import com.linkallcloud.core.busilog.annotation.Module;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.dto.Tree;
 import com.linkallcloud.core.manager.BaseTreeManager;
 import com.linkallcloud.um.domain.sys.Menu;
 import com.linkallcloud.um.iapi.sys.IMenuManager;
+import com.linkallcloud.um.service.sys.IMenuService;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 @Service(interfaceClass = IMenuManager.class, version = "${dubbo.service.version}")
-@Component
 @Module(name = "菜单")
 public class MenuManager extends BaseTreeManager<Menu, IMenuService> implements IMenuManager {
 

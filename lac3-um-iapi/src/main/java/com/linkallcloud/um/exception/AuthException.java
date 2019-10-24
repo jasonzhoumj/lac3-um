@@ -2,6 +2,7 @@ package com.linkallcloud.um.exception;
 
 public class AuthException extends UmException {
     public AuthException() {
+        super("Account", "账号验证错误");
     }
 
     public AuthException(String code) {

@@ -2,6 +2,7 @@ package com.linkallcloud.um.exception;
 
 public class AppException extends UmException {
     public AppException() {
+        super("App", "应用错误");
     }
 
     public AppException(String code) {

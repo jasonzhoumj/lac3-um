@@ -1,20 +1,17 @@
 package com.linkallcloud.um.server.manager.sys;
 
-import com.linkallcloud.um.service.party.IKhCompanyService;
-import com.linkallcloud.um.service.sys.IKhSystemConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import org.apache.dubbo.config.annotation.Service;
 import com.linkallcloud.core.busilog.annotation.Module;
 import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.manager.BaseManager;
 import com.linkallcloud.um.domain.party.KhCompany;
 import com.linkallcloud.um.domain.sys.KhSystemConfig;
 import com.linkallcloud.um.iapi.sys.IKhSystemConfigManager;
+import com.linkallcloud.um.service.party.IKhCompanyService;
+import com.linkallcloud.um.service.sys.IKhSystemConfigService;
+import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service(interfaceClass = IKhSystemConfigManager.class, version = "${dubbo.service.version}")
-@Component
 @Module(name = "系统配置")
 public class KhSystemConfigManager extends BaseManager<KhSystemConfig, IKhSystemConfigService>
         implements IKhSystemConfigManager {

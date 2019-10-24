@@ -8,10 +8,8 @@ import com.linkallcloud.um.iapi.sys.IAccountManager;
 import com.linkallcloud.um.service.sys.IAccountService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Service(interfaceClass = IAccountManager.class, version = "${dubbo.service.version}")
-@Component
 @Module(name = "账号")
 public class AccountManager extends BaseManager<Account, IAccountService> implements IAccountManager {
 

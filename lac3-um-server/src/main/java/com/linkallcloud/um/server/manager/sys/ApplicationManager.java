@@ -11,12 +11,10 @@ import com.linkallcloud.um.iapi.sys.IApplicationManager;
 import com.linkallcloud.um.service.sys.IApplicationService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Service(interfaceClass = IApplicationManager.class, version = "${dubbo.service.version}")
-@Component
 @Module(name = "应用")
 public class ApplicationManager extends BaseManager<Application, IApplicationService>
         implements IApplicationManager {

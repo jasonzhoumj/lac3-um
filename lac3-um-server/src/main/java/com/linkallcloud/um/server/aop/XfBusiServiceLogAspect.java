@@ -2,8 +2,8 @@ package com.linkallcloud.um.server.aop;
 
 import com.linkallcloud.core.busilog.BusiServiceLogAspect;
 import com.linkallcloud.core.service.IServiceBusiLogService;
-import com.linkallcloud.um.domain.sys.XfServiceBusiLog;
-import com.linkallcloud.um.service.sys.ILacServiceBusiLogService;
+import com.linkallcloud.um.domain.sys.UmServiceLog;
+import com.linkallcloud.um.service.sys.IUmServiceLogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,13 +15,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Order(5)
-public class XfBusiServiceLogAspect extends BusiServiceLogAspect<XfServiceBusiLog, ILacServiceBusiLogService> {
+public class XfBusiServiceLogAspect extends BusiServiceLogAspect<UmServiceLog, IUmServiceLogService> {
 
     @Autowired
-    private ILacServiceBusiLogService xfServiceBusiLogService;
+    private IUmServiceLogService xfServiceBusiLogService;
 
     @Override
-    protected IServiceBusiLogService<XfServiceBusiLog> logService() {
+    protected IServiceBusiLogService<UmServiceLog> logService() {
         return xfServiceBusiLogService;
     }
 

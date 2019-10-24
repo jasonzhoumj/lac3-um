@@ -1,5 +1,9 @@
 package com.linkallcloud.um.kh.aop;
 
+import com.linkallcloud.um.domain.sys.UmWebLog;
+import com.linkallcloud.um.iapi.sys.IUmWebLogManager;
+import com.linkallcloud.web.busilog.BusiWebLogAspect;
+import org.apache.dubbo.config.annotation.Reference;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -7,21 +11,16 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import org.apache.dubbo.config.annotation.Reference;
-import com.linkallcloud.web.busilog.BusiWebLogAspect;
-import com.linkallcloud.um.domain.sys.XfWebBusiLog;
-import com.linkallcloud.um.iapi.sys.ILacWebBusiLogManager;
-
 @Aspect
 @Component
 @Order(5)
-public class XfWebLogAspect extends BusiWebLogAspect<Long, XfWebBusiLog, ILacWebBusiLogManager> {
+public class XfWebLogAspect extends BusiWebLogAspect<UmWebLog, IUmWebLogManager> {
 
     @Reference(version = "${dubbo.service.version}", application = "${dubbo.application.id}")
-	private ILacWebBusiLogManager lacWebBusiLogManager;
+	private IUmWebLogManager lacWebBusiLogManager;
 
 	@Override
-	protected ILacWebBusiLogManager logService() {
+	protected IUmWebLogManager logService() {
 		return lacWebBusiLogManager;
 	}
 

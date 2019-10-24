@@ -2,6 +2,7 @@ package com.linkallcloud.um.exception;
 
 public class AccountException extends UmException {
     public AccountException() {
+        super("Account", "账号异常");
     }
 
     public AccountException(String code) {
