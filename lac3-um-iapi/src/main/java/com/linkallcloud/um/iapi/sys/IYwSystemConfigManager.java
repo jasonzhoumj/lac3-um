@@ -8,6 +8,6 @@ public interface IYwSystemConfigManager extends IManager<YwSystemConfig> {
 
     YwSystemConfig fetchByCompanyId(Trace t, Long companyId);
 
-    Long save(Trace t, YwSystemConfig entity);
+    //Long save(Trace t, YwSystemConfig entity);
 
 }

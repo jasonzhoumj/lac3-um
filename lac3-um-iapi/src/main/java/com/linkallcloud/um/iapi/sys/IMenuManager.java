@@ -11,8 +11,8 @@ public interface IMenuManager extends ITreeManager<Menu> {
 
     /**
      * 获取应用的菜单
-     * 
-     * @param tid
+     *
+     * @param t
      * @param appId
      * @return
      */
@@ -21,16 +21,34 @@ public interface IMenuManager extends ITreeManager<Menu> {
     /**
      * 获取应用有效状态的菜单
      * 
-     * @param tid
+     * @param t
      * @param appId
      * @return
      */
     List<Tree> getValidMenus(Trace t, Long appId);
 
     /**
+     * 获取应用有效状态的菜单
+     *
+     * @param t
+     * @param appCode
+     * @return
+     */
+    List<Tree> getValidMenus(Trace t, String appCode);
+
+    /**
+     * 获取应用的菜单
+     *
+     * @param t
+     * @param appCode
+     * @return
+     */
+    List<Menu> getValidMenuList(Trace t, String appCode);
+
+    /**
      * 获取应用的菜单树
      * 
-     * @param tid
+     * @param t
      * @param appCode
      * @return
      */

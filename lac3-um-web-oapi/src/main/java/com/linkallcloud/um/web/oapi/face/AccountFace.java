@@ -52,8 +52,8 @@ public class AccountFace {
     @RequestMapping(value = "/fechByWechatOpenId", method = RequestMethod.POST)
     public @ResponseBody
     Object fechByWechatOpenId(AccountWeChatRequest faceReq, Trace t) {
-        if (!Strings.isBlank(faceReq.getUserType()) && !Strings.isBlank(faceReq.getOpenid())) {
-            Account ua = accountManager.fechByWechatOpenId(t, faceReq.getUserType(), faceReq.getOpenid());
+        if (!Strings.isBlank(faceReq.getOpenid())) {
+            Account ua = accountManager.fechByWechatOpenId(t, faceReq.getOpenid());
             ua.desensitization();
             return ua;
         }

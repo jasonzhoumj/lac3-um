@@ -1,35 +1,36 @@
 package com.linkallcloud.um.kh.aop;
 
+import com.linkallcloud.core.dto.Trace;
+import com.linkallcloud.um.iapi.sys.IOperationManager;
+import com.linkallcloud.web.interceptors.AbstractPermissionInterceptor;
+import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.dubbo.config.annotation.Reference;
-import com.linkallcloud.web.interceptors.PermissionInterceptor;
-import com.linkallcloud.core.dto.Trace;
-import com.linkallcloud.um.iapi.sys.IOperationManager;
-
-public class LacPermissionInterceptor extends PermissionInterceptor {
+public class LacPermissionInterceptor extends AbstractPermissionInterceptor {
 
     private static Map<Long, Map<String, String[]>> appUriRescodeMap = new HashMap<>();
 
     @Reference(version = "${dubbo.service.version}", application = "${dubbo.application.id}")
     private IOperationManager operationManager;
 
+    @Value("${oapi.appcode}")
+    protected String myAppCode;
+
     public LacPermissionInterceptor() {
         super();
     }
 
-    public LacPermissionInterceptor(List<String> ignoreRes, boolean override, String login, String noPermission) {
-        super(ignoreRes, override, login, noPermission);
+    @Override
+    protected String getAppCode() {
+        return myAppCode;
     }
 
     public LacPermissionInterceptor(List<String> ignoreRes, boolean override) {
         super(ignoreRes, override);
-    }
-
-    public LacPermissionInterceptor(String login, String noPermission) {
-        super(login, noPermission);
     }
 
     @Override

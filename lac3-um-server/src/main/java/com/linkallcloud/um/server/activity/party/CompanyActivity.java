@@ -513,7 +513,7 @@ public abstract class CompanyActivity<T extends Company, CD extends ICompanyDao<
     protected abstract void autoAddSysAdminRole(Trace t, U user);
 
     protected void autoCreateAccount(Trace t, User user) {
-        Account account = new Account(user.getClass().getSimpleName(), user.getName(), user.getMobile(),
+        Account account = new Account(user.getName(), user.getMobile(),
                 user.getAccount(), user.getPassword(), user.getSalt());
         accountDao.insert(t, account);
     }

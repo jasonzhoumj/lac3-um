@@ -14,7 +14,7 @@ public interface IAccountActivity extends IActivity<Account> {
 
     boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd);
 
-    Account fechByWechatOpenId(Trace t, String userType, String openid);
+    Account fechByWechatOpenId(Trace t, String openid);
 
     boolean updateAccountWechatOpenId(Trace t, Long accountId, String openid);
 }

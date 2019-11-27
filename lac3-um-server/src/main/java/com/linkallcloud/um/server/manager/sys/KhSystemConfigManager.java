@@ -33,7 +33,7 @@ public class KhSystemConfigManager extends BaseManager<KhSystemConfig, IKhSystem
     }
 
     @Override
-    public Long save(Trace t, KhSystemConfig entity) {
+    public KhSystemConfig save(Trace t, KhSystemConfig entity) {
         KhSystemConfig dbEntity = service().fetchByCompanyId(t, entity.getCompanyId());
         if (dbEntity != null) {
             dbEntity.setRootAreaId(entity.getRootAreaId());
@@ -41,9 +41,11 @@ public class KhSystemConfigManager extends BaseManager<KhSystemConfig, IKhSystem
             dbEntity.setEnableAreaPerm(entity.getEnableAreaPerm());
             dbEntity.setLogo(entity.getLogo());
             service().update(t, dbEntity);
-            return dbEntity.getId();
+            return dbEntity;
         } else {
-            return service().insert(t, entity);
+            Long id =  service().insert(t, entity);
+            entity.setId(id);
+            return entity;
         }
     }
 

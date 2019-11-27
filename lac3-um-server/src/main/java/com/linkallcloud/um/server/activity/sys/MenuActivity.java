@@ -34,7 +34,7 @@ public class MenuActivity extends BaseTreeActivity<Menu, IMenuDao> implements IM
 
     @Override
     public List<Menu> findAppMenus(Trace t, Long appId, boolean valid) {
-        return dao().findAppMenusWithButton(t, appId, true);
+        return dao().findAppMenusWithButton(t, appId, valid);
     }
 
     @Override
@@ -44,10 +44,14 @@ public class MenuActivity extends BaseTreeActivity<Menu, IMenuDao> implements IM
             throw new BaseRuntimeException("80000001", "无法查询对应的应用，可能是您的参数有误。");
         }
 
+        return assembleMenuTrees(t, app, false);
+    }
+
+    private List<Tree> assembleMenuTrees(Trace t, Application app, boolean valid) {
         Tree root = app.toMenuRoot();
         root.setType("0");
 
-        List<Menu> menus = dao().findAppMenusWithButton(t, appId, false);
+        List<Menu> menus = dao().findAppMenusWithButton(t, app.getId(), valid);
         List<Tree> result = Trees.assembleDomain2List(root, menus);
 
         // List<Tree> result = Trees.assembleTreeList(root.getId(), menus);
@@ -57,19 +61,32 @@ public class MenuActivity extends BaseTreeActivity<Menu, IMenuDao> implements IM
     }
 
     @Override
+    public List<Tree> getValidMenus(Trace t, String appCode) {
+        Application app = applicationDao.fetchByCode(t, appCode);
+        if (app == null) {
+            throw new BaseRuntimeException("80000001", "无法查询对应的应用，可能是您的参数有误。");
+        }
+
+        return assembleMenuTrees(t, app, true);
+    }
+
+    @Override
+    public List<Menu> getValidMenuList(Trace t, String appCode) {
+        Application app = applicationDao.fetchByCode(t, appCode);
+        if (app == null) {
+            throw new BaseRuntimeException("80000001", "无法查询对应的应用，可能是您的参数有误。");
+        }
+        return dao().findAppMenusWithButton(t, app.getId(), true);
+    }
+
+    @Override
     public List<Tree> getValidMenus(Trace t, Long appId) {
         Application app = applicationDao.fetchById(t, appId);
         if (app == null) {
             throw new BaseRuntimeException("80000001", "无法查询对应的应用，可能是您的参数有误。");
         }
 
-        Tree root = app.toMenuRoot();
-        List<Menu> menus = dao().findAppMenusWithButton(t, appId, true);
-        List<Tree> result = Trees.assembleDomain2List(root, menus);
-        // List<Tree> result = Trees.assembleTreeList(root.getId(), menus);
-        // result.add(root);
-        Tree.sort(result);
-        return result;
+        return assembleMenuTrees(t, app, true);
     }
 
     @Override

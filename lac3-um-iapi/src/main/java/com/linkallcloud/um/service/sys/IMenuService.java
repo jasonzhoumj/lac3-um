@@ -31,6 +31,15 @@ public interface IMenuService extends ITreeService<Menu> {
 
     /**
      * 获取应用有效状态的菜单
+     *
+     * @param t
+     * @param appCode
+     * @return
+     */
+    List<Tree> getValidMenus(Trace t, String appCode);
+    List<Menu> getValidMenuList(Trace t, String appCode);
+    /**
+     * 获取应用有效状态的菜单
      * 
      * @param t
      * @param appId

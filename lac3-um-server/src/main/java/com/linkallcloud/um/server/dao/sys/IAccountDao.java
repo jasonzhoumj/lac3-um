@@ -14,7 +14,7 @@ public interface IAccountDao extends IDao<Account> {
 
     boolean updateLastLoginTime(@Param("t") Trace t, @Param("id") Long userId);
 
-    Account fechByWechatOpenId(@Param("t") Trace t, @Param("userType") String userType, @Param("openid") String openid);
+    Account fechByWechatOpenId(@Param("t") Trace t, @Param("openid") String openid);
 
     int updateAccountWechatOpenId(@Param("t") Trace t, @Param("id") Long id, @Param("openid") String openid);
 

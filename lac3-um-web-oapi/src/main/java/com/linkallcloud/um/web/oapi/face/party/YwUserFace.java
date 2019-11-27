@@ -138,7 +138,7 @@ public class YwUserFace {
             Application app = applicationManager.fetchByCode(t, faceReq.getAppCode());
             String[] perms = ywUserManager.getUserAppPermissions4Menu(t, Long.valueOf(su.getId()), app.getId());
             su.setPermissions(perms, null, null);
-            su.setAppInfo(app.getId().toString(), app.getUuid(), app.getName());
+            su.setAppInfo(app.getId().toString(), app.getUuid(), app.getCode(), app.getName());
             return su;
         }
         throw new ArgException("Arg", "Account或AppCode参数错误");

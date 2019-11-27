@@ -1,111 +1,176 @@
 package com.linkallcloud.um.domain.sys;
 
-import java.util.Date;
-
-import javax.validation.constraints.NotBlank;
-
 import com.alibaba.fastjson.annotation.JSONField;
 import com.linkallcloud.core.domain.Domain;
 import com.linkallcloud.core.domain.annotation.ShowName;
 
+import java.util.Date;
+
 @ShowName("账号")
 public class Account extends Domain {
-	private static final long serialVersionUID = 1248490679564994775L;
+    private static final long serialVersionUID = 1248490679564994775L;
 
-	/**
-	 * 用户类型：ZfUser/QyUser/WyUser/ZwUser
-	 */
-	private String userType;
+    private String loginname;// 登录名
+    private String name;// 姓名
+    private String mobile;// 手机
+    private String email;// 邮箱
+    private Integer sex;// 性别
+    @JSONField(format = "yyyy-MM-dd")
+    private Date birthday;// 生日
+    private String ico;// 头像
 
-	private String mobile;
-	@NotBlank(message = "名称不能为空")
-	private String name;
+    @JSONField(serialize = false)
+    private String passwd;// 密码
+    @JSONField(serialize = false)
+    private String salt;// 密码盐
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date lastLoginDate;// 最后登录时间
 
-	/** 账号 */
-	@NotBlank(message = "账号不能为空")
-	private String account;
-	/** 密码 */
-	@JSONField(serialize = false)
-	private String password;
-	@JSONField(serialize = false)
-	private String salt;
+    @JSONField(serialize = false)
+    private String oldPasswds;// 最近两次修改的老密码（MD5值）,用“,”分隔
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private Date lastPasswdDate;// 最后修改密码时间
 
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	private Date lastLoginTime;
+    private String wechatOpenId;// 绑定微信ID
+    private String alipayOpenId;// 绑定支付宝ID
 
-	public Account() {
-		super();
-	}
+    private String remark;// 描述
 
-	public Account(String userType, String name, String mobile, String account, String password, String salt) {
-		super();
-		this.userType = userType;
-		this.name = name;
-		this.mobile = mobile;
-		this.account = account;
-		this.password = password;
-		this.salt = salt;
-	}
+    public Account() {
+        super();
+    }
 
-	public void desensitization() {
-		this.password = null;
-		this.salt = null;
-	}
+    public Account(String name, String mobile, String loginname, String password, String salt) {
+        super();
+        this.name = name;
+        this.mobile = mobile;
+        this.loginname = loginname;
+        this.passwd = password;
+        this.salt = salt;
+    }
 
-	public String getUserType() {
-		return userType;
-	}
+    public void desensitization() {
+        this.passwd = null;
+        this.salt = null;
+    }
 
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
+    public String getMobile() {
+        return mobile;
+    }
 
-	public String getMobile() {
-		return mobile;
-	}
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getLoginname() {
+        return loginname;
+    }
 
-	public String getAccount() {
-		return account;
-	}
+    public void setLoginname(String loginname) {
+        this.loginname = loginname;
+    }
 
-	public void setAccount(String account) {
-		this.account = account;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public Integer getSex() {
+        return sex;
+    }
 
-	public String getSalt() {
-		return salt;
-	}
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
 
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
+    public Date getBirthday() {
+        return birthday;
+    }
 
-	public Date getLastLoginTime() {
-		return lastLoginTime;
-	}
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
-	public void setLastLoginTime(Date lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
-	}
+    public String getIco() {
+        return ico;
+    }
 
+    public void setIco(String ico) {
+        this.ico = ico;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Date getLastLoginDate() {
+        return lastLoginDate;
+    }
+
+    public void setLastLoginDate(Date lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
+    }
+
+    public String getOldPasswds() {
+        return oldPasswds;
+    }
+
+    public void setOldPasswds(String oldPasswds) {
+        this.oldPasswds = oldPasswds;
+    }
+
+    public Date getLastPasswdDate() {
+        return lastPasswdDate;
+    }
+
+    public void setLastPasswdDate(Date lastPasswdDate) {
+        this.lastPasswdDate = lastPasswdDate;
+    }
+
+    public String getWechatOpenId() {
+        return wechatOpenId;
+    }
+
+    public void setWechatOpenId(String wechatOpenId) {
+        this.wechatOpenId = wechatOpenId;
+    }
+
+    public String getAlipayOpenId() {
+        return alipayOpenId;
+    }
+
+    public void setAlipayOpenId(String alipayOpenId) {
+        this.alipayOpenId = alipayOpenId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 }

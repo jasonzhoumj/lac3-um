@@ -30,6 +30,16 @@ public class MenuManager extends BaseTreeManager<Menu, IMenuService> implements 
     }
 
     @Override
+    public List<Tree> getValidMenus(Trace t, String appCode) {
+        return service().getValidMenus(t, appCode);
+    }
+
+    @Override
+    public List<Menu> getValidMenuList(Trace t, String appCode) {
+        return service().getValidMenuList(t, appCode);
+    }
+
+    @Override
     protected IMenuService service() {
         return menuService;
     }

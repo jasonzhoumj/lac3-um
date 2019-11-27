@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.linkallcloud</groupId>
 		<artifactId>lac3-um</artifactId>
-		<version>0.0.5</version>
+		<version>0.0.5.5</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -33,6 +33,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.linkallcloud</groupId>
+            <artifactId>lac3-web</artifactId>
+            <version>0.0.5</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

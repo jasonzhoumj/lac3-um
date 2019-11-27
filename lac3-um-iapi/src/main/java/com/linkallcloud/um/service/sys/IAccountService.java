@@ -15,7 +15,7 @@ public interface IAccountService extends IService<Account> {
     boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd);
     boolean modifyPassword(Trace t, String account, String oldPwd, String newPwd);
 
-    Account fechByWechatOpenId(Trace t, String userType, String openid);
+    Account fechByWechatOpenId(Trace t, String openid);
 
     boolean updateAccountWechatOpenId(Trace t, Long accountId, String openid);
 

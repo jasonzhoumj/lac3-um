@@ -4,7 +4,6 @@ import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.service.BaseService;
 import com.linkallcloud.um.activity.sys.IAccountActivity;
 import com.linkallcloud.um.domain.sys.Account;
-import com.linkallcloud.um.exception.AuthException;
 import com.linkallcloud.um.service.sys.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,8 +53,8 @@ public class AccountService extends BaseService<Account, IAccountActivity> imple
     }
 
     @Override
-    public Account fechByWechatOpenId(Trace t, String userType, String openid) {
-        return activity().fechByWechatOpenId(t, userType, openid);
+    public Account fechByWechatOpenId(Trace t, String openid) {
+        return activity().fechByWechatOpenId(t, openid);
     }
 
     @Transactional(readOnly = false)

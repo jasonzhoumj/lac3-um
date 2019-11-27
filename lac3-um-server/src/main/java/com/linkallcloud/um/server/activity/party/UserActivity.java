@@ -2,12 +2,12 @@ package com.linkallcloud.um.server.activity.party;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.linkallcloud.core.busilog.annotation.ServLog;
 import com.linkallcloud.core.dto.Trace;
-import com.linkallcloud.core.exception.BaseRuntimeException;
 import com.linkallcloud.core.exception.Exceptions;
 import com.linkallcloud.core.lang.Strings;
 import com.linkallcloud.core.pagination.Page;
+import com.linkallcloud.core.query.Query;
+import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.core.security.Securities;
 import com.linkallcloud.core.util.Domains;
 import com.linkallcloud.um.activity.party.IUserActivity;
@@ -27,7 +27,6 @@ import com.linkallcloud.um.server.dao.sys.IApplicationDao;
 import com.linkallcloud.um.server.dao.sys.IMenuDao;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -333,9 +332,9 @@ public abstract class UserActivity<T extends User, UD extends IUserDao<T>, D ext
         T user = this.fetchByIdUuid(t, userId, userUuid);
         Account account = accountDao.fecthByAccount(t, user.getAccount());
         if (account != null) {
-            if (Securities.validePassword4Md5Src(oldPwd, account.getSalt(), account.getPassword())) {
+            if (Securities.validePassword4Md5Src(oldPwd, account.getSalt(), account.getPasswd())) {
                 account.setSalt(account.generateUuid());
-                account.setPassword(Securities.password4Md5Src(newPwd, account.getSalt()));
+                account.setPasswd(Securities.password4Md5Src(newPwd, account.getSalt()));
                 int rows = accountDao.update(t, account);
                 return retBool(rows);
             }
@@ -387,6 +386,10 @@ public abstract class UserActivity<T extends User, UD extends IUserDao<T>, D ext
         }
 
         if (isNew) {// 新增
+            if (existAccount(t, entity.getAccount())) {//统一用户是否存在
+                throw new AccountException(Exceptions.CODE_ERROR_PARAMETER, "已经存在相同的统一用户账号！");
+            }
+
             entity.setSalt(entity.generateUuid());
             if (Strings.isBlank(entity.getPassword())) {
                 throw new AccountException(Exceptions.CODE_ERROR_PARAMETER, "密码不能为空！");
@@ -400,6 +403,16 @@ public abstract class UserActivity<T extends User, UD extends IUserDao<T>, D ext
 
             updateCodeIfModifiedParent(t, entity);
         }
+    }
+
+    protected boolean existAccount(Trace t, String account) {
+        Query query = new Query();
+        query.addRule(new Equal("loginname", account));
+        List<Account> accounts = accountDao.find(t, query);
+        if (accounts != null && !accounts.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -434,7 +447,7 @@ public abstract class UserActivity<T extends User, UD extends IUserDao<T>, D ext
             if (!Strings.isBlank(entity.getPassword())) {
                 Account account = accountDao.fecthByAccount(t, entity.getAccount());
                 if (account != null) {
-                    account.setPassword(entity.getPassword());
+                    account.setPasswd(entity.getPassword());
                     account.setSalt(entity.getSalt());
                     accountDao.update(t, account);
                 }
@@ -471,7 +484,7 @@ public abstract class UserActivity<T extends User, UD extends IUserDao<T>, D ext
     }
 
     private void autoCreateAccount(Trace t, T entity) {
-        Account account = new Account(entity.getClass().getSimpleName(), entity.getName(), entity.getMobile(),
+        Account account = new Account(entity.getName(), entity.getMobile(),
                 entity.getAccount(), entity.getPassword(), entity.getSalt());
         accountDao.insert(t, account);
     }

@@ -1,34 +1,41 @@
 package com.linkallcloud.um.kh;
 
-import java.util.List;
-
-import javax.servlet.MultipartConfigElement;
-
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.linkallcloud.sso.client.validation.ServiceTicketValidator;
+import com.linkallcloud.sso.client.web.filter.AuthenticationFilter;
+import com.linkallcloud.sso.client.web.filter.TicketValidationFilter;
+import com.linkallcloud.um.iapi.party.IKhUserManager;
+import com.linkallcloud.um.kh.aop.LacPermissionInterceptor;
+import com.linkallcloud.um.kh.aop.LoginFilter;
+import com.linkallcloud.web.interceptors.LacEnvInterceptor;
+import com.linkallcloud.web.support.AppVisitorArgumentResolver;
+import com.linkallcloud.web.support.TidHandlerMethodArgumentResolver;
+import com.linkallcloud.web.support.TraceArgumentResolver;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.session.web.http.CookieSerializer;
 import org.springframework.session.web.http.DefaultCookieSerializer;
+import org.springframework.util.unit.DataSize;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.linkallcloud.web.interceptors.LacEnvInterceptor;
-import com.linkallcloud.web.support.AppVisitorArgumentResolver;
-import com.linkallcloud.web.support.TidHandlerMethodArgumentResolver;
-import com.linkallcloud.web.support.TraceArgumentResolver;
-import com.linkallcloud.um.kh.aop.LacPermissionInterceptor;
+import javax.servlet.MultipartConfigElement;
+import java.util.List;
 
 @Configuration
-@SpringBootApplication(scanBasePackages = { "com.linkallcloud.um.kh" })
+@SpringBootApplication(scanBasePackages = {"com.linkallcloud.um.kh"})
 public class UmKhApplication implements WebMvcConfigurer {
 
     @Value("${lac.static.server}")
@@ -37,10 +44,21 @@ public class UmKhApplication implements WebMvcConfigurer {
     @Value("${lac.static.res.version}")
     private String staticResourceVersion;
 
+    @Value("${lac.lf.appcode}")
+    private String myAppCode;
+
+    @Value("${lac.lf.appServerName:localhost}")
+    private String appServerName;
+
+    @Value("${lac.lf.ssoServer:http://localhost/sso}")
+    private String ssoServer;
+
+    @Reference(version = "${dubbo.service.version}", application = "${dubbo.application.id}")
+    private IKhUserManager khUserManager;
+
     @Bean
     public LacEnvInterceptor getLacEnvInterceptor() {
         return new LacEnvInterceptor() {
-
             @Override
             protected String getStaticServer() {
                 return staticServer;
@@ -50,8 +68,39 @@ public class UmKhApplication implements WebMvcConfigurer {
             protected String getResourceVersion() {
                 return staticResourceVersion;
             }
-
         };
+    }
+
+
+    @Bean
+    @Order(1)
+    public FilterRegistrationBean<AuthenticationFilter> authenticationFilter() {
+        FilterRegistrationBean<AuthenticationFilter> frb = new FilterRegistrationBean<AuthenticationFilter>();
+        frb.setFilter(new AuthenticationFilter(myAppCode, appServerName, ssoServer));
+        frb.addUrlPatterns("/*");
+        frb.setName("AuthenticationFilter");
+        return frb;
+    }
+
+    @Bean
+    @Order(2)
+    public FilterRegistrationBean<TicketValidationFilter> serviceTicketValidationFilter() {
+        FilterRegistrationBean<TicketValidationFilter> frb = new FilterRegistrationBean<TicketValidationFilter>();
+        frb.setFilter(new TicketValidationFilter(myAppCode, appServerName, null,
+                new ServiceTicketValidator(ssoServer, false)));
+        frb.addUrlPatterns("/*");
+        frb.setName("ServiceTicketValidationFilter");
+        return frb;
+    }
+
+    @Bean
+    @Order(3)
+    public FilterRegistrationBean<LoginFilter> loginFilterReg() {
+        FilterRegistrationBean<LoginFilter> frb = new FilterRegistrationBean<LoginFilter>();
+        frb.setFilter(new LoginFilter(myAppCode, khUserManager, "/login"));
+        frb.addUrlPatterns("/*");
+        frb.setName("LoginFilter");
+        return frb;
     }
 
     @Bean
@@ -64,41 +113,22 @@ public class UmKhApplication implements WebMvcConfigurer {
         InterceptorRegistration envpi = registry.addInterceptor(getLacEnvInterceptor());
         envpi.excludePathPatterns("/js/**", "/css/**", "/images/**", "/img/**", "/static/**");
         envpi.addPathPatterns("/**");
+        envpi.order(4);
 
         InterceptorRegistration pi = registry.addInterceptor(getLacPermissionInterceptor());
         pi.excludePathPatterns("/js/**", "/css/**", "/images/**", "/img/**", "/static/**", "/login/**", "/verifyCode",
-                "/exit", "/unsupport", "/error", "/pub/**");
+                "/imageValidate", "/exit", "/unsupport", "/error", "/pub/**", "/nnl/**", "/face/**");
         pi.addPathPatterns("/**");
+        pi.addPathPatterns("/**");
+        pi.order(5);
 
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 
-    // @Bean
-    // public FilterRegistrationBean<PermissionFilter> setFilter() {
-    // FilterRegistrationBean<PermissionFilter> filterBean = new
-    // FilterRegistrationBean<PermissionFilter>();
-    // filterBean.setFilter(new PermissionFilter());
-    // filterBean.setName("PermissionFilter");
-    // filterBean.addUrlPatterns("/*");
-    // return filterBean;
-    // }
-
-    // @Bean
-    // @Order(Integer.MAX_VALUE - 1)
-    // public FilterRegistrationBean<LoginFilter> setFilter() {
-    // FilterRegistrationBean<LoginFilter> filterBean = new
-    // FilterRegistrationBean<LoginFilter>();
-    // filterBean.setFilter(new LoginFilter());
-    // filterBean.setName("LoginFilter");
-    // filterBean.addUrlPatterns("/*");
-    // filterBean.setOrder(Integer.MAX_VALUE - 1);
-    // return filterBean;
-    // }
-
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new AppVisitorArgumentResolver());
-        resolvers.add(new TidHandlerMethodArgumentResolver());
+        //resolvers.add(new TidHandlerMethodArgumentResolver());
         resolvers.add(new TraceArgumentResolver());
         WebMvcConfigurer.super.addArgumentResolvers(resolvers);
     }
@@ -132,9 +162,9 @@ public class UmKhApplication implements WebMvcConfigurer {
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
         // 单个文件最大
-        factory.setMaxFileSize("10240KB"); // KB,MB
+        factory.setMaxFileSize(DataSize.parse("10240KB")); // KB,MB
         // 设置总上传数据总大小
-        factory.setMaxRequestSize("102400KB");
+        factory.setMaxRequestSize(DataSize.parse("102400KB"));
         return factory.createMultipartConfig();
     }
 

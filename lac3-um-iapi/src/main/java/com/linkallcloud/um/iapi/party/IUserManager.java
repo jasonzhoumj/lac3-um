@@ -9,6 +9,7 @@ import com.linkallcloud.core.exception.BaseRuntimeException;
 import com.linkallcloud.core.exception.IllegalParameterException;
 import com.linkallcloud.core.pagination.Page;
 import com.linkallcloud.um.domain.party.User;
+import com.linkallcloud.web.session.SessionUser;
 
 public abstract interface IUserManager<T extends User> extends IPartyManager<T> {
 	
@@ -33,7 +34,7 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	/**
 	 * 返回某用户某角色具有权限的菜单资源的resCode数组
 	 * 
-	 * @param tid
+	 * @param t
 	 * @param userId
 	 * @param appId
 	 * @return
@@ -47,9 +48,7 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	 * 
 	 * @param t
 	 * @param userId
-	 * @param userUuid
 	 * @param appId
-	 * @param appUuid
 	 * @return
 	 */
 	Tree getUserAppMenu(Trace t, Long userId, Long appId);
@@ -59,7 +58,7 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	/**
 	 * 查询某角色已分配的用户
 	 * 
-	 * @param tid
+	 * @param t
 	 * @param page 查询条件中必须包含：roleId和roleUuid参数
 	 * 
 	 * @return
@@ -79,7 +78,7 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	 * 查询某角色已分配的用户
 	 * 
 	 * @param t
-	 * @param roleId
+	 * @param roleIds
 	 * @return
 	 */
 	List<T> find4Role(Trace t, Long[] roleIds);
@@ -97,7 +96,7 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	 * 查询某角色已分配的用户
 	 * 
 	 * @param t
-	 * @param roleGovCode
+	 * @param roleGovCodes
 	 * @return
 	 */
 	List<T> find4Role(Trace t, String[] roleGovCodes);
@@ -116,7 +115,8 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	 * 查询某角色已分配给某部门的用户
 	 * 
 	 * @param t
-	 * @param roleId
+	 * @param departmentId
+	 * @param roleIds
 	 * @return
 	 */
 	List<T> findDepartmentUser4Role(Trace t, Long departmentId, Long[] roleIds);
@@ -134,7 +134,8 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	 * 查询某角色已分配给某部门的用户
 	 * 
 	 * @param t
-	 * @param roleGovCode
+	 * @param departmentId
+	 * @param roleGovCodes
 	 * @return
 	 */
 	List<T> findDepartmentUser4Role(Trace t, Long departmentId, String[] roleGovCodes);
@@ -186,5 +187,7 @@ public abstract interface IUserManager<T extends User> extends IPartyManager<T> 
 	 * @return
 	 */
 	boolean updateDduid(Trace t, Long umUserId, String dduid, int ddStatus);
+
+	SessionUser assembleSessionUser(Trace t, String loginName, String appCode);
 
 }

@@ -6,182 +6,182 @@ import com.linkallcloud.core.dto.Tree;
 
 @ShowName("应用")
 public class Application extends Domain {
-	private static final long serialVersionUID = -588316821409393023L;
+    private static final long serialVersionUID = -588316821409393023L;
 
-	private String code;
-	private String name;
+    private String code;
+    private String name;
 
-	private String url;
-	private int sort;
-	private int type;
-	private String ico;
+    private String url;
+    private int sort;
+    private int type;
+    private String ico;
 
-	/* 接口安全设置 */
-	private String host;// 应用host（IP或域名白名单）
-	private long timeout;// 超时时间
-	private String messageEncAlg;// 消息加解密算法，暂时支持AES。
-	private String messageEncKey;// 加密的秘钥
-	// private String signatureIdentity;// 签名者ID(appKey)//用code替代
-	private String signatureAlg;// 签名算法(SHA1/MD5)
-	private String signatureKey;// 签名密钥
-	/* end 接口安全设置 */
+    /* 接口安全设置 */
+    private String host;// 应用host（IP或域名白名单）
+    private long timeout;// 超时时间
+    private String messageEncAlg;// 消息加解密算法，暂时支持AES。
+    private String messageEncKey;// 加密的秘钥
+    // private String signatureIdentity;// 签名者ID(appKey)//用code替代
+    private String signatureAlg;// 签名算法(SHA1/MD5)
+    private String signatureKey;// 签名密钥
+    /* end 接口安全设置 */
 
-	private String remark;
+    private String remark;
 
-	/*
-	 * 以下非数据库字段
-	 */
-	private Long ownerId;
-	private String ownerUuid;
-	private String ownerName;
+    /*
+     * 以下非数据库字段
+     */
+    private Long ownerId;
+    private String ownerUuid;
+    private String ownerName;
 
-	public Application() {
-		super();
-	}
+    public Application() {
+        super();
+    }
 
-	public Application(Long id, String uuid) {
-		super(id, uuid);
-	}
+    public Application(Long id, String uuid) {
+        super(id, uuid);
+    }
 
-	public Application(Long id) {
-		super(id);
-	}
+    public Application(Long id) {
+        super(id);
+    }
 
-	public void desensitization() {
-		this.host = null;
-		this.timeout = 0;
-		this.messageEncAlg = null;
-		this.messageEncKey = null;
-		this.signatureAlg = null;
-		this.signatureKey = null;
-	}
+    public void desensitization() {
+        this.host = null;
+        this.timeout = 0;
+        this.messageEncAlg = null;
+        this.messageEncKey = null;
+        this.signatureAlg = null;
+        this.signatureKey = null;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getRemark() {
-		return remark;
-	}
+    public String getRemark() {
+        return remark;
+    }
 
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public int getSort() {
-		return sort;
-	}
+    public int getSort() {
+        return sort;
+    }
 
-	public void setSort(int sort) {
-		this.sort = sort;
-	}
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
 
-	public int getType() {
-		return type;
-	}
+    public int getType() {
+        return type;
+    }
 
-	public void setType(int type) {
-		this.type = type;
-	}
+    public void setType(int type) {
+        this.type = type;
+    }
 
-	public String getIco() {
-		return ico;
-	}
+    public String getIco() {
+        return ico;
+    }
 
-	public void setIco(String ico) {
-		this.ico = ico;
-	}
+    public void setIco(String ico) {
+        this.ico = ico;
+    }
 
-	public Tree toTreeNode() {
-		Tree node = new Tree(this.getId() == null ? null : this.getId().toString(), this.getUuid(), null,
-				this.getName(), this.getCode(), String.valueOf(this.getType()), this.getStatus());
-		node.addAttribute("alias", this.getClass().getSimpleName());
-		return node;
-	}
+    public Tree toTreeNode() {
+        Tree node = new Tree(this.getId() == null ? null : this.getId().toString(), this.getUuid(), null,
+                this.getName(), this.getCode(), String.valueOf(this.getType()), this.getStatus());
+        node.addAttribute("alias", this.getClass().getSimpleName());
+        return node;
+    }
 
-	public Long getOwnerId() {
-		return ownerId;
-	}
+    public Long getOwnerId() {
+        return ownerId;
+    }
 
-	public void setOwnerId(Long ownerId) {
-		this.ownerId = ownerId;
-	}
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
+    }
 
-	public String getOwnerUuid() {
-		return ownerUuid;
-	}
+    public String getOwnerUuid() {
+        return ownerUuid;
+    }
 
-	public void setOwnerUuid(String ownerUuid) {
-		this.ownerUuid = ownerUuid;
-	}
+    public void setOwnerUuid(String ownerUuid) {
+        this.ownerUuid = ownerUuid;
+    }
 
-	public String getOwnerName() {
-		return ownerName;
-	}
+    public String getOwnerName() {
+        return ownerName;
+    }
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
-	}
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
 
-	public Tree toMenuRoot() {
-		Tree root = this.toTreeNode();
-		root.setId("APP-" + this.getId());
-		root.setpId(null);
-		root.setOpen(true);
-		return root;
-	}
+    public Tree toMenuRoot() {
+        Tree root = this.toTreeNode();
+        root.setId("APP-" + this.getId());
+        root.setpId(null);
+        root.setOpen(true);
+        return root;
+    }
 
-	public String getHost() {
-		return host;
-	}
+    public String getHost() {
+        return host;
+    }
 
-	public void setHost(String host) {
-		this.host = host;
-	}
+    public void setHost(String host) {
+        this.host = host;
+    }
 
-	public long getTimeout() {
-		return timeout;
-	}
+    public long getTimeout() {
+        return timeout;
+    }
 
-	public void setTimeout(long timeout) {
-		this.timeout = timeout;
-	}
+    public void setTimeout(long timeout) {
+        this.timeout = timeout;
+    }
 
-	public String getMessageEncAlg() {
-		return messageEncAlg;
-	}
+    public String getMessageEncAlg() {
+        return messageEncAlg;
+    }
 
-	public void setMessageEncAlg(String messageEncAlg) {
-		this.messageEncAlg = messageEncAlg;
-	}
+    public void setMessageEncAlg(String messageEncAlg) {
+        this.messageEncAlg = messageEncAlg;
+    }
 
-	public String getMessageEncKey() {
-		return messageEncKey;
-	}
+    public String getMessageEncKey() {
+        return messageEncKey;
+    }
 
-	public void setMessageEncKey(String messageEncKey) {
-		this.messageEncKey = messageEncKey;
-	}
+    public void setMessageEncKey(String messageEncKey) {
+        this.messageEncKey = messageEncKey;
+    }
 
 //	public String getSignatureIdentity() {
 //		return signatureIdentity;
@@ -191,20 +191,24 @@ public class Application extends Domain {
 //		this.signatureIdentity = signatureIdentity;
 //	}
 
-	public String getSignatureAlg() {
-		return signatureAlg;
-	}
+    public String getSignatureAlg() {
+        return signatureAlg;
+    }
 
-	public void setSignatureAlg(String signatureAlg) {
-		this.signatureAlg = signatureAlg;
-	}
+    public void setSignatureAlg(String signatureAlg) {
+        this.signatureAlg = signatureAlg;
+    }
 
-	public String getSignatureKey() {
-		return signatureKey;
-	}
+    public String getSignatureKey() {
+        return signatureKey;
+    }
 
-	public void setSignatureKey(String signatureKey) {
-		this.signatureKey = signatureKey;
-	}
+    public void setSignatureKey(String signatureKey) {
+        this.signatureKey = signatureKey;
+    }
+
+    public boolean isValid() {
+        return this.status == 0;
+    }
 
 }

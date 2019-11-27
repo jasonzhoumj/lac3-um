@@ -47,8 +47,8 @@ public class AccountManager extends BaseManager<Account, IAccountService> implem
     }
 
     @Override
-    public Account fechByWechatOpenId(Trace t, String userType, String openid) {
-        return service().fechByWechatOpenId(t, userType, openid);
+    public Account fechByWechatOpenId(Trace t, String openid) {
+        return service().fechByWechatOpenId(t, openid);
     }
 
     @Override

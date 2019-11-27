@@ -8,6 +8,6 @@ public interface IKhSystemConfigManager extends IManager<KhSystemConfig> {
 
     KhSystemConfig fetchByCompanyId(Trace t, Long companyId);
 
-    Long save(Trace t, KhSystemConfig entity);
+    //Long save(Trace t, KhSystemConfig entity);
 
 }

@@ -5,8 +5,6 @@ import com.linkallcloud.core.dto.Trace;
 import com.linkallcloud.core.lang.Strings;
 import com.linkallcloud.core.security.Securities;
 import com.linkallcloud.um.activity.sys.IAccountActivity;
-import com.linkallcloud.um.domain.party.KhUser;
-import com.linkallcloud.um.domain.party.YwUser;
 import com.linkallcloud.um.domain.sys.Account;
 import com.linkallcloud.um.exception.AccountException;
 import com.linkallcloud.um.exception.AuthException;
@@ -60,7 +58,7 @@ public class AccountActivity extends BaseActivity<Account, IAccountDao> implemen
 
         // setClientInfo2Cache(lvo.getLoginName(), lvo.getClient());
 
-        if (Securities.validePassword4Md5Src(password, dbAccount.getSalt(), dbAccount.getPassword())) {
+        if (Securities.validePassword4Md5Src(password, dbAccount.getSalt(), dbAccount.getPasswd())) {
             dao().updateLastLoginTime(t, dbAccount.getId());
             return dbAccount;
         }
@@ -71,9 +69,9 @@ public class AccountActivity extends BaseActivity<Account, IAccountDao> implemen
     public boolean updatePassword(Trace t, Long id, String uuid, String oldPwd, String newPwd) {
         Account account = this.fetchByIdUuid(t, id, uuid);
         if (account != null) {
-            if (Securities.validePassword4Md5Src(oldPwd, account.getSalt(), account.getPassword())) {
+            if (Securities.validePassword4Md5Src(oldPwd, account.getSalt(), account.getPasswd())) {
                 account.setSalt(account.generateUuid());
-                account.setPassword(Securities.password4Md5Src(newPwd, account.getSalt()));
+                account.setPasswd(Securities.password4Md5Src(newPwd, account.getSalt()));
                 int rows = dao().update(t, account);
                 if (rows > 0) {
                     log.debug("update密码 成功，tid：" + t.getTid() + ", id:" + account.getId());
@@ -87,22 +85,12 @@ public class AccountActivity extends BaseActivity<Account, IAccountDao> implemen
     }
 
     @Override
-    public Account fechByWechatOpenId(Trace t, String userType, String openid) {
-        Account account = dao().fechByWechatOpenId(t, userType, openid);
-        if (account != null) {
-            if (YwUser.class.getSimpleName().equals(account.getUserType())) {
-                YwUser u = ywUserDao.fecthByAccount(t, account.getAccount());
-                if (u.getStatus() != 0) {
-                    throw new AccountException("10002", "您的账号暂时无法登陆系统，请联系管理员！");
-                }
-            } else if (KhUser.class.getSimpleName().equals(account.getUserType())) {
-                KhUser u = kuUserDao.fecthByAccount(t, account.getAccount());
-                if (u.getStatus() != 0) {
-                    throw new AccountException("10002", "您的账号暂时无法登陆系统，请联系管理员！");
-                }
-            }
+    public Account fechByWechatOpenId(Trace t, String openid) {
+        Account account = dao().fechByWechatOpenId(t, openid);
+        if (account != null && account.isValid()) {
+            return account;
         }
-        return account;
+        throw new AccountException("10002", "您的账号暂时无法登陆系统，请联系管理员！");
     }
 
     @Override

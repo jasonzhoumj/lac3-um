@@ -11,7 +11,9 @@ import com.linkallcloud.core.query.Query;
 import com.linkallcloud.core.query.WebQuery;
 import com.linkallcloud.core.query.rule.Equal;
 import com.linkallcloud.um.domain.sys.Application;
+import com.linkallcloud.um.domain.sys.Menu;
 import com.linkallcloud.um.iapi.sys.IApplicationManager;
+import com.linkallcloud.um.iapi.sys.IMenuManager;
 import com.linkallcloud.um.iapi.sys.IOperationManager;
 import com.linkallcloud.web.face.annotation.Face;
 import org.apache.dubbo.config.annotation.Reference;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -32,6 +35,9 @@ public class ApplicationFace {
 
     @Reference(version = "${dubbo.service.version}", application = "${dubbo.application.id}")
     private IOperationManager operationManager;
+
+    @Reference(version = "${dubbo.service.version}", application = "${dubbo.application.id}")
+    private IMenuManager menuManager;
 
     @Face(login = false)
     @RequestMapping(value = "/fetchById", method = RequestMethod.POST)
@@ -127,6 +133,23 @@ public class ApplicationFace {
         }
         Map<String, String[]> result = operationManager.loadAppUriRescodeMap(t, Long.parseLong(faceReq.getId()));
         return result;
+    }
+
+    @Face(login = false)
+    @RequestMapping(value = "/getAppMenuTree", method = RequestMethod.POST)
+    public @ResponseBody
+    Object getAppMenuTree(ObjectFaceRequest<String> faceReq, Trace t) throws Exception {
+        String appCode = faceReq.getData();
+        return menuManager.getMenuTree(t, appCode);
+    }
+
+    @Face(login = false)
+    @RequestMapping(value = "/getAppMenus", method = RequestMethod.POST)
+    public @ResponseBody
+    Object getAppMenus(ObjectFaceRequest<String> faceReq, Trace t) throws Exception {
+        String appCode = faceReq.getData();
+        List<Menu> menus = menuManager.getValidMenuList(t, appCode);
+        return menus;
     }
 
 }

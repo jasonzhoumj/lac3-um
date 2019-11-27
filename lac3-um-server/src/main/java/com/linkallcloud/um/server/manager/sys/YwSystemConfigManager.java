@@ -33,7 +33,7 @@ public class YwSystemConfigManager extends BaseManager<YwSystemConfig, IYwSystem
     }
 
     @Override
-    public Long save(Trace t, YwSystemConfig entity) {
+    public YwSystemConfig save(Trace t, YwSystemConfig entity) {
         YwSystemConfig dbEntity = service().fetchByCompanyId(t, entity.getCompanyId());
         if (dbEntity != null) {
             dbEntity.setRootAreaId(entity.getRootAreaId());
@@ -42,9 +42,11 @@ public class YwSystemConfigManager extends BaseManager<YwSystemConfig, IYwSystem
             dbEntity.setEnableZf(entity.getEnableZf());
             dbEntity.setEnableZzd(entity.getEnableZzd());
             service().update(t, dbEntity);
-            return dbEntity.getId();
+            return dbEntity;
         } else {
-            return service().insert(t, entity);
+            Long id = service().insert(t, entity);
+            entity.setId(id);
+            return entity;
         }
     }
 
