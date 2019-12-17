@@ -74,7 +74,8 @@ public class ApplicationFace {
         if (isInnerVisitor(t, faceReq)) {
             Query q = new Query();
             q.addRule(new Equal("status", 0));
-            return applicationManager.find(t, q);
+            List<Application> apps =  applicationManager.find(t, q);
+            return desensitization(apps);
         }
         return null;
     }
@@ -89,7 +90,8 @@ public class ApplicationFace {
             if (wq != null) {
                 q = wq.toQuery();
             }
-            return applicationManager.find(t, q);
+            List<Application> apps =  applicationManager.find(t, q);
+            return desensitization(apps);
         }
         return null;
     }
@@ -150,6 +152,29 @@ public class ApplicationFace {
         String appCode = faceReq.getData();
         List<Menu> menus = menuManager.getValidMenuList(t, appCode);
         return menus;
+    }
+
+    @Face(login = false)
+    @RequestMapping(value = "/findByYwUserId", method = RequestMethod.POST)
+    public @ResponseBody
+    Object findByYwUserId(IdFaceRequest faceReq, Trace t) throws Exception {
+        if (Strings.isBlank(faceReq.getId())) {
+            return null;
+        }
+        if (isInnerVisitor(t, faceReq)) {
+            List<Application> apps = applicationManager.find4YwUser(t, Long.parseLong(faceReq.getId()));
+            return desensitization(apps);
+        }
+        return null;
+    }
+
+    private List<Application> desensitization(List<Application> apps) {
+        if (apps != null && !apps.isEmpty()) {
+            for (Application app : apps) {
+                app.desensitization();
+            }
+        }
+        return apps;
     }
 
 }

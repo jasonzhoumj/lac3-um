@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Service(interfaceClass = IUmWebLogManager.class, version = "${dubbo.service.version}")
 @Module(name = "Web层日志")
-public class LacWebBusiLogManager extends BaseManager<UmWebLog, IUmWebLogService>
+public class UmWebLogManager extends BaseManager<UmWebLog, IUmWebLogService>
 		implements IUmWebLogManager {
 
 	@Autowired

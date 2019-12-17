@@ -1,7 +1,6 @@
 package com.linkallcloud.um.server.aop;
 
 import com.linkallcloud.core.busilog.BusiServiceLogAspect;
-import com.linkallcloud.core.service.IServiceBusiLogService;
 import com.linkallcloud.um.domain.sys.UmServiceLog;
 import com.linkallcloud.um.service.sys.IUmServiceLogService;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -18,11 +17,11 @@ import org.springframework.stereotype.Component;
 public class XfBusiServiceLogAspect extends BusiServiceLogAspect<UmServiceLog, IUmServiceLogService> {
 
     @Autowired
-    private IUmServiceLogService xfServiceBusiLogService;
+    private IUmServiceLogService umServiceLogService;
 
     @Override
-    protected IServiceBusiLogService<UmServiceLog> logService() {
-        return xfServiceBusiLogService;
+    protected IUmServiceLogService logService() {
+        return umServiceLogService;
     }
 
     // @Pointcut("@annotation(com.linkallcloud.core.busilog.annotation.ServLog)")

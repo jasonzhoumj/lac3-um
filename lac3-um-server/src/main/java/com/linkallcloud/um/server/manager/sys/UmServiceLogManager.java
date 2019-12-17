@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Service(interfaceClass = IUmServiceLogManager.class, version = "${dubbo.service.version}")
 @Module(name = "服务层日志")
-public class LacServiceBusiLogManager extends BaseManager<UmServiceLog, IUmServiceLogService>
+public class UmServiceLogManager extends BaseManager<UmServiceLog, IUmServiceLogService>
 		implements IUmServiceLogManager {
 
 	@Autowired

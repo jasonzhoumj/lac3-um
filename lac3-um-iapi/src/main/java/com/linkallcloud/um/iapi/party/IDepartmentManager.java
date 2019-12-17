@@ -58,7 +58,7 @@ public interface IDepartmentManager<T extends Department> extends IOrgManager<T>
      * 根据parentDepartmentGoveCode获取此部门下直接子部门
      * 
      * @param t
-     * @param companyGoveCode
+     * @param parentDepartmentGoveCode
      * @return
      */
     List<T> findDirectDepartmentsByParentDepartmentGovCode(Trace t, String parentDepartmentGoveCode);

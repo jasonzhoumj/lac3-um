@@ -23,7 +23,7 @@ public interface ICompanyManager<T extends Company> extends IOrgManager<T> {
 	/**
 	 * 得到companyGovCode及其以下的机构树节点，包括所有子公司节点，所有部门节点。
 	 * 
-	 * @param tid
+	 * @param t
 	 * @param companyGovCode
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public interface ICompanyManager<T extends Company> extends IOrgManager<T> {
 	/**
 	 * 得到companyId及其以下的机构树节点，包括所有子公司节点，所有部门节点。
 	 * 
-	 * @param tid
+	 * @param t
 	 * @param companyId
 	 * @return
 	 */
